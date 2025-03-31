@@ -21,8 +21,9 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
   String profileCode = "";
   String idcard = "";
 
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
@@ -40,13 +41,9 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(
-        context,
-        () {
-          Navigator.pop(context);
-        },
-        title: 'ยื่นอุทธรณ์',
-      ),
+      appBar: header(context, () {
+        Navigator.pop(context);
+      }, title: 'ยื่นอุทธรณ์'),
       backgroundColor: Color(0xFFF5F8FB),
       body: InkWell(
         splashColor: Colors.transparent,
@@ -85,8 +82,9 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    DisputeList(title: 'รายการที่ใกล้หมดเวลาโต้แย้งได้'),
+                builder:
+                    (context) =>
+                        DisputeList(title: 'รายการที่ใกล้หมดเวลาโต้แย้งได้'),
               ),
             );
           },
@@ -98,8 +96,9 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    DisputeList(title: 'รายการที่สามารถโต้แย้งได้'),
+                builder:
+                    (context) =>
+                        DisputeList(title: 'รายการที่สามารถโต้แย้งได้'),
               ),
             );
           },
@@ -111,8 +110,8 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    DisputeList(title: 'รายการอยู่ระหว่างโต้แย้ง'),
+                builder:
+                    (context) => DisputeList(title: 'รายการอยู่ระหว่างโต้แย้ง'),
               ),
             );
           },
@@ -225,9 +224,10 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              color: model['disputeStatus'] == "NORMAL"
-                  ? Color(0xFFEBC22B)
-                  : Color(0xFF7948AD),
+              color:
+                  model['disputeStatus'] == "NORMAL"
+                      ? Color(0xFFEBC22B)
+                      : Color(0xFF7948AD),
             ),
             child: Column(
               children: [
@@ -249,44 +249,44 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
                     : SizedBox(height: 0),
                 model['accuse2_CODE'] != null
                     ? _textRow(
-                        title: model['accuse2_CODE'],
-                        value: model['fine2'],
-                        titleColor: Colors.white,
-                        valueColor: Colors.white,
-                      )
+                      title: model['accuse2_CODE'],
+                      value: model['fine2'],
+                      titleColor: Colors.white,
+                      valueColor: Colors.white,
+                    )
                     : Container(),
                 model['accuse3_CODE'] != null
                     ? SizedBox(height: 8)
                     : SizedBox(height: 0),
                 model['accuse3_CODE'] != null
                     ? _textRow(
-                        title: model['accuse3_CODE'],
-                        value: model['fine3'],
-                        titleColor: Colors.white,
-                        valueColor: Colors.white,
-                      )
+                      title: model['accuse3_CODE'],
+                      value: model['fine3'],
+                      titleColor: Colors.white,
+                      valueColor: Colors.white,
+                    )
                     : Container(),
                 model['accuse4_CODE'] != null
                     ? SizedBox(height: 8)
                     : SizedBox(height: 0),
                 model['accuse4_CODE'] != null
                     ? _textRow(
-                        title: model['accuse4_CODE'],
-                        value: model['fine4'],
-                        titleColor: Colors.white,
-                        valueColor: Colors.white,
-                      )
+                      title: model['accuse4_CODE'],
+                      value: model['fine4'],
+                      titleColor: Colors.white,
+                      valueColor: Colors.white,
+                    )
                     : Container(),
                 model['accuse5_CODE'] != null
                     ? SizedBox(height: 8)
                     : SizedBox(height: 0),
                 model['accuse5_CODE'] != null
                     ? _textRow(
-                        title: model['accuse5_CODE'],
-                        value: model['fine5'],
-                        titleColor: Colors.white,
-                        valueColor: Colors.white,
-                      )
+                      title: model['accuse5_CODE'],
+                      value: model['fine5'],
+                      titleColor: Colors.white,
+                      valueColor: Colors.white,
+                    )
                     : Container(),
                 SizedBox(height: 10),
                 _line(),
@@ -299,7 +299,7 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -365,15 +365,60 @@ class _DisputeAnAllegationPageState extends State<DisputeAnAllegation> {
     profileCode = (await storage.read(key: 'profileCode2'))!;
     idcard = (await storage.read(key: 'idcard'))!;
 
-    if (profileCode != '')
-      setState(() {
-        _futureModel = postDio('${serverMW}tickerDispute/searchTickerDispute', {
-          "code": profileCode,
-          "citizen": idcard,
-          "createBy": profileCode,
-          "updateBy": profileCode,
-        });
-      });
+    // if (profileCode != '')
+    //   setState(() {
+    //     _futureModel = postDio('${serverMW}tickerDispute/searchTickerDispute', {
+    //       "code": profileCode,
+    //       "citizen": idcard,
+    //       "createBy": profileCode,
+    //       "updateBy": profileCode,
+    //     });
+    //   });
+
+    _futureModel = Future.value({
+      "tickets": [
+        {
+          'ticketNo': '1234567890',
+          'dateHappen': '2025-03-01',
+          'place': 'ถนนสุขุมวิท, กรุงเทพฯ',
+          'orgNameTicket': 'ตำรวจจราจร',
+          'disputeStatus': 'NORMAL', // Use 'ACCEPTED' or 'NORMAL'
+          'accuse1_CODE': 'ไม่หยุดป้ายแดง',
+          'fine1': '500',
+          'ticketFine': '500',
+        },
+        {
+          'ticketNo': '9876543210',
+          'dateHappen': '2025-03-10',
+          'place': 'ถนนรัชดาภิเษก, กรุงเทพฯ',
+          'orgNameTicket': 'ตำรวจทางหลวง',
+          'disputeStatus': 'ACCEPTED',
+          'accuse1_CODE': 'ขับรถเร็วเกินกำหนด',
+          'fine1': '1000',
+          'ticketFine': '1000',
+        },
+        {
+          'ticketNo': '1122334455',
+          'dateHappen': '2025-03-12',
+          'place': 'ถนนพระราม 9, กรุงเทพฯ',
+          'orgNameTicket': 'ตำรวจจราจร',
+          'disputeStatus': 'NORMAL',
+          'accuse1_CODE': 'ขับรถย้อนศร',
+          'fine1': '700',
+          'ticketFine': '700',
+        },
+        {
+          'ticketNo': '2233445566',
+          'dateHappen': '2025-03-15',
+          'place': 'ถนนพัฒนาการ, กรุงเทพฯ',
+          'orgNameTicket': 'ตำรวจทางหลวง',
+          'disputeStatus': 'ACCEPTED',
+          'accuse1_CODE': 'ไม่สวมหมวกกันน็อก',
+          'fine1': '300',
+          'ticketFine': '300',
+        },
+      ],
+    });
 
     var result = await _futureModel;
 

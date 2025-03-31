@@ -443,7 +443,7 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
     // });
     futureModel = Future.value([
       {
-        'ticket_DATE': '2025-03-01',
+        'ticket_DATE': '20250301',
         'org_CODE': 'TICKET001',
         'plate': 'กข1234',
         'accuse1_CODE': 'Speeding',
@@ -460,7 +460,7 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
         'code': 'QR001',
       },
       {
-        'ticket_DATE': '2025-03-03',
+        'ticket_DATE': '20250303',
         'org_CODE': 'TICKET002',
         'plate': 'ขค5678',
         'accuse1_CODE': 'Illegal parking',
@@ -477,7 +477,7 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
         'code': 'QR002',
       },
       {
-        'ticket_DATE': '2025-03-05',
+        'ticket_DATE': '20250305',
         'org_CODE': 'TICKET003',
         'plate': 'คข2345',
         'accuse1_CODE': 'Parking in a no-parking zone',

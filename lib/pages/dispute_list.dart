@@ -7,10 +7,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class DisputeList extends StatefulWidget {
-  DisputeList({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+  DisputeList({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -20,15 +17,16 @@ class DisputeList extends StatefulWidget {
 
 class _DisputeListPageState extends State<DisputeList> {
   final storage = new FlutterSecureStorage();
-  late Future<dynamic> _futureModel;
+  late Future<dynamic> _futureModel = Future.value(null);
   dynamic tempData;
   String profileCode = "";
   String idcard = "";
 
   int _limit = 10;
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
@@ -46,13 +44,9 @@ class _DisputeListPageState extends State<DisputeList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(
-        context,
-        () {
-          Navigator.pop(context);
-        },
-        title: widget.title,
-      ),
+      appBar: header(context, () {
+        Navigator.pop(context);
+      }, title: widget.title),
       backgroundColor: Color(0xFFF5F8FB),
       body: InkWell(
         splashColor: Colors.transparent,
@@ -119,10 +113,11 @@ class _DisputeListPageState extends State<DisputeList> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TrafficTicketDetail(
-              cardID: model['citizenID'],
-              ticketID: model['ticketNo'],
-            ),
+            builder:
+                (context) => TrafficTicketDetail(
+                  cardID: model['citizenID'],
+                  ticketID: model['ticketNo'],
+                ),
           ),
         );
       },
@@ -196,44 +191,44 @@ class _DisputeListPageState extends State<DisputeList> {
                       : SizedBox(height: 0),
                   model['accuse2_CODE'] != null
                       ? _textRow(
-                          title: model['accuse2_CODE'],
-                          value: model['fine2'],
-                          titleColor: Colors.white,
-                          valueColor: Colors.white,
-                        )
+                        title: model['accuse2_CODE'],
+                        value: model['fine2'],
+                        titleColor: Colors.white,
+                        valueColor: Colors.white,
+                      )
                       : Container(),
                   model['accuse3_CODE'] != null
                       ? SizedBox(height: 8)
                       : SizedBox(height: 0),
                   model['accuse3_CODE'] != null
                       ? _textRow(
-                          title: model['accuse3_CODE'],
-                          value: model['fine3'],
-                          titleColor: Colors.white,
-                          valueColor: Colors.white,
-                        )
+                        title: model['accuse3_CODE'],
+                        value: model['fine3'],
+                        titleColor: Colors.white,
+                        valueColor: Colors.white,
+                      )
                       : Container(),
                   model['accuse4_CODE'] != null
                       ? SizedBox(height: 8)
                       : SizedBox(height: 0),
                   model['accuse4_CODE'] != null
                       ? _textRow(
-                          title: model['accuse4_CODE'],
-                          value: model['fine4'],
-                          titleColor: Colors.white,
-                          valueColor: Colors.white,
-                        )
+                        title: model['accuse4_CODE'],
+                        value: model['fine4'],
+                        titleColor: Colors.white,
+                        valueColor: Colors.white,
+                      )
                       : Container(),
                   model['accuse5_CODE'] != null
                       ? SizedBox(height: 8)
                       : SizedBox(height: 0),
                   model['accuse5_CODE'] != null
                       ? _textRow(
-                          title: model['accuse5_CODE'],
-                          value: model['fine5'],
-                          titleColor: Colors.white,
-                          valueColor: Colors.white,
-                        )
+                        title: model['accuse5_CODE'],
+                        value: model['fine5'],
+                        titleColor: Colors.white,
+                        valueColor: Colors.white,
+                      )
                       : Container(),
                   SizedBox(height: 10),
                   _line(),
@@ -246,7 +241,7 @@ class _DisputeListPageState extends State<DisputeList> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -313,15 +308,44 @@ class _DisputeListPageState extends State<DisputeList> {
     profileCode = (await storage.read(key: 'profileCode2'))!;
     idcard = (await storage.read(key: 'idcard'))!;
 
-    if (profileCode != '' && profileCode != null)
-      setState(() {
-        _futureModel = postDio('${serverMW}tickerDispute/searchTickerDispute', {
-          "code": profileCode,
-          "citizen": idcard,
-          "createBy": profileCode,
-          "updateBy": profileCode,
-        });
+    // if (profileCode != '' && profileCode != null)
+    //   setState(() {
+    //     _futureModel = postDio('${serverMW}tickerDispute/searchTickerDispute', {
+    //       "code": profileCode,
+    //       "citizen": idcard,
+    //       "createBy": profileCode,
+    //       "updateBy": profileCode,
+    //     });
+    //   });
+
+    setState(() {
+      _futureModel = Future.value({
+        "tickets": [
+          {
+            'dateHappen': '20250301',
+            'place': 'Bangkok, Thailand',
+            'ticketNo': '123456',
+            'orgNameTicket': 'Police Station 1',
+            'accuse1_CODE': 'Speeding',
+            'fine1': '500',
+            'accuse2_CODE': 'No Seatbelt',
+            'fine2': '200',
+            'ticketFine': '700',
+            'citizenID': '9876543210',
+          },
+          {
+            'dateHappen': '20250302',
+            'place': 'Chiang Mai, Thailand',
+            'ticketNo': '123457',
+            'orgNameTicket': 'Traffic Department',
+            'accuse1_CODE': 'Running a Red Light',
+            'fine1': '1000',
+            'ticketFine': '1000',
+            'citizenID': '1234567890',
+          },
+        ],
       });
+    });
   }
 
   _onLoading() async {
