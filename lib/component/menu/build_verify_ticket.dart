@@ -414,7 +414,8 @@ class _VerifyTicket extends State<VerifyTicket> {
                   Container(
                     alignment: Alignment.center,
                     child: Text(
-                      param.toString(),
+                      //param.toString(),
+                      '4',
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 50.0,

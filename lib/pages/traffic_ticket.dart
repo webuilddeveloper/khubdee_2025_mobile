@@ -519,7 +519,7 @@ class _TrafficTicketPageState extends State<TrafficTicket> {
             {
               'card_ID': '123456',
               'ticket_ID': 'TICKET001',
-              'occur_DT': '20250301',
+              'occur_DT': '25681201',
               'ticket_STATUS': '1',
               'place': 'บางแค',
               'org_CODE': 'ORG123',
@@ -539,7 +539,7 @@ class _TrafficTicketPageState extends State<TrafficTicket> {
             {
               'card_ID': '654321',
               'ticket_ID': 'TICKET002',
-              'occur_DT': '20250305',
+              'occur_DT': '25680705',
               'ticket_STATUS': '2',
               'place': 'ลาดพร้าว',
               'org_CODE': 'ORG124',
@@ -559,7 +559,7 @@ class _TrafficTicketPageState extends State<TrafficTicket> {
             {
               'card_ID': '789012',
               'ticket_ID': 'TICKET003',
-              'occur_DT': '20250307',
+              'occur_DT': '25680607',
               'ticket_STATUS': '3',
               'place': 'พระราม 9',
               'org_CODE': 'ORG125',
@@ -579,7 +579,7 @@ class _TrafficTicketPageState extends State<TrafficTicket> {
             {
               'card_ID': '987654',
               'ticket_ID': 'TICKET004',
-              'occur_DT': '20250310',
+              'occur_DT': '25680310',
               'ticket_STATUS': '3',
               'place': 'เยาวราช',
               'org_CODE': 'ORG126',

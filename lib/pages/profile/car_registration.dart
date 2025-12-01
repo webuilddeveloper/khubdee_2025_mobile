@@ -43,18 +43,18 @@ class _CarRegistrationPageState extends State<CarRegistration> {
       'car_registration': '3กท-9771 กรุงเทพมหานคร',
       'car_type': 'รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน',
       'car_style': 'เก๋งสองตอน',
-      'current_exp_date': '28/07/2565',
+      'current_exp_date': '28/07/2568',
       'next_exp_date': '-',
       'tax': '845.10 บาท',
       'extra_money': '0.00 บาท',
       'together': '845.10 บาท',
-      'due_date': '01/08/2565',
+      'due_date': '01/08/2568',
       'vehicle_status': '-',
       'remark':
           'ยื่นชำระภาษีล่วงหน้าก่อน 90 วัน แต่ไม่น้อยกว่า 45 วัน นับจากวันยื่นชำระภาษี',
       'vehicle_inspectiio': [
         {
-          'examination_day': '28/03/2557',
+          'examination_day': '28/03/2568',
           'vehicle': [
             {
               'title': 'การตรวจวัดเสียง ต้องไม่เกิน 100 เดซิเบล',
@@ -148,7 +148,7 @@ class _CarRegistrationPageState extends State<CarRegistration> {
           ],
         },
         {
-          'examination_day': '24/03/2556',
+          'examination_day': '24/03/2568',
           'vehicle': [
             {
               'title': 'การตรวจวัดเสียง ต้องไม่เกิน 100 เดซิเบล',
@@ -253,19 +253,19 @@ class _CarRegistrationPageState extends State<CarRegistration> {
       'car_registration': 'กง-1107 ตราด',
       'car_type': 'รถยนต์นั่งส่วนบุคคลไม่เกิน 7 คน',
       'car_style': 'เก๋งสองตอน',
-      'current_exp_date': '14/09/2565',
+      'current_exp_date': '14/09/2568',
       'next_exp_date': '-',
       'tax': '892.50 บาท',
       'extra_money': '0.00 บาท',
       'together': '892.50 บาท',
-      'due_date': '14/09/2565',
+      'due_date': '14/09/2568',
       'vehicle_status':
           'ต้องนำรถไปตรวจสภาพ ณ สถานตรวจสถาพรถเอกชน (ตรอ.) ก่อนยื่นชำระภาษี',
       'remark':
           'ยื่นชำระภาษีล่วงหน้าก่อน 90 วัน แต่ไม่น้อยกว่า 45 วัน นับจากวันยื่นชำระภาษี',
       'vehicle_inspectiio': [
         {
-          'examination_day': '14/09/2557',
+          'examination_day': '14/09/2568',
           'vehicle': [
             {
               'title': 'การตรวจวัดเสียง ต้องไม่เกิน 100 เดซิเบล',
@@ -359,7 +359,7 @@ class _CarRegistrationPageState extends State<CarRegistration> {
           ],
         },
         {
-          'examination_day': '12/09/2556',
+          'examination_day': '12/09/2568',
           'vehicle': [
             {
               'title': 'การตรวจวัดเสียง ต้องไม่เกิน 100 เดซิเบล',

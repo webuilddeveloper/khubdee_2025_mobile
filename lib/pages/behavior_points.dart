@@ -152,7 +152,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
   }
 
   _item(dynamic model) {
-    var toDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
+    var toDate = model['date'];
     return Container(
       // height: 310,
       margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
@@ -281,11 +281,17 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
   // function
   _read() async {
     // mock data
+    var now = DateTime.now();
     setState(() {
       tempData = [];
       for (var i = 0; i < _limit; i++) {
+        var date = now.subtract(Duration(days: i * 15));
         setState(() {
-          tempData.add({'title': i.toString()});
+          tempData.add({
+            'title': i.toString(),
+            'date':
+                "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year + 543}"
+          });
         });
       }
     });
