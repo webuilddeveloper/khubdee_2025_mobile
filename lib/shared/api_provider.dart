@@ -105,9 +105,9 @@ const splashApi = server + 'm/splash/read';
 
 const privilegeGalleryApi = server + 'm/privilege/gallery/read';
 const privilegeSpecialReadApi =
-    'http://122.155.223.63/td-we-mart-api/m/privilege/khubdeedlt/read';
+    server + '/m/privilege/read';
 const privilegeSpecialCategoryReadApi =
-    'http://122.155.223.63/td-we-mart-api/m/privilege/category/read';
+    server + '/m/privilege/category/read';
 
 Future<dynamic> postCategory(String url, dynamic criteria) async {
   final storage = new FlutterSecureStorage();
@@ -543,7 +543,7 @@ Future<dynamic> postDioCategoryWeMart(String url, dynamic criteria) async {
     {'code': "", 'title': 'ทั้งหมด'}
   ];
 
-  list = [...data, ...list];
+  list = [...list, ...data];
   return Future.value(list);
 }
 
