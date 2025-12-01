@@ -20,7 +20,7 @@ class _NewsList extends State<NewsList> {
   late NewsListVertical news;
   bool hideSearch = true;
   final txtDescription = TextEditingController();
-  late String keySearch;
+  String keySearch = '';
   late String category;
   int _limit = 10;
 

@@ -223,26 +223,26 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
               ),
             ],
           ),
-          SizedBox(height: 80),
-          InkWell(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return dialogVerification(model);
-                },
-              );
-            },
-            child: const Text(
-              'ยื่นอุทธรณ์',
-              style: TextStyle(
-                fontFamily: 'Sarabun',
-                fontSize: 13,
-                color: Color(0xFF9C0000),
-                decoration: TextDecoration.underline,
-              ),
-            ),
-          ),
+          // SizedBox(height: 80),
+          // InkWell(
+          //   onTap: () {
+          //     showDialog(
+          //       context: context,
+          //       builder: (BuildContext context) {
+          //         return dialogVerification(model);
+          //       },
+          //     );
+          //   },
+          //   child: const Text(
+          //     'ยื่นอุทธรณ์',
+          //     style: TextStyle(
+          //       fontFamily: 'Sarabun',
+          //       fontSize: 13,
+          //       color: Color(0xFF9C0000),
+          //       decoration: TextDecoration.underline,
+          //     ),
+          //   ),
+          // ),
           SizedBox(height: 40),
         ],
       ),
@@ -454,9 +454,8 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
         'org_ABBR': 'Traffic Police',
         'fullname': 'John Doe',
         'card_ID': 'AB1234567890',
-        'pic1': 'https://example.com/image1.jpg',
-        'pic2': 'https://example.com/image2.jpg',
-        'pic3': 'https://example.com/image3.jpg',
+        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
         'code': 'QR001',
       },
       {
@@ -471,9 +470,8 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
         'org_ABBR': 'City Police',
         'fullname': 'Jane Smith',
         'card_ID': 'CD9876543210',
-        'pic1': 'https://example.com/image4.jpg',
-        'pic2': 'https://example.com/image5.jpg',
-        'pic3': 'https://example.com/image6.jpg',
+        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
         'code': 'QR002',
       },
       {
@@ -488,8 +486,8 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
         'org_ABBR': 'National Police',
         'fullname': 'Robert Johnson',
         'card_ID': 'EF1122334455',
-        'pic1': 'https://example.com/image7.jpg',
-        'pic2': 'https://example.com/image8.jpg',
+        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
         'pic3': null,
         'code': 'QR003',
       },

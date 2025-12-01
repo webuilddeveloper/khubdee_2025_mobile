@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/header.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ECertificateList extends StatefulWidget {
   @override
@@ -13,19 +14,19 @@ class _ECertificateListState extends State<ECertificateList> {
       'id': 'CERT001',
       'courseTitle': 'กฎหมายจราจรและมารยาทในการขับขี่',
       'issueDate': DateTime(2025, 11, 15),
-      'certificateUrl': 'https://via.placeholder.com/300x200/0000FF/FFFFFF?text=Certificate+001', // Mock certificate image
+      'certificateUrl': 'https://today-obs.line-scdn.net/0hZI6UBYMjBWYLLBQc4Rh6MTN6CRc4Sh9vKRkfV3suUlVyAEU4N0NWBS8qWkp1SEo2K00eUygoWQQuSRYzNg/w1200', // Mock certificate image
     },
     {
       'id': 'CERT002',
       'courseTitle': 'การปฐมพยาบาลเบื้องต้นเมื่อเจออุบัติเหตุ',
       'issueDate': DateTime(2025, 10, 20),
-      'certificateUrl': 'https://via.placeholder.com/300x200/FF0000/FFFFFF?text=Certificate+002', // Mock certificate image
+      'certificateUrl': 'https://today-obs.line-scdn.net/0hZI6UBYMjBWYLLBQc4Rh6MTN6CRc4Sh9vKRkfV3suUlVyAEU4N0NWBS8qWkp1SEo2K00eUygoWQQuSRYzNg/w1200', // Mock certificate image
     },
     {
       'id': 'CERT003',
       'courseTitle': 'ภาษาอังกฤษพื้นฐานสำหรับคนขับรถสาธารณะ',
       'issueDate': DateTime(2025, 9, 5),
-      'certificateUrl': 'https://via.placeholder.com/300x200/00FF00/FFFFFF?text=Certificate+003', // Mock certificate image
+      'certificateUrl': 'https://today-obs.line-scdn.net/0hZI6UBYMjBWYLLBQc4Rh6MTN6CRc4Sh9vKRkfV3suUlVyAEU4N0NWBS8qWkp1SEo2K00eUygoWQQuSRYzNg/w1200', // Mock certificate image
     },
   ];
 
@@ -97,7 +98,7 @@ class _ECertificateListState extends State<ECertificateList> {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            'ออกเมื่อ: ${DateFormat('dd MMMM yyyy', 'th').format(certificate['issueDate'])}',
+                            'ออกเมื่อ: ${DateFormat('dd MMMM', 'th').format(certificate['issueDate'])} ${certificate['issueDate'].year + 543}',
                             style: const TextStyle(
                               fontFamily: 'Sarabun',
                               fontSize: 13,
@@ -105,10 +106,19 @@ class _ECertificateListState extends State<ECertificateList> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: Icon(Icons.picture_as_pdf, color: Colors.red.shade700),
-                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.open_in_new, color: Colors.blue.shade700),
+                                onPressed: () => _launchUrl(certificate['certificateUrl']),
+                                tooltip: 'เปิดในเบราว์เซอร์เพื่อดาวน์โหลด',
+                                visualDensity: VisualDensity.compact,
+                              ),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.picture_as_pdf, color: Colors.red),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -117,5 +127,14 @@ class _ECertificateListState extends State<ECertificateList> {
               },
             ),
     );
+  }
+
+  Future<void> _launchUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('ไม่สามารถเปิด URL: $urlString ได้')),
+      );
+    }
   }
 }

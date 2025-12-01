@@ -1,5 +1,7 @@
 import 'dart:convert';
-import 'package:KhubDeeDLT/fund/fund-detail.dart';
+
+import 'package:KhubDeeDLT/fund/fund-list.dart';
+import 'package:KhubDeeDLT/fund/fund-main.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
@@ -218,11 +220,11 @@ class _HomePageV2State extends State<HomePageV2> {
             // _buildGridMenu1(),
             // SizedBox(height: 1),
             // _buildGridMenu2(),
-            chkisCard == false ? _buildDispute(1) : Container(),
+            // chkisCard == false ? _buildDispute(1) : Container(),
             const SizedBox(height: 5),
-            chkisCard == true ? _buildDispute(2) : Container(),
-            _buildTraining(),
+            // chkisCard == true ? _buildDispute(2) : Container(),
             _buildcardFund(),
+            _buildTraining(),
             _buildCardFirst(),
             _buildCardSecond(),
             _buildCardThird(),
@@ -1457,7 +1459,7 @@ class _HomePageV2State extends State<HomePageV2> {
           color: Colors.grey,
           image: DecorationImage(
             // image: NetworkImage('${model['imageUrl']}'),
-            image: AssetImage('assets/background/background_train.png'),
+            image: AssetImage('assets/background/background_dispute.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -1510,7 +1512,7 @@ class _HomePageV2State extends State<HomePageV2> {
             context,
             MaterialPageRoute(
               builder:
-                  (context) => FundList(
+                  (context) => FundMain(
                     title: 'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนน (กปถ.)',
                   ),
             ),

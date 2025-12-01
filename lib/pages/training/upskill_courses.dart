@@ -15,8 +15,10 @@ class _UpskillCoursesState extends State<UpskillCourses> {
       'title': 'ภาษาอังกฤษพื้นฐานสำหรับคนขับรถสาธารณะ',
       'description': 'เรียนรู้ประโยคและคำศัพท์ภาษาอังกฤษที่จำเป็นสำหรับการสื่อสารกับนักท่องเที่ยว',
       'imageUrl': 'https://via.placeholder.com/150/FF5733/FFFFFF?text=English', // Mock image URL
-      'isEnrolled': true,
+      'isEnrolled': false,
       'certificateStatus': 'not_earned',
+      'accessDuration': 'เรียนได้ตลอดชีพ',
+      'hasQuiz': false,
     },
     {
       'id': 'US002',
@@ -26,6 +28,8 @@ class _UpskillCoursesState extends State<UpskillCourses> {
       'imageUrl': 'https://via.placeholder.com/150/33FF57/FFFFFF?text=EV+Tech', // Mock image URL
       'isEnrolled': false,
       'certificateStatus': 'not_earned',
+      'accessDuration': '90 วันหลังสมัคร',
+      'hasQuiz': false,
     },
     {
       'id': 'US003',
@@ -35,6 +39,8 @@ class _UpskillCoursesState extends State<UpskillCourses> {
       'imageUrl': 'https://via.placeholder.com/150/3357FF/FFFFFF?text=First+Aid', // Mock image URL
       'isEnrolled': true,
       'certificateStatus': 'earned',
+      'accessDuration': 'เรียนได้ตลอดชีพ',
+      'hasQuiz': true,
     },
     {
       'id': 'US004',
@@ -44,6 +50,8 @@ class _UpskillCoursesState extends State<UpskillCourses> {
       'imageUrl': 'https://via.placeholder.com/150/FFFF33/000000?text=Service+Mind', // Mock image URL
       'isEnrolled': false,
       'certificateStatus': 'not_earned',
+      'accessDuration': 'เรียนได้ตลอดชีพ',
+      'hasQuiz': false,
     },
     {
       'id': 'US005',
@@ -53,6 +61,8 @@ class _UpskillCoursesState extends State<UpskillCourses> {
       'imageUrl': 'https://via.placeholder.com/150/FF33FF/FFFFFF?text=Chinese', // Mock image URL
       'isEnrolled': false,
       'certificateStatus': 'not_earned',
+      'accessDuration': '30 วันหลังสมัคร',
+      'hasQuiz': true,
     },
   ];
 
