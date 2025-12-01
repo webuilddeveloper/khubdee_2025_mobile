@@ -66,7 +66,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
       'idCard': '3550800068774',
       'pltNo': '6600012',
       'pltDesc': 'ใบอนุญาตขับรถสามล้อสาธารณะ',
-      'pltDescEn': 'Taxi Driving Licence',
+      'pltDescEn': 'Auto Rickshaw Driving Licence',
       'titleDesc': 'นาย',
       'fname': 'วีบิลด์',
       'lname': 'ทำเอง',
