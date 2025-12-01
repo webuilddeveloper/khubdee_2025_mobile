@@ -45,7 +45,8 @@ dependencies:
   pull_to_refresh: ^2.0.0
   flutter_line_sdk: ^2.5.1
   crypto: ^3.0.6
-  firebase_auth: ^5.5.1
+  firebase_auth: ^6.1.2
+  firebase_core: ^4.2.1
   sign_in_with_apple: ^6.1.4
   flutter_facebook_auth: ^7.1.1
   flutter_datetime_picker_plus: ^2.2.0
@@ -61,7 +62,7 @@ dependencies:
   geocoding: ^3.0.0
   table_calendar: ^3.2.0
   sliding_up_panel: ^2.0.0+1
-  share_plus: ^10.1.4
+  share_plus: ^10.1.4 
   webview_flutter: ^4.13.0
  
 

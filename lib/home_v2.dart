@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:KhubDeeDLT/fund/fund-detail.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
@@ -221,6 +222,7 @@ class _HomePageV2State extends State<HomePageV2> {
             const SizedBox(height: 5),
             chkisCard == true ? _buildDispute(2) : Container(),
             _buildTraining(),
+            _buildcardFund(),
             _buildCardFirst(),
             _buildCardSecond(),
             _buildCardThird(),
@@ -1494,6 +1496,37 @@ class _HomePageV2State extends State<HomePageV2> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  _buildcardFund() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) => FundList(
+                    title: 'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนน (กปถ.)',
+                  ),
+            ),
+          );
+        },
+        child: Container(
+          height: 100,
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+              image: AssetImage('assets/background/backgrounf_fund.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
         ),
       ),
     );
