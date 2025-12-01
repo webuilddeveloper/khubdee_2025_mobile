@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/key_search.dart';
 import 'package:KhubDeeDLT/component/header.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FundList extends StatefulWidget {
   FundList({Key? key, this.title}) : super(key: key);
@@ -30,110 +32,10 @@ class _FundListState extends State<FundList> {
       'category': 'ช่วยเหลือผู้พิการ',
       'date': '2025-01-15',
       'site': 'DDPM',
-      'image':
-          'https://via.placeholder.com/300x200/4CAF50/ffffff?text=ช่วยเหลือผู้พิการ',
+      'image': 'http://gcc.go.th/wp-content/uploads/2025/09/mt220968_5.jpg',
+      'url':
+          'https://gcc.go.th/2025/09/22/%E0%B8%81%E0%B8%9B%E0%B8%96-%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B8%84%E0%B8%B3%E0%B8%82%E0%B8%AD%E0%B8%A3%E0%B8%B1%E0%B8%9A%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99-2/',
       'views': 2580,
-    },
-    {
-      'id': '2',
-      'title': 'กปถ. จัดประมูลทะเบียนรถเลขสวย หมวด 3คฐ ครั้งที่ 1/2568',
-      'description':
-          'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนนเปิดประมูลทะเบียนรถเลขสวยลักษณะพิเศษออนไลน์ เพื่อนำรายได้พัฒนาความปลอดภัยทางถนน',
-      'category': 'ประมูลทะเบียน',
-      'date': '2025-02-20',
-      'site': 'DDPM',
-      'image':
-          'https://via.placeholder.com/300x200/2196F3/ffffff?text=ประมูลทะเบียน',
-      'views': 4250,
-    },
-    {
-      'id': '3',
-      'title': 'กปถ. สนับสนุนงบโครงการลดอุบัติเหตุช่วงสงกรานต์ 2568',
-      'description':
-          'จัดสรรงบประมาณสนับสนุนหน่วยงานท้องถิ่นในการจัดกิจกรรมรณรงค์ลดอุบัติเหตุทางถนนช่วงเทศกาลสงกรานต์',
-      'category': 'โครงการ',
-      'date': '2025-03-10',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/9C27B0/ffffff?text=โครงการ',
-      'views': 3120,
-    },
-    {
-      'id': '4',
-      'title': 'ผลการดำเนินงาน กปถ. ไตรมาสแรก ปี 2568',
-      'description':
-          'รายงานผลการดำเนินงานกองทุน กปถ. ในไตรมาสแรกของปี พบว่าสามารถช่วยเหลือผู้ประสบภัยไปแล้ว 1,245 ราย',
-      'category': 'ความสำเร็จ',
-      'date': '2025-04-05',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/F44336/ffffff?text=ผลงาน',
-      'views': 1890,
-    },
-    {
-      'id': '5',
-      'title': 'กปถ. ร่วม MOT เปิดตัวแคมเปญ "ขับขี่ปลอดภัย ชีวิตมีค่า"',
-      'description':
-          'ร่วมกับกระทรวงคมนาคมเปิดตัวแคมเปญรณรงค์สร้างจิตสำนึกความปลอดภัยทางถนน มุ่งลดอุบัติเหตุให้เหลือต่ำกว่า 10 คนต่อแสนประชากร',
-      'category': 'กิจกรรม',
-      'date': '2025-05-18',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/00BCD4/ffffff?text=กิจกรรม',
-      'views': 2670,
-    },
-    {
-      'id': '6',
-      'title': 'ประกาศหลักเกณฑ์ขอรับทุนวิจัย กปถ. ประจำปี 2568',
-      'description':
-          'เปิดรับข้อเสนอโครงการวิจัยด้านความปลอดภัยทางถนน งบสนับสนุนโครงการละไม่เกิน 2 ล้านบาท',
-      'category': 'งานวิจัย',
-      'date': '2025-06-25',
-      'site': 'DDPM',
-      'image':
-          'https://via.placeholder.com/300x200/3F51B5/ffffff?text=งานวิจัย',
-      'views': 1450,
-    },
-    {
-      'id': '7',
-      'title': 'กปถ. จัดอบรมผู้ประสานงานจังหวัด ภาคกลาง',
-      'description':
-          'จัดการอบรมเชิงปฏิบัติการสำหรับผู้ประสานงาน กปถ. ระดับจังหวัดในเขตภาคกลาง เพื่อเพิ่มประสิทธิภาพการให้บริการ',
-      'category': 'กิจกรรม',
-      'date': '2025-07-12',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/00BCD4/ffffff?text=อบรม',
-      'views': 980,
-    },
-    {
-      'id': '8',
-      'title': 'รายงานสถานการณ์อุบัติเหตุทางถนนครึ่งปีแรก 2568',
-      'description':
-          'กปถ. เผยสถิติอุบัติเหตุทางถนนครึ่งปีแรกลดลง 8.5% จากปีก่อน สะท้อนความสำเร็จของมาตรการป้องกัน',
-      'category': 'รายงาน',
-      'date': '2025-08-08',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/607D8B/ffffff?text=รายงาน',
-      'views': 3340,
-    },
-    {
-      'id': '9',
-      'title': 'กปถ. ร่วม ตร. เปิดจุดตรวจสร้างวินัยจราจรช่วงเทศกาลปีใหม่',
-      'description':
-          'ร่วมกับตำรวจภูธรภาค 1-9 จัดตั้งจุดตรวจสร้างวินัยจราจรและให้ความรู้ความปลอดภัยช่วงเทศกาลปีใหม่',
-      'category': 'โครงการ',
-      'date': '2025-09-22',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/9C27B0/ffffff?text=โครงการ',
-      'views': 2120,
-    },
-    {
-      'id': '10',
-      'title': 'แผนปฏิบัติการ กปถ. ปี 2569 เน้นเทคโนโลยีดิจิทัล',
-      'description':
-          'เตรียมขับเคลื่อนแผนปีหน้าด้วยระบบดิจิทัล AI วิเคราะห์จุดเสี่ยงอุบัติเหตุ และพัฒนาแอปพลิเคชันรายงานสถานการณ์แบบเรียลไทม์',
-      'category': 'แผนงาน',
-      'date': '2025-10-30',
-      'site': 'DDPM',
-      'image': 'https://via.placeholder.com/300x200/607D8B/ffffff?text=แผนงาน',
-      'views': 1780,
     },
   ];
 
@@ -289,54 +191,65 @@ class _FundListState extends State<FundList> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: () {
-          // Navigate to detail page
+          final url = item['url'];
+          if (url != null && url.isNotEmpty) {
+            launchUrl(Uri.parse(url));
+          }
         },
         borderRadius: BorderRadius.circular(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // รูปภาพ
-            // ClipRRect(
-            //   borderRadius: const BorderRadius.vertical(
-            //     top: Radius.circular(8),
-            //   ),
-            //   child: Container(
-            //     height: 180,
-            //     width: double.infinity,
-            //     color: Colors.grey[200],
-            //     child: Center(
-            //       child: Image.asset(
-            //         'assets/icons/icon_fund.png',
-            //         fit: BoxFit.cover,
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(8),
+              ),
+              child:
+                  item['image'] != null
+                      ? Image.network(
+                        item['image'],
+                        height: 180,
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth,
+                      )
+                      : Container(
+                        height: 180,
+                        width: double.infinity,
+                        color: Colors.grey[200],
+                        child: Center(
+                          child: Image.asset(
+                            'assets/icons/icon_fund.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+            ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // หมวดหมู่
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: _getCategoryColor(item['category']),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      item['category'] ?? '',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
+                  // Container(
+                  //   padding: const EdgeInsets.symmetric(
+                  //     horizontal: 8,
+                  //     vertical: 4,
+                  //   ),
+                  //   decoration: BoxDecoration(
+                  //     color: _getCategoryColor(item['category']),
+                  //     borderRadius: BorderRadius.circular(4),
+                  //   ),
+                  //   child: Text(
+                  //     item['category'] ?? '',
+                  //     style: const TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 12,
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 12),
                   // หัวข้อ
                   Text(
                     item['title'] ?? '',
