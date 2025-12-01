@@ -75,7 +75,7 @@ class _AboutUsForm extends State<AboutUsForm> {
                 ? snapshot.data['longitude']
                 : 0.0);
             return Scaffold(
-              appBar: header(context, goBack, title: 'เกี่ยวกับเรา'),
+              appBar: header(context, goBack, title: 'ติดต่อเรา'),
               body: NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification overScroll) {
                   overScroll.disallowIndicator();
@@ -271,7 +271,7 @@ class _AboutUsForm extends State<AboutUsForm> {
             return MaterialApp(
               title: "About Us",
               home: Scaffold(
-                appBar: header(context, goBack, title: 'เกี่ยวกับเรา'),
+                appBar: header(context, goBack, title: 'ติดต่อเรา'),
                 body: NotificationListener<OverscrollIndicatorNotification>(
                   onNotification: (OverscrollIndicatorNotification overScroll) {
                     overScroll.disallowIndicator();

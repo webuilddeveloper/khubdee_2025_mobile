@@ -21,7 +21,7 @@ class _ReporterMain extends State<ReporterMain> {
 
   bool hideSearch = true;
   final txtDescription = TextEditingController();
-  late String keySearch;
+  String keySearch = '';
   late String category;
 
   List<dynamic> _dataOrganization = [];

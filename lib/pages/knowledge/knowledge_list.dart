@@ -18,7 +18,7 @@ class _KnowledgeList extends State<KnowledgeList> {
   late grid.KnowledgeListVertical gridView;
   final txtDescription = TextEditingController();
   bool hideSearch = true;
-  late String keySearch;
+  String keySearch = '';
   late String category;
   int _limit = 10;
 
@@ -74,7 +74,7 @@ class _KnowledgeList extends State<KnowledgeList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: header(context, goBack, title: 'สมาชิกที่ต้องรู้'),
+      appBar: header(context, goBack, title: 'ความรู้คู่การขับขี่'),
       body: new GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
@@ -106,6 +106,7 @@ class _KnowledgeList extends State<KnowledgeList> {
                 onChange: (String val) {
                   setState(
                     () {
+                      print('---$keySearch------$val');
                       category = val;
                       gridView = new grid.KnowledgeListVertical(
                         site: 'DDPM',

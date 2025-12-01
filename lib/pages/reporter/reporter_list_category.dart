@@ -20,7 +20,7 @@ class _ReporterListCategory extends State<ReporterListCategory> {
   late ReporterListCategoryVertical reporter;
   bool hideSearch = true;
   final txtDescription = TextEditingController();
-  late String keySearch;
+  String keySearch = '';
   late String category;
 
   late Future<dynamic> _futureBanner;
