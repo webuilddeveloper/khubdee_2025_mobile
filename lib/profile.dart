@@ -132,14 +132,21 @@ class _Profile extends State<Profile> {
     return Expanded(
       child: InkWell(
         onTap: () {
-          model['isDF'] == false
-              ? showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return _buildDialogdriverLicence();
-                  },
-                )
-              : Navigator.push(
+          // model['isDF'] == false
+          //     ? showDialog(
+          //         context: context,
+          //         builder: (BuildContext context) {
+          //           return _buildDialogdriverLicence();
+          //         },
+          //       )
+          //     : Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => DriversInfo(),
+          //         ),
+          //       );
+
+          Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => DriversInfo(),

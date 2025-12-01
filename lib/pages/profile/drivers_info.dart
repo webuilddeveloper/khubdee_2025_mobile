@@ -30,13 +30,14 @@ class _DriversInfoPageState extends State<DriversInfo> {
   String profileCode = "";
   String idcard = "";
   String profileImage = "";
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
   String isExpireDate = "2";
   GlobalKey globalKey = new GlobalKey();
   String _dataString = "Hello from this QR";
 
-  dynamic model = [];
+  List<dynamic> model = [];
 
   @override
   void initState() {
@@ -65,9 +66,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NotificationList(
-                title: 'แจ้งเตือน',
-              ),
+              builder: (context) => NotificationList(title: 'แจ้งเตือน'),
             ),
           );
         },
@@ -79,7 +78,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
         onTap: () {
           FocusScope.of(context).unfocus();
         },
-        // child: _screen(tempData),
+        // child: _screen(model),
         child: _buildListView(),
 
         // FutureBuilder<dynamic>(
@@ -126,38 +125,35 @@ class _DriversInfoPageState extends State<DriversInfo> {
           ),
         ),
         // SizedBox(height: 10),
-        this.model.length > 0
+        model.length > 0
             ? Expanded(
-                child: ListView(
-                  children: [
-                    _buildCard(this.model[0]),
-                    _buildCard(this.model[1]),
-                  ],
-                ),
+              child: ListView(
+                children: [_buildCard(model[0]), _buildCard(model[1])],
+              ),
 
-                // SmartRefresher(
-                //   enablePullDown: false,
-                //   enablePullUp: true,
-                //   footer: ClassicFooter(
-                //     loadingText: ' ',
-                //     canLoadingText: ' ',
-                //     idleText: ' ',
-                //     idleIcon: Icon(Icons.arrow_upward, color: Colors.transparent),
-                //   ),
-                //   controller: _refreshController,
-                //   onLoading: _onLoading,
-                //   onRefresh: _onRefresh,
-                //   child: ListView.builder(
-                //     physics: ScrollPhysics(),
-                //     shrinkWrap: true,
-                //     scrollDirection: Axis.vertical,
-                //     itemCount: model.length,
-                //     itemBuilder: (context, index) {
-                //       return _item(model[index]);
-                //     },
-                //   ),
-                // ),
-              )
+              // SmartRefresher(
+              //   enablePullDown: false,
+              //   enablePullUp: true,
+              //   footer: ClassicFooter(
+              //     loadingText: ' ',
+              //     canLoadingText: ' ',
+              //     idleText: ' ',
+              //     idleIcon: Icon(Icons.arrow_upward, color: Colors.transparent),
+              //   ),
+              //   controller: _refreshController,
+              //   onLoading: _onLoading,
+              //   onRefresh: _onRefresh,
+              //   child: ListView.builder(
+              //     physics: ScrollPhysics(),
+              //     shrinkWrap: true,
+              //     scrollDirection: Axis.vertical,
+              //     itemCount: model.length,
+              //     itemBuilder: (context, index) {
+              //       return _item(model[index]);
+              //     },
+              //   ),
+              // ),
+            )
             : Container(),
       ],
     );
@@ -165,367 +161,960 @@ class _DriversInfoPageState extends State<DriversInfo> {
 
   _buildCard(dynamic model) {
     return Container(
-      height: 200,
+      // height: 200,
       // margin: EdgeInsets.only(right: 5),
       padding: EdgeInsets.symmetric(horizontal: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  // height: 130,
-                  // width: 180,
-                  margin:
-                      EdgeInsets.only(bottom: 5, left: 10, right: 10, top: 5),
-                  padding: EdgeInsets.all(3),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.4),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset: Offset(1, 3), // changes position of shadow
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Expanded(
+          //       flex: 3,
+          //       child: Container(
+          //         // height: 130,
+          //         // width: 180,
+          //         margin: EdgeInsets.only(
+          //           bottom: 5,
+          //           left: 10,
+          //           right: 10,
+          //           top: 5,
+          //         ),
+          //         padding: EdgeInsets.all(3),
+          //         decoration: BoxDecoration(
+          //           color: Colors.white,
+          //           borderRadius: BorderRadius.circular(5),
+          //           boxShadow: [
+          //             BoxShadow(
+          //               color: Colors.grey.withOpacity(0.4),
+          //               spreadRadius: 0,
+          //               blurRadius: 4,
+          //               offset: Offset(1, 3), // changes position of shadow
+          //             ),
+          //           ],
+          //         ),
+          //         child: Column(
+          //           mainAxisAlignment: MainAxisAlignment.start,
+          //           children: [
+          //             Container(
+          //               height: 15,
+          //               color:
+          //                   model['isExpire']
+          //                       ? Color(0xFF838383)
+          //                       : Color(0xFF214492),
+          //               padding: EdgeInsets.all(3),
+          //               child: Row(
+          //                 children: [
+          //                   Image.asset(
+          //                     "assets/icons/icon_flag.png",
+          //                     fit: BoxFit.cover,
+          //                   ),
+          //                   Text(
+          //                     '   ใบอนุญาตขับรถ',
+          //                     style: TextStyle(
+          //                       fontFamily: 'Sarabun',
+          //                       fontSize: 6,
+          //                       color: Colors.white,
+          //                     ),
+          //                   ),
+          //                 ],
+          //               ),
+          //             ),
+          //             SizedBox(height: 5),
+          //             Row(
+          //               children: [
+          //                 Container(
+          //                   width: 65,
+          //                   height: 84,
+          //                   child: Image.network(
+          //                     profileImage,
+          //                     fit: BoxFit.cover,
+          //                   ),
+          //                 ),
+          //                 SizedBox(width: 4),
+          //                 Expanded(
+          //                   child: Container(
+          //                     alignment: Alignment.topLeft,
+          //                     child: Column(
+          //                       children: [
+          //                         Container(
+          //                           height: 30,
+          //                           width: double.infinity,
+          //                           color:
+          //                               model['isExpire']
+          //                                   ? Color(0xFF838383)
+          //                                   : Color(0xFFFFB13B),
+          //                           padding: EdgeInsets.only(left: 3),
+          //                           child: Column(
+          //                             crossAxisAlignment:
+          //                                 CrossAxisAlignment.start,
+          //                             children: [
+          //                               Text(
+          //                                 'No.${model['pltNo']}',
+          //                                 style: TextStyle(
+          //                                   fontFamily: 'Sarabun',
+          //                                   fontSize: 10,
+          //                                   color: Colors.white,
+          //                                 ),
+          //                                 textAlign: TextAlign.start,
+          //                               ),
+          //                               SizedBox(height: 2),
+          //                               Text(
+          //                                 model['pltDesc'],
+          //                                 style: TextStyle(
+          //                                   fontFamily: 'Sarabun',
+          //                                   fontSize: 9,
+          //                                   color: Colors.white,
+          //                                 ),
+          //                                 textAlign: TextAlign.start,
+          //                               ),
+          //                             ],
+          //                           ),
+          //                         ),
+          //                         SizedBox(height: 4),
+          //                         Container(
+          //                           height: 50,
+          //                           width: double.infinity,
+          //                           padding: EdgeInsets.only(left: 3, top: 3),
+          //                           decoration: BoxDecoration(
+          //                             gradient: LinearGradient(
+          //                               colors:
+          //                                   model['isExpire']
+          //                                       ? [
+          //                                         Color(0xFFDCDCDC),
+          //                                         Color(0xFFF0E0E0),
+          //                                         Color(0xFFF0F0F0),
+          //                                         Color(0xFFFFFFFF),
+          //                                         Color(0xFFF0E0E0),
+          //                                       ]
+          //                                       : [
+          //                                         Color(0xFFF1E8F8),
+          //                                         Color(0xFFF9E6BA),
+          //                                         Color(0xFFF9E6BA),
+          //                                         Color(0xFFFFFFFF),
+          //                                         Color(0xFFF1E8F8),
+          //                                       ],
+          //                               begin: Alignment(0, -1),
+          //                               end: Alignment(0, 0.5),
+          //                             ),
+          //                           ),
+          //                           child: Column(
+          //                             crossAxisAlignment:
+          //                                 CrossAxisAlignment.start,
+          //                             children: [
+          //                               Text(
+          //                                 '${model['titleDesc']} ${model['fname']} ${model['lname']}',
+          //                                 style: TextStyle(
+          //                                   fontFamily: 'Sarabun',
+          //                                   fontSize: 10,
+          //                                   fontWeight: FontWeight.w500,
+          //                                 ),
+          //                                 textAlign: TextAlign.start,
+          //                                 overflow: TextOverflow.ellipsis,
+          //                                 maxLines: 1,
+          //                               ),
+          //                               SizedBox(height: 3),
+          //                               Row(
+          //                                 children: [
+          //                                   Text(
+          //                                     'เลขประจำตัวประชาชน : ',
+          //                                     style: TextStyle(
+          //                                       fontFamily: 'Sarabun',
+          //                                       fontSize: 6,
+          //                                       fontWeight: FontWeight.w500,
+          //                                     ),
+          //                                     textAlign: TextAlign.start,
+          //                                   ),
+          //                                   Text(
+          //                                     model['docNo'],
+          //                                     style: TextStyle(
+          //                                       fontFamily: 'Sarabun',
+          //                                       fontSize: 7,
+          //                                       fontWeight: FontWeight.w500,
+          //                                     ),
+          //                                     textAlign: TextAlign.start,
+          //                                   ),
+          //                                 ],
+          //                               ),
+          //                               SizedBox(height: 2),
+          //                               Row(
+          //                                 children: [
+          //                                   Expanded(
+          //                                     child: Text(
+          //                                       'วันอนุญาต ${model['issDate'].substring(0, 10)}',
+          //                                       style: TextStyle(
+          //                                         fontFamily: 'Sarabun',
+          //                                         fontSize: 6,
+          //                                         fontWeight: FontWeight.w500,
+          //                                       ),
+          //                                       textAlign: TextAlign.start,
+          //                                     ),
+          //                                   ),
+          //                                   Container(
+          //                                     height: 10,
+          //                                     width: 1,
+          //                                     color: Colors.black,
+          //                                     margin: EdgeInsets.symmetric(
+          //                                       horizontal: 2,
+          //                                     ),
+          //                                   ),
+          //                                   Expanded(
+          //                                     child: Text(
+          //                                       'วันหมดอายุ ${model['expDate'].substring(0, 10)}',
+          //                                       style: TextStyle(
+          //                                         fontFamily: 'Sarabun',
+          //                                         fontSize: 6,
+          //                                         fontWeight: FontWeight.w500,
+          //                                       ),
+          //                                       textAlign: TextAlign.start,
+          //                                     ),
+          //                                   ),
+          //                                 ],
+          //                               ),
+          //                             ],
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //             SizedBox(height: 4),
+          //             model['isExpire']
+          //                 ? Container(
+          //                   height: 16,
+          //                   color: Color(0xFF838383),
+          //                   padding: EdgeInsets.only(bottom: 5, right: 5),
+          //                   child: Row(
+          //                     crossAxisAlignment: CrossAxisAlignment.end,
+          //                     mainAxisAlignment: MainAxisAlignment.end,
+          //                     children: [
+          //                       Text(
+          //                         'แสดง QR Code',
+          //                         style: TextStyle(
+          //                           fontFamily: 'Sarabun',
+          //                           fontSize: 9,
+          //                           decoration: TextDecoration.underline,
+          //                           color: Colors.white,
+          //                         ),
+          //                       ),
+          //                     ],
+          //                   ),
+          //                 )
+          //                 : InkWell(
+          //                   onTap: () {
+          //                     _callDialogQRCode(context, model: model);
+          //                   },
+          //                   child: Container(
+          //                     height: 16,
+          //                     color: Color(0xFF214492),
+          //                     padding: EdgeInsets.only(bottom: 5, right: 5),
+          //                     child: Row(
+          //                       crossAxisAlignment: CrossAxisAlignment.end,
+          //                       mainAxisAlignment: MainAxisAlignment.end,
+          //                       children: [
+          //                         Text(
+          //                           'แสดง QR Code',
+          //                           style: TextStyle(
+          //                             fontFamily: 'Sarabun',
+          //                             fontSize: 9,
+          //                             decoration: TextDecoration.underline,
+          //                             color: Colors.white,
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       flex: 2,
+          //       child: Container(
+          //         alignment: Alignment.topRight,
+          //         height: 150,
+          //         padding: EdgeInsets.all(3),
+          //         child: Column(
+          //           crossAxisAlignment: CrossAxisAlignment.end,
+          //           children: [
+          //             Text(
+          //               'วันหมดอายุ',
+          //               style: TextStyle(
+          //                 fontFamily: 'Sarabun',
+          //                 fontSize: 13,
+          //                 fontWeight: FontWeight.w500,
+          //               ),
+          //             ),
+          //             SizedBox(height: 10),
+          //             Text(
+          //               '${model['expDate'].substring(0, 10)}',
+          //               style: TextStyle(
+          //                 fontFamily: 'Sarabun',
+          //                 fontSize: 15,
+          //                 fontWeight: FontWeight.w500,
+          //                 color: model['isExpire'] ? Colors.red : Colors.black,
+          //               ),
+          //             ),
+          //             SizedBox(height: 10),
+          //             Row(
+          //               mainAxisAlignment: MainAxisAlignment.end,
+          //               children: [
+          //                 model['isExpire']
+          //                     ? Container(
+          //                       height: 25,
+          //                       padding: EdgeInsets.all(5),
+          //                       decoration: BoxDecoration(
+          //                         color: Color(0xFF838383),
+          //                         borderRadius: BorderRadius.circular(5),
+          //                       ),
+          //                       child: Text(
+          //                         'แสดง QR Code',
+          //                         style: TextStyle(
+          //                           fontFamily: 'Sarabun',
+          //                           fontSize: 9,
+          //                           color: Colors.white,
+          //                         ),
+          //                         textAlign: TextAlign.start,
+          //                       ),
+          //                     )
+          //                     : InkWell(
+          //                       onTap: () {
+          //                         _callDialogQRCode(context, model: model);
+          //                       },
+          //                       child: Container(
+          //                         height: 25,
+          //                         padding: EdgeInsets.all(5),
+          //                         decoration: BoxDecoration(
+          //                           color: Color(0xFFEBC22B),
+          //                           borderRadius: BorderRadius.circular(5),
+          //                         ),
+          //                         child: Text(
+          //                           'แสดง QR Code',
+          //                           style: TextStyle(
+          //                             fontFamily: 'Sarabun',
+          //                             fontSize: 9,
+          //                             color: Colors.white,
+          //                           ),
+          //                           textAlign: TextAlign.start,
+          //                         ),
+          //                       ),
+          //                     ),
+          //                 SizedBox(width: 5),
+          //                 InkWell(
+          //                   onTap: () {},
+          //                   child: Container(
+          //                     height: 25,
+          //                     padding: EdgeInsets.all(5),
+          //                     decoration: BoxDecoration(
+          //                       color: Color(0xFF6F267B),
+          //                       borderRadius: BorderRadius.circular(5),
+          //                     ),
+          //                     child: Text(
+          //                       'ข้อมูลเพิ่มเติม',
+          //                       style: TextStyle(
+          //                         fontFamily: 'Sarabun',
+          //                         fontSize: 9,
+          //                         color: Colors.white,
+          //                       ),
+          //                       textAlign: TextAlign.start,
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //           ],
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          _cardItem(model: model),
+          _buildLine(),
+        ],
+      ),
+    );
+  }
+
+  _cardItem({String type = '1', dynamic model}) {
+    return Column(
+      children: [
+        AspectRatio(
+          aspectRatio: 85.6 / 54.0, // หรือ 1.585
+          child: Container(
+            // height: 130,
+            // width: double.infinity,
+            margin: EdgeInsets.only(bottom: 5, left: 10, right: 10, top: 5),
+            padding: EdgeInsets.all(3),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.4),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  offset: Offset(1, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 30,
+                  color:
+                      model['isExpire'] ? Color(0xFF838383) : Color(0xFF214492),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Image.asset(
+                                "assets/icons/icon_flag.png",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(width: 3),
+                            Column(
+                              children: [
+                                Text(
+                                  'ประเทศไทย',
+                                  style: TextStyle(
+                                    fontFamily: 'Sarabun',
+                                    fontSize: 9,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Kingdom of Thailand',
+                                  style: TextStyle(
+                                    fontFamily: 'Sarabun',
+                                    fontSize: 8,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // SizedBox(width: 10),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${model['pltDesc']}',
+                              style: TextStyle(
+                                fontFamily: 'Sarabun',
+                                fontSize: 9,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              '${model['pltDescEn']}',
+                              style: TextStyle(
+                                fontFamily: 'Sarabun',
+                                fontSize: 8,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 15,
-                        color: model['isExpire']
-                            ? Color(0xFF838383)
-                            : Color(0xFF214492),
-                        padding: EdgeInsets.all(3),
-                        child: Row(
+                ),
+                SizedBox(height: 3),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(bottom: 5),
+                      width: 100,
+                      height: 55,
+                      child: Image.asset(
+                        'assets/logo/logo_1.png',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          color: Color(0xFFFFB13B),
+                          padding: EdgeInsets.all(5),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'ฉบับที่',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['pltNo']}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'วันอนุญาต',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['issDate'].substring(0, 10)}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Issue Date',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['issDate'].substring(0, 10)}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Expanded(
+                                flex: 1,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'No. ',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['pltNo']}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'วันสิ้นอายุ',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['expDate'].substring(0, 10)}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Expiry Date',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.end,
+                                        ),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          '${model['issDate'].substring(0, 10)}',
+                                          style: TextStyle(
+                                            fontFamily: 'Sarabun',
+                                            fontSize: 9,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                            height: 1,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 130,
+                      // child: Image.network(profileImage, fit: BoxFit.cover),
+                      child: Image.asset('assets/owner.png', fit: BoxFit.cover),
+                    ),
+                    SizedBox(width: 4),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.topLeft,
+                        child: Column(
                           children: [
-                            Image.asset(
-                              "assets/icons/icon_flag.png",
-                              fit: BoxFit.cover,
-                            ),
-                            Text(
-                              '   ใบอนุญาตขับรถ',
-                              style: TextStyle(
-                                fontFamily: 'Sarabun',
-                                fontSize: 6,
-                                color: Colors.white,
+                            Container(
+                              height: 130,
+                              width: double.infinity,
+                              padding: EdgeInsets.only(left: 3, top: 3),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xFFF1E8F8),
+                                    Color(0xFFFFFFFF),
+                                    Color(0xFFF1E8F8),
+                                  ],
+                                  begin: Alignment(0, -1),
+                                  end: Alignment(0, 0.5),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'ชื่อ       ',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.red.shade400,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${model['titleDesc']} ${model['fname']} ${model['lname']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Name  ',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.red.shade400,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${model['titleDescEn']} ${model['fnameEn']} ${model['lnameEn']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Expanded(
+                                    flex: 1,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'เกิดวันที่      ',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.red.shade400,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${model['birthDate']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Birth Date  ',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.red.shade400,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${model['birthDateEn']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'เลขประจำตัวประชาชน / ID No. ',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.red.shade400,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            Text(
+                                              '${model['idCard']}',
+                                              style: TextStyle(
+                                                fontFamily: 'Sarabun',
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Container(
-                            width: 65,
-                            height: 84,
-                            child: Image.network(
-                              profileImage,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 4),
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: double.infinity,
-                                    color: model['isExpire']
-                                        ? Color(0xFF838383)
-                                        : Color(0xFFFFB13B),
-                                    padding: EdgeInsets.only(left: 3),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'No.${model['pltNo']}',
-                                          style: TextStyle(
-                                            fontFamily: 'Sarabun',
-                                            fontSize: 10,
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                        SizedBox(height: 2),
-                                        Text(
-                                          model['pltDesc'],
-                                          style: TextStyle(
-                                            fontFamily: 'Sarabun',
-                                            fontSize: 9,
-                                            color: Colors.white,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Container(
-                                    height: 50,
-                                    width: double.infinity,
-                                    padding: EdgeInsets.only(left: 3, top: 3),
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: model['isExpire']
-                                            ? [
-                                                Color(0xFFDCDCDC),
-                                                Color(0xFFF0E0E0),
-                                                Color(0xFFF0F0F0),
-                                                Color(0xFFFFFFFF),
-                                                Color(0xFFF0E0E0),
-                                              ]
-                                            : [
-                                                Color(0xFFF1E8F8),
-                                                Color(0xFFF9E6BA),
-                                                Color(0xFFF9E6BA),
-                                                Color(0xFFFFFFFF),
-                                                Color(0xFFF1E8F8),
-                                              ],
-                                        begin: Alignment(0, -1),
-                                        end: Alignment(0, 0.5),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${model['titleDesc']} ${model['fname']} ${model['lname']}',
-                                          style: TextStyle(
-                                            fontFamily: 'Sarabun',
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                        ),
-                                        SizedBox(height: 3),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'เลขประจำตัวประชาชน : ',
-                                              style: TextStyle(
-                                                fontFamily: 'Sarabun',
-                                                fontSize: 6,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              textAlign: TextAlign.start,
-                                            ),
-                                            Text(
-                                              model['docNo'],
-                                              style: TextStyle(
-                                                fontFamily: 'Sarabun',
-                                                fontSize: 7,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              textAlign: TextAlign.start,
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 2),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'วันอนุญาต ${model['issDate'].substring(0, 10)}',
-                                                style: TextStyle(
-                                                  fontFamily: 'Sarabun',
-                                                  fontSize: 6,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                              ),
-                                            ),
-                                            Container(
-                                              height: 10,
-                                              width: 1,
-                                              color: Colors.black,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 2),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'วันหมดอายุ ${model['expDate'].substring(0, 10)}',
-                                                style: TextStyle(
-                                                  fontFamily: 'Sarabun',
-                                                  fontSize: 6,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 4),
+
+                Container(
+                  height: 30,
+                  color: Color(0xFF214492),
+                  padding: EdgeInsets.only(bottom: 5, right: 5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'นายทะเบียน ${model['province']} ${model['provinceEn']}',
+                        style: TextStyle(
+                          fontFamily: 'Sarabun',
+                          fontSize: 12,
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                      SizedBox(height: 4),
-                      model['isExpire']
-                          ? Container(
-                              height: 16,
-                              color: Color(0xFF838383),
-                              padding: EdgeInsets.only(bottom: 5, right: 5),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'แสดง QR Code',
-                                    style: TextStyle(
-                                        fontFamily: 'Sarabun',
-                                        fontSize: 9,
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : InkWell(
-                              onTap: () {
-                                _callDialogQRCode(context, model: model);
-                              },
-                              child: Container(
-                                height: 16,
-                                color: Color(0xFF214492),
-                                padding: EdgeInsets.only(bottom: 5, right: 5),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'แสดง QR Code',
-                                      style: TextStyle(
-                                          fontFamily: 'Sarabun',
-                                          fontSize: 9,
-                                          decoration: TextDecoration.underline,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                flex: 2,
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  _callDialogQRCode(context, model: model);
+                },
                 child: Container(
-                  alignment: Alignment.topRight,
-                  height: 150,
-                  padding: EdgeInsets.all(3),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 0,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(7),
+                    color: Color.fromARGB(255, 117, 70, 154),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'วันหมดอายุ',
+                        'แสดง QR Code',
                         style: TextStyle(
                           fontFamily: 'Sarabun',
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          decoration: TextDecoration.underline,
+                          color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Text(
-                        '${model['expDate'].substring(0, 10)}',
-                        style: TextStyle(
-                            fontFamily: 'Sarabun',
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            color:
-                                model['isExpire'] ? Colors.red : Colors.black),
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          model['isExpire']
-                              ? Container(
-                                  height: 25,
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF838383),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(
-                                    'แสดง QR Code',
-                                    style: TextStyle(
-                                        fontFamily: 'Sarabun',
-                                        fontSize: 9,
-                                        color: Colors.white),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                )
-                              : InkWell(
-                                  onTap: () {
-                                    _callDialogQRCode(context, model: model);
-                                  },
-                                  child: Container(
-                                    height: 25,
-                                    padding: EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFEBC22B),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Text(
-                                      'แสดง QR Code',
-                                      style: TextStyle(
-                                          fontFamily: 'Sarabun',
-                                          fontSize: 9,
-                                          color: Colors.white),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
-                                ),
-                          SizedBox(width: 5),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 25,
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                color: Color(0xFF6F267B),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Text(
-                                'ข้อมูลเพิ่มเติม',
-                                style: TextStyle(
-                                    fontFamily: 'Sarabun',
-                                    fontSize: 9,
-                                    color: Colors.white),
-                                textAlign: TextAlign.start,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
               ),
             ],
           ),
-          _buildLine(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -541,34 +1130,54 @@ class _DriversInfoPageState extends State<DriversInfo> {
     var fname = await storage.read(key: 'profileFirstName');
     var lname = await storage.read(key: 'profileLastName');
     var idcard = await storage.read(key: 'idcard');
-    profileImage = (await storage.read(key: 'profileImageUrl'))!;
-    profileCode = (await storage.read(key: 'profileCode2'))!;
+    profileImage = (await storage.read(key: 'profileImageUrl')) ?? '';
+    profileCode = (await storage.read(key: 'profileCode2')) ?? '';
 
     setState(() {
       model.add({
         'isExpire': false,
         'code': profileCode ?? '',
+        'idCard': '3550800068774',
         'pltNo': '6600011',
-        'pltDesc': 'รถแท็กซี่สาธารณะ',
+        'pltDesc': 'ใบอนุญาตขับรถยนต์สาธารณะ',
+        'pltDescEn': 'Taxi Driving Licence',
         'titleDesc': 'นาย',
-        'fname': fname ?? '',
-        'lname': lname ?? '',
+        'fname': fname ?? 'วีบิลด์',
+        'lname': lname ?? 'ทำเอง',
+        'titleDescEn': 'Mr.',
+        'fnameEn': 'WEBUILD',
+        'lnameEn': 'TAMEANG',
         'docNo': idcard ?? '',
         'issDate': '04/02/2020 00:00:00',
-        'expDate': '28/03/2025 00:00:00'
+        'expDate': '28/03/2025 00:00:00',
+        'birthDate': '17 พฤษภาคม 1994',
+        'birthDateEn': '17 May 1994',
+        'type': '1',
+        'province': 'กรุงเทพมหานคร',
+        'provinceEn': 'Bangkok',
       });
 
       model.add({
-        'isExpire': true,
+        'isExpire': false,
         'code': profileCode ?? '',
+        'idCard': '3550800068774',
         'pltNo': '6600012',
-        'pltDesc': 'รถจักรยานรับจ้าง',
+        'pltDesc': 'ใบอนุญาตขับรถจักรยานยนต์สาธารณะ',
+        'pltDescEn': 'Motorcycle Driving Licence',
         'titleDesc': 'นาย',
-        'fname': fname ?? '',
-        'lname': lname ?? '',
+        'fname': fname ?? 'วีบิลด์',
+        'lname': lname ?? 'ทำเอง',
+        'titleDescEn': 'Mr.',
+        'fnameEn': 'WEBUILD',
+        'lnameEn': 'TAMEANG',
         'docNo': idcard ?? '',
-        'issDate': '04/02/2015 00:00:00',
-        'expDate': '28/03/2020 00:00:00'
+        'issDate': '04/02/2020 00:00:00',
+        'expDate': '28/03/2025 00:00:00',
+        'birthDate': '17 พฤษภาคม 1994',
+        'birthDateEn': '17 May 1994',
+        'type': '2',
+        'province': 'กรุงเทพมหานคร',
+        'provinceEn': 'Bangkok',
       });
     });
 
@@ -651,31 +1260,25 @@ class _DriversInfoPageState extends State<DriversInfo> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
+                  SizedBox(height: 20.0),
                   Container(
                     child: Center(
                       child: RepaintBoundary(
                         key: globalKey,
-                        child: QrImageView(
-                          data: model['code'],
-                          size: 240,
-                        ),
+                        child: QrImageView(data: model['code'], size: 240),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
+                  SizedBox(height: 30.0),
                   Container(
                     // height: 50,
                     child: Text(
                       '${model['titleDesc']} ${model['fname']} ${model['lname']}',
                       style: TextStyle(
-                          fontFamily: 'Sarabun',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500),
+                        fontFamily: 'Sarabun',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -715,13 +1318,13 @@ class _DriversInfoPageState extends State<DriversInfo> {
   _update() async {
     final result =
         await postObjectDataMW(serverMW + 'DLTLC/updateDriverLicenceByDocNo', {
-      'code': profileCode,
-      'createBy': profileCode,
-      'updateBy': profileCode,
-      'docType': '8',
-      'docNo': idcard,
-      'reqDocNo': idcard,
-    });
+          'code': profileCode,
+          'createBy': profileCode,
+          'updateBy': profileCode,
+          'docType': '8',
+          'docNo': idcard,
+          'reqDocNo': idcard,
+        });
     if (result['status'] == 'S') {
       _callRead();
       toastFail(context, text: 'อัพเดทข้อมูลสำเร็จ');
