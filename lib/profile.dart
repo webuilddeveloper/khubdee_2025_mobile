@@ -50,10 +50,7 @@ class _Profile extends State<Profile> {
       margin: const EdgeInsets.only(top: 5),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color(0xFFBAA6A6),
-            Color(0xFF856B6B),
-          ],
+          colors: [Color(0xFFBAA6A6), Color(0xFF856B6B)],
           begin: Alignment.center,
         ),
       ),
@@ -108,7 +105,7 @@ class _Profile extends State<Profile> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -119,12 +116,7 @@ class _Profile extends State<Profile> {
     return Container(
       height: 118,
       color: Colors.white,
-      child: Row(
-        children: [
-          _leftItem(model),
-          _rightItem(model),
-        ],
-      ),
+      child: Row(children: [_leftItem(model), _rightItem(model)]),
     );
   }
 
@@ -132,35 +124,36 @@ class _Profile extends State<Profile> {
     return Expanded(
       child: InkWell(
         onTap: () {
-          // model['isDF'] == false
-          //     ? showDialog(
-          //         context: context,
-          //         builder: (BuildContext context) {
-          //           return _buildDialogdriverLicence();
-          //         },
-          //       )
-          //     : Navigator.push(
+          model['isDF'] == false
+              ? showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return _buildDialogdriverLicence();
+                },
+              )
+              : Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DriversInfo()),
+              );
+
+          // Navigator.push(
           //         context,
           //         MaterialPageRoute(
           //           builder: (context) => DriversInfo(),
           //         ),
           //       );
-
+        },
+        onLongPress: () {
           Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DriversInfo(),
-                  ),
-                );
+            context,
+            MaterialPageRoute(builder: (context) => DriversInfo()),
+          );
         },
         child: Container(
           margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Color(0xFFAF86B5),
-                Color(0xFF7948AD),
-              ],
+              colors: [Color(0xFFAF86B5), Color(0xFF7948AD)],
               begin: Alignment.centerLeft,
               // end: new Alignment(1, 0.0),
               end: Alignment.centerRight,
@@ -176,117 +169,125 @@ class _Profile extends State<Profile> {
                     children: [
                       Container(
                         padding: EdgeInsets.all(
-                            '${model['imageUrl']}' != '' ? 0.0 : 5.0),
+                          '${model['imageUrl']}' != '' ? 0.0 : 5.0,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           color: const Color(0xFFFF7900),
                         ),
                         height: 60,
                         width: 60,
-                        child: checkAvatar(
-                          context,
-                          '${model['imageUrl']}',
-                        ),
+                        child: checkAvatar(context, '${model['imageUrl']}'),
                       ),
                       Expanded(
-                        child: model['isDF'] == false
-                            ? Container(
-                                padding: const EdgeInsets.only(
-                                  left: 10,
-                                  right: 10,
-                                  bottom: 5.0,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(48),
-                                        color: Colors.white,
-                                      ),
-                                      width: 100,
-                                      height: 20,
-                                      child: const Text(
-                                        'รอยืนยันตัวตน',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Color(0xFFFF7B06),
+                        child:
+                            model['isDF'] == false
+                                ? Container(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 5.0,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            48,
+                                          ),
+                                          color: Colors.white,
                                         ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'ID Card : ',
+                                        width: 100,
+                                        height: 20,
+                                        child: const Text(
+                                          'รอยืนยันตัวตน',
                                           style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xFFFF7B06),
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: [
+                                          const Text(
+                                            'ID Card : ',
+                                            style: TextStyle(
                                               fontSize: 11.0,
                                               color: Colors.white,
-                                              fontFamily: 'Sarabun'),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            model['idcard'] ??
-                                                'กรุณาอัพเดทข้อมูล',
-                                            style: const TextStyle(
+                                              fontFamily: 'Sarabun',
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              model['idcard'] ??
+                                                  'กรุณาอัพเดทข้อมูล',
+                                              style: const TextStyle(
                                                 fontSize: 11.0,
                                                 color: Colors.white,
-                                                fontFamily: 'Sarabun'),
-                                            maxLines: 2,
+                                                fontFamily: 'Sarabun',
+                                              ),
+                                              maxLines: 2,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            : Container(
-                                padding: const EdgeInsets.only(
-                                  left: 10,
-                                  right: 10,
-                                  bottom: 5.0,
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'ID Card : ',
-                                          style: TextStyle(
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                : Container(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 5.0,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Text(
+                                            'ID Card : ',
+                                            style: TextStyle(
                                               fontSize: 13.0,
                                               color: Colors.white,
-                                              fontFamily: 'Sarabun'),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            model['idcard'] ??
-                                                'กรุณาอัพเดทข้อมูล',
-                                            style: const TextStyle(
+                                              fontFamily: 'Sarabun',
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              model['idcard'] ??
+                                                  'กรุณาอัพเดทข้อมูล',
+                                              style: const TextStyle(
                                                 fontSize: 13.0,
                                                 color: Colors.white,
-                                                fontFamily: 'Sarabun'),
-                                            maxLines: 2,
+                                                fontFamily: 'Sarabun',
+                                              ),
+                                              maxLines: 2,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      '${model['firstName']} ${model['lastName']}',
-                                      style: const TextStyle(
+                                        ],
+                                      ),
+                                      Text(
+                                        '${model['firstName']} ${model['lastName']}',
+                                        style: const TextStyle(
                                           fontSize: 13.0,
                                           color: Colors.white,
                                           fontFamily: 'Sarabun',
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
                       ),
                     ],
                   ),
@@ -319,9 +320,7 @@ class _Profile extends State<Profile> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => BehaviorPoints(),
-          ),
+          MaterialPageRoute(builder: (context) => BehaviorPoints()),
         );
         // Navigator.push(
         //   context,
@@ -334,10 +333,7 @@ class _Profile extends State<Profile> {
         width: 118,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFFFEBE2C),
-              Color(0xFFFD8E25),
-            ],
+            colors: [Color(0xFFFEBE2C), Color(0xFFFD8E25)],
             begin: Alignment.centerRight,
             // end: new Alignment(1, 0.0),
             end: Alignment.centerLeft,
@@ -401,10 +397,7 @@ class _Profile extends State<Profile> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                Image.asset(
-                  'assets/check_register.png',
-                  height: 50,
-                ),
+                Image.asset('assets/check_register.png', height: 50),
                 // Icon(
                 //   Icons.check_circle_outline_outlined,
                 //   color: Color(0xFF5AAC68),
@@ -463,30 +456,31 @@ class _Profile extends State<Profile> {
                 ),
                 Container(height: 0.5, color: const Color(0xFFcfcfcf)),
                 Expanded(
-                    child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context, false);
-                  },
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      // color: Color(0xFF9C0000),
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context, false);
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        // color: Color(0xFF9C0000),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
                       ),
-                    ),
-                    height: 45,
-                    alignment: Alignment.center,
-                    child: const Text(
-                      'ยกเลิก',
-                      style: TextStyle(
-                        fontFamily: 'Sarabun',
-                        fontSize: 13,
-                        color: Color(0xFF9C0000),
+                      height: 45,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        'ยกเลิก',
+                        style: TextStyle(
+                          fontFamily: 'Sarabun',
+                          fontSize: 13,
+                          color: Color(0xFF9C0000),
+                        ),
                       ),
                     ),
                   ),
-                )),
+                ),
               ],
             ),
           ),
@@ -520,10 +514,7 @@ class _Profile extends State<Profile> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                Image.asset(
-                  'assets/check_register.png',
-                  height: 50,
-                ),
+                Image.asset('assets/check_register.png', height: 50),
                 // Icon(
                 //   Icons.check_circle_outline_outlined,
                 //   color: Color(0xFF5AAC68),
