@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
 import 'package:KhubDeeDLT/component/material/check_avatar.dart';
@@ -10,6 +11,9 @@ import 'package:KhubDeeDLT/login.dart';
 import 'package:KhubDeeDLT/pages/blank_page/blank_loading.dart';
 import 'package:KhubDeeDLT/pages/blank_page/toast_fail.dart';
 import 'package:KhubDeeDLT/pages/dispute_an_allegation.dart';
+import 'package:KhubDeeDLT/pages/training/e_learning_courses.dart';
+import 'package:KhubDeeDLT/pages/training/upskill_courses.dart';
+import 'package:KhubDeeDLT/pages/training/e_certificate_list.dart';
 import 'package:KhubDeeDLT/pages/privilegeSpecial/privilege_special_list.dart';
 import 'package:KhubDeeDLT/pages/reporter/reporte r_main.dart';
 import 'package:KhubDeeDLT/pages/warning/warning_list.dart';
@@ -216,6 +220,7 @@ class _HomePageV2State extends State<HomePageV2> {
             chkisCard == false ? _buildDispute(1) : Container(),
             const SizedBox(height: 5),
             chkisCard == true ? _buildDispute(2) : Container(),
+            _buildTraining(),
             _buildCardFirst(),
             _buildCardSecond(),
             _buildCardThird(),
@@ -1321,6 +1326,42 @@ class _HomePageV2State extends State<HomePageV2> {
     // });
   }
 
+  Widget _buildTrainingButton({
+    required String title,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0F0F0),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: const Color(0xFF6F267B)),
+            const SizedBox(width: 10),
+            Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Sarabun',
+                fontSize: 15,
+                color: Color(0xFF545454),
+              ),
+            ),
+            const Spacer(),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Color(0xFF9E9E9E),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   // mainFooter() {
   //   double width = MediaQuery.of(context).size.width;
   //   double height = MediaQuery.of(context).size.height;
@@ -1397,4 +1438,64 @@ class _HomePageV2State extends State<HomePageV2> {
   //     ),
   //   );
   // }
+
+  _buildTraining() {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TrainingMain()),
+        );
+      },
+      child: Container(
+        height: 120,
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: Colors.grey,
+          image: DecorationImage(
+            // image: NetworkImage('${model['imageUrl']}'),
+            image: AssetImage('assets/background/background_train.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 5),
+                  Text(
+                    'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontFamily: 'Sarabun',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    // overflow: TextOverflow.fade,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13.0,
+                      fontFamily: 'Sarabun',
+                    ),
+                    maxLines: 2,
+                    // textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
