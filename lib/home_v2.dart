@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:KhubDeeDLT/fund/fund-detail.dart';
+
+import 'package:KhubDeeDLT/fund/fund-list.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
