@@ -19,7 +19,7 @@ class _ReporterHistoryList extends State<ReporterHistoryList> {
   late ReporterHistoryListVertical reporterHistory;
   bool hideSearch = true;
   final txtDescription = TextEditingController();
-  late String keySearch;
+  String keySearch = '';
   late String category;
   int _limit = 10;
 

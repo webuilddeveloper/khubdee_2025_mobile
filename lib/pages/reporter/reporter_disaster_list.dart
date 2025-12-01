@@ -22,7 +22,7 @@ class _ReporterDisasterList extends State<ReporterDisasterList> {
   late ReporterDisasterListVertical reporterHistory;
   bool hideSearch = true;
   final txtDescription = TextEditingController();
-  late String keySearch;
+  String keySearch = '';
   late String category;
   int _limit = 10;
 
