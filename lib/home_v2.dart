@@ -1461,42 +1461,42 @@ class _HomePageV2State extends State<HomePageV2> {
             fit: BoxFit.cover,
           ),
         ),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 5),
-                  Text(
-                    'เรียนรู้และอบรม \n(Training & Upskill Academy)',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25.0,
-                      fontFamily: 'Sarabun',
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 2,
-                    // overflow: TextOverflow.fade,
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13.0,
-                      fontFamily: 'Sarabun',
-                    ),
-                    maxLines: 2,
-                    // textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+        // child: const Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     Expanded(
+        //       child: Column(
+        //         mainAxisAlignment: MainAxisAlignment.start,
+        //         crossAxisAlignment: CrossAxisAlignment.start,
+        //         children: [
+        //           SizedBox(height: 5),
+        //           Text(
+        //             'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+        //             style: TextStyle(
+        //               color: Colors.white,
+        //               fontSize: 25.0,
+        //               fontFamily: 'Sarabun',
+        //               fontWeight: FontWeight.bold,
+        //             ),
+        //             maxLines: 2,
+        //             // overflow: TextOverflow.fade,
+        //           ),
+        //           SizedBox(height: 5),
+        //           Text(
+        //             'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
+        //             style: TextStyle(
+        //               color: Colors.white,
+        //               fontSize: 13.0,
+        //               fontFamily: 'Sarabun',
+        //             ),
+        //             maxLines: 2,
+        //             // textAlign: TextAlign.center,
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ),
     );
   }

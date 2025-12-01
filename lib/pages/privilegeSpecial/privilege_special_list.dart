@@ -289,7 +289,7 @@ class _PrivilegeSpecialList extends State<PrivilegeSpecialList> {
         body: Stack(
           children: [
             _buildMain(),
-            _buildFooter(),
+            // _buildFooter(),
           ],
         ),
       ),
