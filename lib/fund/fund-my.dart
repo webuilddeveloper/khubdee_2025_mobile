@@ -1,5 +1,7 @@
 import 'package:KhubDeeDLT/component/header.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'fund-detail.dart';
 
 class MyFundPage extends StatefulWidget {
   const MyFundPage({Key? key}) : super(key: key);
@@ -49,12 +51,8 @@ class _MyFundPageState extends State<MyFundPage> {
   ];
 
   String formatCurrency(double amount) {
-    return amount
-        .toStringAsFixed(0)
-        .replaceAllMapped(
-          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-          (Match m) => '${m[1]},',
-        );
+    // ใช้ NumberFormat เพื่อการจัดรูปแบบที่เป็นมาตรฐาน
+    return NumberFormat.currency(locale: 'th_TH', symbol: '', decimalDigits: 0).format(amount);
   }
 
   @override
@@ -270,6 +268,11 @@ class _MyFundPageState extends State<MyFundPage> {
         child: InkWell(
           onTap: () {
             // นำทางไปหน้ารายละเอียดกองทุน
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => FundDetailPage(fund: fund)),
+            );
           },
           borderRadius: BorderRadius.circular(16),
           child: Padding(
