@@ -700,11 +700,11 @@ class _IdentityVerificationPageV2State
     // // user['status'] = "V";
     user['status'] = status; // index == -1 ? user['status'] : 'V';
     user['updateBy'] = '';
-    print('-----user-----${user.toString()}');
+    // print('-----user-----${user.toString()}');
 
     final result =
         await postDioFull('${server}m/v2/Register/verify/update', user);
-    print('-----result-----${result.toString()}');
+    // print('-----result-----${result.toString()}');
 
     if (result['status'].toString() == 'E') {
       return showDialog(
