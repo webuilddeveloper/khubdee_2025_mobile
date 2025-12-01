@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:KhubDeeDLT/fund/fund-list.dart';
+import 'package:KhubDeeDLT/fund/fund-main.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
@@ -1511,7 +1512,7 @@ class _HomePageV2State extends State<HomePageV2> {
             context,
             MaterialPageRoute(
               builder:
-                  (context) => FundList(
+                  (context) => FundMain(
                     title: 'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนน (กปถ.)',
                   ),
             ),
