@@ -13,7 +13,7 @@ class _ELearningCoursesState extends State<ELearningCourses> {
       'id': 'EL001',
       'title': 'การอบรมเพื่อต่ออายุใบอนุญาตขับขี่ (ภาคทฤษฎี)',
       'description': 'วิดีโออบรมออนไลน์สำหรับผู้ต้องการต่ออายุใบอนุญาตขับขี่รถยนต์ส่วนบุคคลและรถจักรยานยนต์',
-      'videoUrl': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Mock video URL
+      'videoUrl': 'https://www.youtube.com/watch?v=o1ei72JIdiE', // Mock video URL
       'isCompleted': false,
       'quizStatus': 'not_started', // 'not_started', 'in_progress', 'completed', 'passed', 'failed'
       'duration': '2 ชั่วโมง',
@@ -22,7 +22,7 @@ class _ELearningCoursesState extends State<ELearningCourses> {
       'id': 'EL002',
       'title': 'กฎหมายจราจรและมารยาทในการขับขี่',
       'description': 'เรียนรู้กฎหมายจราจรที่สำคัญและมารยาทในการขับขี่เพื่อความปลอดภัยบนท้องถนน',
-      'videoUrl': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Mock video URL
+      'videoUrl': 'https://www.youtube.com/watch?v=o1ei72JIdiE', // Mock video URL
       'isCompleted': true,
       'quizStatus': 'passed',
       'duration': '1 ชั่วโมง 30 นาที',
@@ -31,7 +31,7 @@ class _ELearningCoursesState extends State<ELearningCourses> {
       'id': 'EL003',
       'title': 'การบำรุงรักษารถยนต์เบื้องต้น',
       'description': 'ความรู้เบื้องต้นเกี่ยวกับการดูแลรักษารถยนต์เพื่อยืดอายุการใช้งานและลดอุบัติเหตุ',
-      'videoUrl': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // Mock video URL
+      'videoUrl': 'https://www.youtube.com/watch?v=o1ei72JIdiE', // Mock video URL
       'isCompleted': false,
       'quizStatus': 'not_started',
       'duration': '1 ชั่วโมง',
