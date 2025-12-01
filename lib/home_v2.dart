@@ -219,11 +219,11 @@ class _HomePageV2State extends State<HomePageV2> {
             // _buildGridMenu1(),
             // SizedBox(height: 1),
             // _buildGridMenu2(),
-            chkisCard == false ? _buildDispute(1) : Container(),
+            // chkisCard == false ? _buildDispute(1) : Container(),
             const SizedBox(height: 5),
-            chkisCard == true ? _buildDispute(2) : Container(),
-            _buildTraining(),
+            // chkisCard == true ? _buildDispute(2) : Container(),
             _buildcardFund(),
+            _buildTraining(),
             _buildCardFirst(),
             _buildCardSecond(),
             _buildCardThird(),
@@ -1458,46 +1458,46 @@ class _HomePageV2State extends State<HomePageV2> {
           color: Colors.grey,
           image: DecorationImage(
             // image: NetworkImage('${model['imageUrl']}'),
-            image: AssetImage('assets/background/background_train.png'),
+            image: AssetImage('assets/background/background_dispute.png'),
             fit: BoxFit.cover,
           ),
         ),
-        // child: const Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Expanded(
-        //       child: Column(
-        //         mainAxisAlignment: MainAxisAlignment.start,
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           SizedBox(height: 5),
-        //           Text(
-        //             'เรียนรู้และอบรม \n(Training & Upskill Academy)',
-        //             style: TextStyle(
-        //               color: Colors.white,
-        //               fontSize: 25.0,
-        //               fontFamily: 'Sarabun',
-        //               fontWeight: FontWeight.bold,
-        //             ),
-        //             maxLines: 2,
-        //             // overflow: TextOverflow.fade,
-        //           ),
-        //           SizedBox(height: 5),
-        //           Text(
-        //             'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
-        //             style: TextStyle(
-        //               color: Colors.white,
-        //               fontSize: 13.0,
-        //               fontFamily: 'Sarabun',
-        //             ),
-        //             maxLines: 2,
-        //             // textAlign: TextAlign.center,
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //   ],
-        // ),
+        child: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 5),
+                  Text(
+                    'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontFamily: 'Sarabun',
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 2,
+                    // overflow: TextOverflow.fade,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13.0,
+                      fontFamily: 'Sarabun',
+                    ),
+                    maxLines: 2,
+                    // textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
