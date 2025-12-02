@@ -74,12 +74,13 @@ class _NewsListVertical extends State<NewsListVertical> {
               alignment: Alignment.center,
               padding: EdgeInsets.only(left: 10.0, right: 10.0),
               child: ListView.builder(
+                padding: EdgeInsets.zero,
                 physics: ScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
-                  return InkWell(
+                  return GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
@@ -98,120 +99,117 @@ class _NewsListVertical extends State<NewsListVertical> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 0,
-                                    blurRadius: 7,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.transparent,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 0,
+                                blurRadius: 7,
+                                offset: Offset(
+                                    0, 3), // changes position of shadow
                               ),
-                              margin: EdgeInsets.only(bottom: 5.0),
-                              // height: 334,
-                              width: 600,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 55,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      borderRadius: new BorderRadius.only(
-                                        topLeft: const Radius.circular(5.0),
-                                        topRight: const Radius.circular(5.0),
-                                      ),
-                                    ),
-                                    padding: EdgeInsets.all(5),
-                                    alignment: Alignment.centerLeft,
-                                    child: Row(
+                            ],
+                          ),
+                          margin: EdgeInsets.only(bottom: 5.0),
+                          // height: 334,
+                          width: 600,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 55,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: new BorderRadius.only(
+                                    topLeft: const Radius.circular(5.0),
+                                    topRight: const Radius.circular(5.0),
+                                  ),
+                                ),
+                                padding: EdgeInsets.all(5),
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.fromLTRB(
-                                                  8, 0, 0, 0),
-                                              child: Text(
-                                                // '${snapshot.data[index]['userList'][0]['firstName']} ${snapshot.data[index]['userList'][0]['lastName']}',
-                                                '${snapshot.data[index]['categoryList'][0]['title']}',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Sarabun',
-                                                ),
-                                              ),
+                                        Container(
+                                          margin: EdgeInsets.fromLTRB(
+                                              8, 0, 0, 0),
+                                          child: Text(
+                                            // '${snapshot.data[index]['userList'][0]['firstName']} ${snapshot.data[index]['userList'][0]['lastName']}',
+                                            '${snapshot.data[index]['categoryList'][0]['title']}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Sarabun',
                                             ),
-                                            // Container(
-                                            //   margin: EdgeInsets.fromLTRB(
-                                            //       8, 0, 0, 0),
-                                            //   child: Text(
-                                            //     'วันที่ ' +
-                                            //         dateStringToDate(
-                                            //             snapshot.data[index]
-                                            //                 ['createDate']),
-                                            //     style: TextStyle(
-                                            //       color: Colors.white,
-                                            //       fontFamily: 'Sarabun',
-                                            //       fontSize: 8.0,
-                                            //       fontWeight: FontWeight.normal,
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                          ],
+                                          ),
                                         ),
+                                        // Container(
+                                        //   margin: EdgeInsets.fromLTRB(
+                                        //       8, 0, 0, 0),
+                                        //   child: Text(
+                                        //     'วันที่ ' +
+                                        //         dateStringToDate(
+                                        //             snapshot.data[index]
+                                        //                 ['createDate']),
+                                        //     style: TextStyle(
+                                        //       color: Colors.white,
+                                        //       fontFamily: 'Sarabun',
+                                        //       fontSize: 8.0,
+                                        //       fontWeight: FontWeight.normal,
+                                        //     ),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
-                                  ),
-                                  Container(
-                                    constraints: BoxConstraints(
-                                      minHeight: 200,
-                                      maxHeight: 200,
-                                      minWidth: double.infinity,
-                                    ),
-                                    child:
-                                        snapshot.data[index]['imageUrl'] != null
-                                            ? Image.network(
-                                                '${snapshot.data[index]['imageUrl']}',
-                                                fit: BoxFit.cover,
-                                              )
-                                            : BlankLoading(
-                                                height: 200,
-                                              ),
-                                  ),
-                                  Container(
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      borderRadius: new BorderRadius.only(
-                                        bottomLeft: const Radius.circular(5.0),
-                                        bottomRight: const Radius.circular(5.0),
-                                      ),
-                                      color: Color(0xFFFFFFFF),
-                                    ),
-                                    padding: EdgeInsets.all(5.0),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      '${snapshot.data[index]['title']}',
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontFamily: 'Sarabun',
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              Container(
+                                constraints: BoxConstraints(
+                                  minHeight: 200,
+                                  maxHeight: 200,
+                                  minWidth: double.infinity,
+                                ),
+                                child:
+                                    snapshot.data[index]['imageUrl'] != null
+                                        ? Image.network(
+                                            '${snapshot.data[index]['imageUrl']}',
+                                            fit: BoxFit.cover,
+                                          )
+                                        : BlankLoading(
+                                            height: 200,
+                                          ),
+                              ),
+                              Container(
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  borderRadius: new BorderRadius.only(
+                                    bottomLeft: const Radius.circular(5.0),
+                                    bottomRight: const Radius.circular(5.0),
+                                  ),
+                                  color: Color(0xFFFFFFFF),
+                                ),
+                                padding: EdgeInsets.all(5.0),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '${snapshot.data[index]['title']}',
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontFamily: 'Sarabun',
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

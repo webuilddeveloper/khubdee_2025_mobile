@@ -235,7 +235,7 @@ myCard(int index, int lastIndex, dynamic model, BuildContext context,
                 bottomLeft: const Radius.circular(5.0),
                 bottomRight: const Radius.circular(5.0),
               ),
-              color: Color(0xFFFF7514),
+              color: Theme.of(context).primaryColor,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

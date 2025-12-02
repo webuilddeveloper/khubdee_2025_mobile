@@ -151,7 +151,7 @@ myCard(int index, int lastIndex, dynamic model, BuildContext context,
                   Container(
                     height: 45,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFF7514),
+                      color: Theme.of(context).primaryColor,
                       borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(5.0),
                         topRight: const Radius.circular(5.0),

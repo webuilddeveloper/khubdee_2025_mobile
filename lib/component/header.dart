@@ -9,12 +9,13 @@ header(
   String imageRightButton = 'assets/images/task_list.png',
   Function? rightButton,
   String menu = '',
+  bool isBg = true,
 }) {
   return PreferredSize(
-    preferredSize: const Size.fromHeight(50),
+    preferredSize: const Size.fromHeight(60),
     child: AppBar(
       centerTitle: true,
-      flexibleSpace: Container(
+      flexibleSpace: isBg ? Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg_header.png'),
@@ -31,8 +32,9 @@ header(
         //     ],
         //   ),
         // ),
-      ),
-      backgroundColor: Color(0xFFFF7900),
+      ) : Container(),
+      // backgroundColor: Color(0xFFFF7900),
+      backgroundColor: Colors.transparent,
       elevation: 0.0,
       titleSpacing: 5,
       automaticallyImplyLeading: false,
@@ -40,8 +42,8 @@ header(
         title ?? '',
         textAlign: TextAlign.center,
         style: const TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.normal,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
           fontFamily: 'Sarabun',
           color: Colors.white,
         ),

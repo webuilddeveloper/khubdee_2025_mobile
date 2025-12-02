@@ -18,7 +18,11 @@ import 'package:http/http.dart' as http;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PrivilegeMain extends StatefulWidget {
-  const PrivilegeMain({super.key, required this.title, required this.fromPolicy});
+  const PrivilegeMain({
+    super.key,
+    required this.title,
+    required this.fromPolicy,
+  });
   final String title;
   final bool fromPolicy;
 
@@ -28,7 +32,7 @@ class PrivilegeMain extends StatefulWidget {
 }
 
 class _PrivilegeMain extends State<PrivilegeMain> {
-  final storage =  const FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   late PrivilegeList privilegeList;
   late PrivilegeListVertical gridView;
@@ -45,13 +49,17 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   bool isHighlight = false;
   int _limit = 10;
 
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
-    _futurePromotion = post(
-        '${privilegeApi}read', {'skip': 0, 'limit': 10, 'isHighlight': true});
+    _futurePromotion = post('${privilegeApi}read', {
+      'skip': 0,
+      'limit': 10,
+      'isHighlight': true,
+    });
     // _futurePrivilegeCategory =
     //     post('${privilegeCategoryApi}read', {'skip': 0, 'limit': 100});
     _futureForceAds = post('${forceAdsApi}read', {'skip': 0, 'limit': 10});
@@ -63,119 +71,163 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
-      appBar: header(context, goBack, title: widget.title),
-      body: NotificationListener<OverscrollIndicatorNotification>(
-        onNotification: (OverscrollIndicatorNotification overScroll) {
-          overScroll.disallowIndicator();
-          return false;
-        },
-        child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus( FocusNode());
-          },
-          child: SmartRefresher(
-            enablePullDown: false,
-            enablePullUp: true,
-            footer: const ClassicFooter(
-              loadingText: ' ',
-              canLoadingText: ' ',
-              idleText: ' ',
-              idleIcon: Icon(Icons.arrow_upward, color: Colors.transparent),
-            ),
-            controller: _refreshController,
-            onLoading: _onLoading,
-            child: ListView(
-              children: [
-                const SizedBox(
-                  height: 5.0,
-                ),
-                tabCategory(),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                KeySearch(
-                  show: hideSearch,
-                  onKeySearchChange: (String val) {
-                    setState(() {
-                      keySearch = val;
-                    });
-                  },
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                keySearch == ''
-                    ? isMain
-                        ? ListView(
-                            shrinkWrap: true,
-                            physics: const ClampingScrollPhysics(), // 2nd
-                            children: [
-                              ListContentHorizontalPrivilegeSuggested(
-                                title: 'แนะนำ',
-                                url: knowledgeApi,
-                                model: _futurePromotion,
-                                urlComment: '',
-                                navigationList: () {
-                                  setState(() {
-                                    keySearch = '';
-                                    isMain = false;
-                                    categorySelected = '';
-                                  });
-                                },
-                                navigationForm: (
-                                  String code,
-                                  dynamic model,
-                                ) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PrivilegeForm(
-                                        code: code,
-                                        model: model,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              for (int i = 0; i < listData.length; i++)
-                                 ListContentHorizontalPrivilege(
-                                  code: category[i]['code'],
-                                  title: category[i]['title'],
-                                  model: listData[i],
-                                  navigationList: () {
-                                    setState(() {
-                                      keySearch = '';
-                                      isMain = false;
-                                      categorySelected = category[i]['code'];
-                                    });
-                                  },
-                                  navigationForm: (
-                                    String code,
-                                    dynamic model,
-                                  ) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PrivilegeForm(
-                                          code: code,
-                                          model: model,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                            ],
-                          )
-                        : reloadList()
-                    : reloadList(),
-                const SizedBox(
-                  height: 30.0,
-                ),
-              ],
+      appBar: header(context, goBack, title: widget.title, isBg: false),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ShaderMask(
+              shaderCallback: (rect) {
+                return const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white, // เห็นภาพชัด
+                    Colors.transparent, // ค่อย ๆ หายไป
+                  ],
+                ).createShader(rect);
+              },
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                'assets/bg_header.png',
+                width: double.infinity,
+                fit: BoxFit.cover,
+                height: 250, // ปรับความยาวของ fade ได้
+              ),
             ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: kToolbarHeight + 64),
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (OverscrollIndicatorNotification overScroll) {
+                overScroll.disallowIndicator();
+                return false;
+              },
+              child: GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).requestFocus(FocusNode());
+                },
+                child: Column(
+                  children: [
+                    const SizedBox(height: 5.0),
+                    tabCategory(),
+                    const SizedBox(height: 10.0),
+                    KeySearch(
+                      show: hideSearch,
+                      onKeySearchChange: (String val) {
+                        setState(() {
+                          keySearch = val;
+                        });
+                      },
+                    ),
+                    Expanded(
+                      child: SmartRefresher(
+                        enablePullDown: false,
+                        enablePullUp: true,
+                        footer: const ClassicFooter(
+                          loadingText: ' ',
+                          canLoadingText: ' ',
+                          idleText: ' ',
+                          idleIcon: Icon(
+                            Icons.arrow_upward,
+                            color: Colors.transparent,
+                          ),
+                        ),
+                        controller: _refreshController,
+                        onLoading: _onLoading,
+                        child: ListView(
+                          padding: EdgeInsets.only(top: 15),
+                          children: [
+                            const SizedBox(height: 10.0),
+                            keySearch == ''
+                                ? isMain
+                                    ? ListView(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const ClampingScrollPhysics(), // 2nd
+                                      children: [
+                                        ListContentHorizontalPrivilegeSuggested(
+                                          title: 'แนะนำ',
+                                          url: knowledgeApi,
+                                          model: _futurePromotion,
+                                          urlComment: '',
+                                          navigationList: () {
+                                            setState(() {
+                                              keySearch = '';
+                                              isMain = false;
+                                              categorySelected = '';
+                                            });
+                                          },
+                                          navigationForm: (
+                                            String code,
+                                            dynamic model,
+                                          ) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder:
+                                                    (context) => PrivilegeForm(
+                                                      code: code,
+                                                      model: model,
+                                                    ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        for (
+                                          int i = 0;
+                                          i < listData.length;
+                                          i++
+                                        )
+                                          ListContentHorizontalPrivilege(
+                                            code: category[i]['code'],
+                                            title: category[i]['title'],
+                                            model: listData[i],
+                                            navigationList: () {
+                                              setState(() {
+                                                keySearch = '';
+                                                isMain = false;
+                                                categorySelected =
+                                                    category[i]['code'];
+                                              });
+                                            },
+                                            navigationForm: (
+                                              String code,
+                                              dynamic model,
+                                            ) {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          PrivilegeForm(
+                                                            code: code,
+                                                            model: model,
+                                                          ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                      ],
+                                    )
+                                    : reloadList()
+                                : reloadList(),
+                            const SizedBox(height: 30.0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -193,8 +245,8 @@ class _PrivilegeMain extends State<PrivilegeMain> {
       dataValue = null;
     }
 
-    var now =  DateTime.now();
-    DateTime date =  DateTime(now.year, now.month, now.day);
+    var now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
 
     if (dataValue != null) {
       var index = dataValue.indexWhere(
@@ -213,7 +265,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             return MainPopupDialog(
               model: _futureForceAds,
               type: 'privilege',
-              username: user['username'], url: '', urlGallery: '',
+              username: user['username'],
+              url: '',
+              urlGallery: '',
             );
           },
         );
@@ -227,7 +281,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
           return MainPopupDialog(
             model: _futureForceAds,
             type: 'privilege',
-            username: user['username'], url: '', urlGallery: '',
+            username: user['username'],
+            url: '',
+            urlGallery: '',
           );
         },
       );
@@ -245,14 +301,16 @@ class _PrivilegeMain extends State<PrivilegeMain> {
     var body = json.encode({
       "permission": "all",
       "skip": 0,
-      "limit": 999 // integer value type
+      "limit": 999, // integer value type
     });
-    var response = await http.post(Uri.parse('${privilegeCategoryApi}read'),
-        body: body,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        });
+    var response = await http.post(
+      Uri.parse('${privilegeCategoryApi}read'),
+      body: body,
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    );
 
     var data = json.decode(response.body);
     setState(() {
@@ -261,8 +319,11 @@ class _PrivilegeMain extends State<PrivilegeMain> {
 
     if (category.isNotEmpty) {
       for (int i = 0; i <= category.length - 1; i++) {
-        var res = post('${privilegeApi}read',
-            {'skip': 0, 'limit': 10, 'category': category[i]['code']});
+        var res = post('${privilegeApi}read', {
+          'skip': 0,
+          'limit': 10,
+          'category': category[i]['code'],
+        });
         listData.add(res);
       }
     }
@@ -272,12 +333,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
     setState(() {
       _limit = _limit + 10;
 
-      gridView =  PrivilegeListVertical(
+      gridView = PrivilegeListVertical(
         site: 'CIO',
-        model: post('${privilegeApi}read', {
-          'skip': 0,
-          'limit': _limit,
-        }),
+        model: post('${privilegeApi}read', {'skip': 0, 'limit': _limit}),
       );
     });
 
@@ -287,14 +345,14 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   }
 
   reloadList() {
-    return gridView =  PrivilegeListVertical(
+    return gridView = PrivilegeListVertical(
       site: 'DDPM',
       model: post('${privilegeApi}read', {
         'skip': 0,
         'limit': _limit,
         'keySearch': keySearch,
         'isHighlight': isHighlight,
-        'category': categorySelected
+        'category': categorySelected,
       }),
     );
   }
@@ -302,9 +360,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   void goBack() async {
     if (widget.fromPolicy) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => HomePageV2(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePageV2()),
         (Route<dynamic> route) => false,
       );
     } else {
@@ -319,31 +375,32 @@ class _PrivilegeMain extends State<PrivilegeMain> {
 
   tabCategory() {
     return FutureBuilder<dynamic>(
-      future: postCategory(
-        '${privilegeCategoryApi}read',
-        {'skip': 0, 'limit': 100},
-      ), // function where you call your api
+      future: postCategory('${privilegeCategoryApi}read', {
+        'skip': 0,
+        'limit': 100,
+      }), // function where you call your api
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         // AsyncSnapshot<Your object type>
 
         if (snapshot.hasData) {
           return Container(
             height: 45.0,
-            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+            padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5),
             margin: const EdgeInsets.symmetric(horizontal: 10.0),
-            decoration:  BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 0,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              borderRadius:  BorderRadius.circular(6.0),
-              color: Colors.white,
+            decoration: BoxDecoration(
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: Colors.grey.withOpacity(0.5),
+              //     spreadRadius: 0,
+              //     blurRadius: 7,
+              //     offset: const Offset(0, 3), // changes position of shadow
+              //   ),
+              // ],
+              // borderRadius: BorderRadius.circular(6.0),
+              color: Colors.transparent,
             ),
-            child: ListView.builder(
+            child: ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(width: 5),
               scrollDirection: Axis.horizontal,
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
@@ -368,24 +425,38 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                       // selectedIndex = index;
                     });
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 5.0,
-                      vertical: 10.0,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 6.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: categorySelected == snapshot.data[index]['code'] ? Theme.of(context).primaryColor : Colors.transparent,
+                      borderRadius: BorderRadius.circular(6),
+
+                      boxShadow: [
+                        BoxShadow(
+                          color: categorySelected == snapshot.data[index]['code'] ? Theme.of(context).primaryColor.withOpacity(0.5) : Colors.transparent,
+                          spreadRadius: 0,
+                          blurRadius: 4,
+                          offset: Offset(0, 2), // changes position of shadow
+                        ),
+                      ],
                     ),
                     child: Text(
                       snapshot.data[index]['title'],
                       style: TextStyle(
-                        color: categorySelected == snapshot.data[index]['code']
-                            ? Colors.black
-                            : Colors.grey,
-                        decoration:
+                        color:
                             categorySelected == snapshot.data[index]['code']
-                                ? TextDecoration.underline
-                                : null,
+                                ? Colors.white
+                                : Theme.of(context).primaryColor,
+                        // decoration:
+                        //     categorySelected == snapshot.data[index]['code']
+                        //         ? TextDecoration.underline
+                        //         : null,
                         fontSize: 16.0,
-                        fontWeight: FontWeight.normal,
-                        letterSpacing: 1.2,
+                        fontWeight: categorySelected == snapshot.data[index]['code'] ? FontWeight.bold : FontWeight.normal,
+                        // letterSpacing: 1.2,
                         fontFamily: 'Sarabun',
                       ),
                     ),
@@ -399,7 +470,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             height: 45.0,
             padding: const EdgeInsets.only(left: 5.0, right: 5.0),
             margin: const EdgeInsets.symmetric(horizontal: 30.0),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -408,7 +479,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                   offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
-              borderRadius:  BorderRadius.circular(6.0),
+              borderRadius: BorderRadius.circular(6.0),
               color: Colors.white,
             ),
           );
