@@ -13,7 +13,7 @@ import 'package:http_parser/http_parser.dart';
 import 'dart:io';
 
 const appName = 'Khub Dee DLT';
-const versionName = '0.0.1';
+const versionName = '1.0.0';
 const versionNumber = 1;
 
 // flutter build apk --build-name=0.0.1 --build-number=1
@@ -104,10 +104,8 @@ const comingSoonGalleryApi = server + 'm/comingsoon/gallery/read';
 const splashApi = server + 'm/splash/read';
 
 const privilegeGalleryApi = server + 'm/privilege/gallery/read';
-const privilegeSpecialReadApi =
-    server + '/m/privilege/read';
-const privilegeSpecialCategoryReadApi =
-    server + '/m/privilege/category/read';
+const privilegeSpecialReadApi = server + '/m/privilege/read';
+const privilegeSpecialCategoryReadApi = server + '/m/privilege/category/read';
 
 Future<dynamic> postCategory(String url, dynamic criteria) async {
   final storage = new FlutterSecureStorage();
@@ -134,15 +132,16 @@ Future<dynamic> postCategory(String url, dynamic criteria) async {
     "organization": dataOrganization != null ? dataOrganization : [],
   });
 
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   var data = json.decode(response.body);
 
   List<dynamic> list = [
-    {'code': "", 'title': 'ทั้งหมด'}
+    {'code': "", 'title': 'ทั้งหมด'},
   ];
   list = [...list, ...data['objectData']];
 
@@ -182,10 +181,11 @@ Future<dynamic> post(String url, dynamic criteria) async {
     "longitude": criteria['longitude'] != null ? criteria['longitude'] : 0,
   });
 
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   var data = json.decode(response.body);
   return Future.value(data['objectData']);
@@ -201,18 +201,20 @@ Future<dynamic> postAny(String url, dynamic criteria) async {
     "username": criteria['username'] != null ? criteria['username'] : '',
     "password": criteria['password'] != null ? criteria['password'] : '',
     "createBy": criteria['createBy'] != null ? criteria['createBy'] : '',
-    "imageUrlCreateBy": criteria['imageUrlCreateBy'] != null
-        ? criteria['imageUrlCreateBy']
-        : '',
+    "imageUrlCreateBy":
+        criteria['imageUrlCreateBy'] != null
+            ? criteria['imageUrlCreateBy']
+            : '',
     "reference": criteria['reference'] != null ? criteria['reference'] : '',
     "description":
         criteria['description'] != null ? criteria['description'] : '',
   });
 
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   var data = json.decode(response.body);
 
@@ -226,18 +228,20 @@ Future<dynamic> postAnyObj(String url, dynamic criteria) async {
     "limit": criteria['limit'] != null ? criteria['limit'] : 1,
     "code": criteria['code'] != null ? criteria['code'] : '',
     "createBy": criteria['createBy'] != null ? criteria['createBy'] : '',
-    "imageUrlCreateBy": criteria['imageUrlCreateBy'] != null
-        ? criteria['imageUrlCreateBy']
-        : '',
+    "imageUrlCreateBy":
+        criteria['imageUrlCreateBy'] != null
+            ? criteria['imageUrlCreateBy']
+            : '',
     "reference": criteria['reference'] != null ? criteria['reference'] : '',
     "description":
         criteria['description'] != null ? criteria['description'] : '',
   });
 
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   var data = json.decode(response.body);
 
@@ -252,10 +256,11 @@ Future<dynamic> postLogin(String url, dynamic criteria) async {
     "email": criteria['email'] != null ? criteria['email'] : '',
   });
 
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   var data = json.decode(response.body);
 
@@ -265,17 +270,18 @@ Future<dynamic> postLogin(String url, dynamic criteria) async {
 Future<dynamic> postObjectData(String url, dynamic criteria) async {
   var body = json.encode(criteria);
 
-  var response = await http.post(Uri.parse(server + url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(server + url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   if (response.statusCode == 200) {
     var data = json.decode(response!.body);
     return {
       "status": data['status'],
       "message": data['message'],
-      "objectData": data['objectData']
+      "objectData": data['objectData'],
     };
     // Future.value(data['objectData']);
   } else {
@@ -287,16 +293,17 @@ Future<dynamic> postObjectDataMW(String url, dynamic criteria) async {
   var body = json.encode(criteria);
   // print('-----------$url------------');
   // print('-----------$body------------');
-  var response = await http.post(Uri.parse(url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
   if (response.statusCode == 200) {
     var data = json.decode(response!.body);
     return {
       "status": data['status'],
       "message": data['message'],
-      "objectData": data['objectData']
+      "objectData": data['objectData'],
     };
     // Future.value(data['objectData']);
   } else {
@@ -308,19 +315,17 @@ Future<dynamic> postConfigShare() async {
   var body = json.encode({});
 
   var response = await http.post(
-      Uri.parse(server + 'configulation/shared/read'),
-      body: body,
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      });
+    Uri.parse(server + 'configulation/shared/read'),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
   if (response.statusCode == 200) {
     var data = json.decode(response!.body);
     return {
       // Future.value(data['objectData']);
       "status": data['status'],
       "message": data['message'],
-      "objectData": data['objectData']
+      "objectData": data['objectData'],
     };
   } else {
     return {"status": "F"};
@@ -330,10 +335,11 @@ Future<dynamic> postConfigShare() async {
 Future<LoginRegister> postLoginRegister(String url, dynamic criteria) async {
   var body = json.encode(criteria);
 
-  var response = await http.post(Uri.parse(server + url), body: body, headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  });
+  var response = await http.post(
+    Uri.parse(server + url),
+    body: body,
+    headers: {"Accept": "application/json", "Content-Type": "application/json"},
+  );
 
   if (response.statusCode == 200) {
     var userMap = jsonDecode(response!.body);
@@ -363,10 +369,16 @@ Future<String> uploadImage(XFile file) async {
 //upload with http
 upload(File file) async {
   var uri = Uri.parse(serverUpload);
-  var request = http.MultipartRequest('POST', uri)
-    ..fields['ImageCaption'] = 'flutter2'
-    ..files.add(await http.MultipartFile.fromPath('Image', file.path,
-        contentType: MediaType('application', 'x-tar')));
+  var request =
+      http.MultipartRequest('POST', uri)
+        ..fields['ImageCaption'] = 'flutter2'
+        ..files.add(
+          await http.MultipartFile.fromPath(
+            'Image',
+            file.path,
+            contentType: MediaType('application', 'x-tar'),
+          ),
+        );
   var response = await request.send();
   if (response.statusCode == 200) {
     return response;
@@ -407,12 +419,10 @@ logout(BuildContext context) async {
   }
 
   Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-          builder: (context) => LoginPage(
-                title: '',
-              )),
-      (Route<dynamic> route) => false);
+    context,
+    MaterialPageRoute(builder: (context) => LoginPage(title: '')),
+    (Route<dynamic> route) => false,
+  );
 
   // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
 }
@@ -429,9 +439,10 @@ Future<dynamic> postDio(String url, dynamic criteria) async {
 
   if (criteria['card_id'] == '' ||
       // ignore: curly_braces_in_flow_control_structures
-      criteria['card_id'] == null) if (idcard != '' && idcard != null) {
-    criteria = {'card_id': idcard, ...criteria};
-  }
+      criteria['card_id'] == null)
+    if (idcard != '' && idcard != null) {
+      criteria = {'card_id': idcard, ...criteria};
+    }
 
   if (username != '' && username != null) {
     criteria = {'username': username, ...criteria};
@@ -452,10 +463,10 @@ Future<dynamic> postAnyDio(String url, dynamic criteria) async {
   if (profileCode != '' && profileCode != null) {
     criteria = {'profileCode': profileCode, ...criteria};
   }
-  if (criteria['card_id'] == '' ||
-      criteria['card_id'] == null) if (idcard != '' && idcard != null) {
-    criteria = {'card_id': idcard, ...criteria};
-  }
+  if (criteria['card_id'] == '' || criteria['card_id'] == null)
+    if (idcard != '' && idcard != null) {
+      criteria = {'card_id': idcard, ...criteria};
+    }
 
   Dio dio = new Dio();
   var response = await dio.post(url, data: criteria);
@@ -477,11 +488,11 @@ Future<dynamic> postDioMessage(String url, dynamic criteria) async {
     print('-----profileCode-----' + profileCode);
     criteria = {'profileCode': profileCode, ...criteria};
   }
-  if (criteria['card_id'] == '' ||
-      criteria['card_id'] == null) if (idcard != '' && idcard != null) {
-    print('-----card_id-----' + idcard);
-    criteria = {'card_id': idcard, ...criteria};
-  }
+  if (criteria['card_id'] == '' || criteria['card_id'] == null)
+    if (idcard != '' && idcard != null) {
+      print('-----card_id-----' + idcard);
+      criteria = {'card_id': idcard, ...criteria};
+    }
 
   print('-----dio url-----' + url);
   Dio dio = new Dio();
@@ -540,7 +551,7 @@ Future<dynamic> postDioCategoryWeMart(String url, dynamic criteria) async {
   var data = response.data['objectData'];
 
   List<dynamic> list = [
-    {'code': "", 'title': 'ทั้งหมด'}
+    {'code': "", 'title': 'ทั้งหมด'},
   ];
 
   list = [...list, ...data];

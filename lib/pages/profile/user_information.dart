@@ -229,19 +229,19 @@ class _UserInformationPageState extends State<UserInformationPage> {
                         'ข้อมูลสมาชิก',
                       ),
                     ),
-                    InkWell(
-                      onTap:
-                          () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SettingNotificationPage(),
-                            ),
-                          ),
-                      child: buttonMenuUser(
-                        'assets/icons/bell.png',
-                        'ตั้งค่าการแจ้งเตือน',
-                      ),
-                    ),
+                    // InkWell(
+                    //   onTap:
+                    //       () => Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) => SettingNotificationPage(),
+                    //         ),
+                    //       ),
+                    //   child: buttonMenuUser(
+                    //     'assets/icons/bell.png',
+                    //     'ตั้งค่าการแจ้งเตือน',
+                    //   ),
+                    // ),
                     // InkWell(
                     //   onTap: () async {
                     //     final msg = model['idcard'] == ''
@@ -309,34 +309,34 @@ class _UserInformationPageState extends State<UserInformationPage> {
                         'เปลี่ยนรหัสผ่าน',
                       ),
                     ),
-                    InkWell(
-                      onTap:
-                          () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => const CarRegistration(type: 'C'),
-                            ),
-                          ),
-                      child: buttonMenuUser(
-                        'assets/icons/papers.png',
-                        'ชำระภาษีรถตนเอง',
-                      ),
-                    ),
-                    InkWell(
-                      onTap:
-                          () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => const CarRegistration(type: 'V'),
-                            ),
-                          ),
-                      child: buttonMenuUser(
-                        'assets/icons/papers.png',
-                        'ตรวจสภาพรถ',
-                      ),
-                    ),
+                    // InkWell(
+                    //   onTap:
+                    //       () => Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder:
+                    //               (context) => const CarRegistration(type: 'C'),
+                    //         ),
+                    //       ),
+                    //   child: buttonMenuUser(
+                    //     'assets/icons/papers.png',
+                    //     'ชำระภาษีรถตนเอง',
+                    //   ),
+                    // ),
+                    // InkWell(
+                    //   onTap:
+                    //       () => Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder:
+                    //               (context) => const CarRegistration(type: 'V'),
+                    //         ),
+                    //       ),
+                    //   child: buttonMenuUser(
+                    //     'assets/icons/papers.png',
+                    //     'ตรวจสภาพรถ',
+                    //   ),
+                    // ),
                     // InkWell(
                     //   onTap: () => Navigator.push(
                     //     context,
