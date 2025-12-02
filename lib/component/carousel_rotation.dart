@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class CarouselRotation extends StatefulWidget {
   CarouselRotation({Key? key, required this.model, required this.nav})
-      : super(key: key);
+    : super(key: key);
 
   final Future<dynamic> model;
   final Function(String, String, dynamic, String) nav;
@@ -67,48 +67,50 @@ class _CarouselRotation extends State<CarouselRotation> {
               });
             },
           ),
-          items: model.map<Widget>(
-            (document) {
-              return new InkWell(
-                onTap: () {
-                  widget.nav(
-                    model[_current]['linkUrl'],
-                    model[_current]['action'],
-                    model[_current],
-                    model[_current]['code'],
-                  );
-                },
-                child: Container(
-                  child: Center(
-                    child: Image.network(
-                      document['imageUrl'],
-                      fit: BoxFit.fill,
-                      height: 120,
-                      width: MediaQuery.of(context).size.width,
+          items:
+              model.map<Widget>((document) {
+                return new InkWell(
+                  onTap: () {
+                    widget.nav(
+                      model[_current]['linkUrl'],
+                      model[_current]['action'],
+                      model[_current],
+                      model[_current]['code'],
+                    );
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Image.network(
+                        document['imageUrl'],
+                        fit: BoxFit.cover,
+                        height: 120,
+                        width: MediaQuery.of(context).size.width,
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          ).toList(),
+                );
+              }).toList(),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: model.map<Widget>(
-            (url) {
-              int index = model.indexOf(url);
-              return Container(
-                width: _current == index ? 20.0 : 5.0,
-                height: 5.0,
-                margin: EdgeInsets.only(
-                    top: 100.0, left: 2.0, right: 2.0, bottom: 5.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: _current == index ? Colors.grey : Colors.white,
-                ),
-              );
-            },
-          ).toList(),
+          children:
+              model.map<Widget>((url) {
+                int index = model.indexOf(url);
+                return Container(
+                  width: _current == index ? 20.0 : 5.0,
+                  height: 5.0,
+                  margin: EdgeInsets.only(
+                    top: 100.0,
+                    left: 2.0,
+                    right: 2.0,
+                    bottom: 5.0,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: _current == index ? Colors.grey : Colors.white,
+                  ),
+                );
+              }).toList(),
         ),
       ],
     );

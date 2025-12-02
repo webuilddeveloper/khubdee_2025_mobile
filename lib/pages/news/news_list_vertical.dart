@@ -34,17 +34,15 @@ class _NewsListVertical extends State<NewsListVertical> {
     super.initState();
   }
 
-  final List<String> items =
-      List<String>.generate(10, (index) => "Item: ${++index}");
+  final List<String> items = List<String>.generate(
+    10,
+    (index) => "Item: ${++index}",
+  );
 
   checkImageAvatar(String img) {
     return CircleAvatar(
       backgroundColor: Colors.white,
-      backgroundImage: img != null
-          ? NetworkImage(
-              img,
-            )
-          : null,
+      backgroundImage: img != null ? NetworkImage(img) : null,
     );
   }
 
@@ -72,13 +70,14 @@ class _NewsListVertical extends State<NewsListVertical> {
             return Container(
               color: Colors.transparent,
               alignment: Alignment.center,
-              padding: EdgeInsets.only(left: 10.0, right: 10.0),
+              padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 physics: ScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: snapshot.data.length,
+
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
@@ -231,12 +230,16 @@ class _NewsListVertical extends State<NewsListVertical> {
     var body = json.encode({
       "permission": "all",
       "skip": 0,
-      "limit": 10 // integer value type
+      "limit": 10, // integer value type
     });
-    var response = await http.post(Uri.parse(''), body: body, headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    });
+    var response = await http.post(
+      Uri.parse(''),
+      body: body,
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    );
 
     var data = json.decode(response.body);
 
@@ -250,28 +253,34 @@ class _NewsListVertical extends State<NewsListVertical> {
     var body = json.encode({
       "permission": "all",
       "skip": 0,
-      "limit": 2 // integer value type
+      "limit": 2, // integer value type
     });
 
     var client = new http.Client();
-    client.post(
-        Uri.parse("http://hwpolice.we-builds.com/hwpolice-api/privilege/read"),
-        body: body,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }).then((response) {
-      client.close();
-      var data = json.decode(response.body);
+    client
+        .post(
+          Uri.parse(
+            "http://hwpolice.we-builds.com/hwpolice-api/privilege/read",
+          ),
+          body: body,
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+        )
+        .then((response) {
+          client.close();
+          var data = json.decode(response.body);
 
-      if (data.length > 0) {
-        sleep(const Duration(seconds: 10));
-        setState(() {
-          // Update your state here
+          if (data.length > 0) {
+            sleep(const Duration(seconds: 10));
+            setState(() {
+              // Update your state here
+            });
+          } else {}
+        })
+        .catchError((onError) {
+          client.close();
         });
-      } else {}
-    }).catchError((onError) {
-      client.close();
-    });
   }
 }

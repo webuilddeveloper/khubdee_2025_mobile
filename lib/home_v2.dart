@@ -223,12 +223,12 @@ class _HomePageV2State extends State<HomePageV2> {
             // chkisCard == false ? _buildDispute(1) : Container(),
             const SizedBox(height: 5),
             // chkisCard == true ? _buildDispute(2) : Container(),
-            _buildcardFund(),
             _buildTraining(),
+            _buildcardFund(),
             _buildCardFirst(),
             _buildCardSecond(),
             _buildCardThird(),
-            _buildRotation(),
+            // _buildRotation(),
             _buildFooter(),
           ],
         ),
@@ -493,9 +493,9 @@ class _HomePageV2State extends State<HomePageV2> {
                 context,
                 MaterialPageRoute(
                   builder:
-                      (context) => 
+                      (context) =>
                       // PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
-                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: true,),
+                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: true),
                 ),
               );
             },
@@ -1209,7 +1209,7 @@ class _HomePageV2State extends State<HomePageV2> {
                 ? true
                 : false;
       });
-      // getMainPopUp();
+      getMainPopUp();
       // _getLocation();
       // print('-------------end response------------');
     } else {
@@ -1478,9 +1478,9 @@ class _HomePageV2State extends State<HomePageV2> {
                     'เรียนรู้และอบรม \n(Training & Upskill Academy)',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 25.0,
+                      fontSize: 20.0,
                       fontFamily: 'Sarabun',
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
                     // overflow: TextOverflow.fade,
@@ -1528,7 +1528,7 @@ class _HomePageV2State extends State<HomePageV2> {
             color: Colors.white,
             image: DecorationImage(
               image: AssetImage('assets/background/backgrounf_fund.png'),
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             ),
           ),
         ),

@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainPopup extends StatefulWidget {
-  MainPopup({Key? key, required this.model, required this.nav}) : super(key: key);
+  MainPopup({Key? key, required this.model, required this.nav})
+    : super(key: key);
 
   final Future<dynamic> model;
   final Function(String, String, dynamic, String, String) nav;
@@ -65,23 +66,20 @@ class _MainPopup extends State<MainPopup> {
                       });
                     },
                   ),
-                  items: snapshot.data.map<Widget>(
-                    (document) {
-                      return new Container(
-                        child: Center(
+                  items:
+                      snapshot.data.map<Widget>((document) {
+                        return Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
                               '${document['imageUrl']}',
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                               height: 480,
-                              width: 360,
+                              width: 400,
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ).toList(),
+                        );
+                      }).toList(),
                 ),
               ),
               // Row(

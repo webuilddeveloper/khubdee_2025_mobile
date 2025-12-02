@@ -15,8 +15,9 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
 
   final int _limit = 2;
 
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
@@ -44,9 +45,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
         rightButton: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => ScoreCriteria(),
-            ),
+            MaterialPageRoute(builder: (context) => ScoreCriteria()),
           );
         },
       ),
@@ -182,10 +181,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
           ),
           Text(
             '$toDate',
-            style: const TextStyle(
-              fontFamily: 'Sarabun',
-              fontSize: 13,
-            ),
+            style: const TextStyle(fontFamily: 'Sarabun', fontSize: 13),
           ),
           _line(),
           _textRow(
@@ -193,15 +189,9 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
             value: 'อำเภอเมือง จังหวัดเชียงใหม่',
           ),
           const SizedBox(height: 8),
-          _textRow(
-            title: 'เลขที่ใบสั่ง',
-            value: 'xxxxxxxxxxxxxxx',
-          ),
+          _textRow(title: 'เลขที่ใบสั่ง', value: '240674'),
           const SizedBox(height: 8),
-          _textRow(
-            title: 'หน่วยงานที่ออกใบสั่ง',
-            value: 'สถานีตำรวจ ภาค 5',
-          ),
+          _textRow(title: 'หน่วยงานที่ออกใบสั่ง', value: 'สถานีตำรวจ ภาค 5'),
           const SizedBox(height: 8),
           _line(),
           const Text(
@@ -215,10 +205,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
           const SizedBox(height: 10),
           const Text(
             'ขับรถไม่สุภาพ ขับปาดหน้า ขับรถเร็ว ไม่ปฏิบัติตามกฏจราจร',
-            style: TextStyle(
-              fontFamily: 'Sarabun',
-              fontSize: 13,
-            ),
+            style: TextStyle(fontFamily: 'Sarabun', fontSize: 13),
           ),
           _line(),
           const Row(
@@ -241,7 +228,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -269,10 +256,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
         ),
         Text(
           value,
-          style: const TextStyle(
-            fontFamily: 'Sarabun',
-            fontSize: 13,
-          ),
+          style: const TextStyle(fontFamily: 'Sarabun', fontSize: 13),
         ),
       ],
     );
@@ -290,7 +274,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
           tempData.add({
             'title': i.toString(),
             'date':
-                "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year + 543}"
+                "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year + 543}",
           });
         });
       }

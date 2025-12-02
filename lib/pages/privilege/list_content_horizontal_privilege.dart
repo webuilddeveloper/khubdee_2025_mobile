@@ -5,14 +5,14 @@ import 'package:KhubDeeDLT/shared/extension.dart';
 
 // ignore: must_be_immutable
 class ListContentHorizontalPrivilege extends StatefulWidget {
-  ListContentHorizontalPrivilege(
-      {Key? key,
-      required this.title,
-      required this.code,
-      required this.model,
-      required this.navigationList,
-      required this.navigationForm})
-      : super(key: key);
+  ListContentHorizontalPrivilege({
+    Key? key,
+    required this.title,
+    required this.code,
+    required this.model,
+    required this.navigationList,
+    required this.navigationForm,
+  }) : super(key: key);
 
   final String code;
   final String title;
@@ -31,8 +31,11 @@ class _ListContentHorizontalPrivilege
 
   @override
   void initState() {
-    _futurePrivilege = post('${privilegeApi}read',
-        {'skip': 0, 'limit': 100, 'category': widget.code});
+    _futurePrivilege = post('${privilegeApi}read', {
+      'skip': 0,
+      'limit': 100,
+      'category': widget.code,
+    });
     super.initState();
   }
 
@@ -76,8 +79,10 @@ class _ListContentHorizontalPrivilege
                         margin: EdgeInsets.only(bottom: 5.0, top: 10.0),
                         child: Text(
                           'ดูทั้งหมด',
-                          style:
-                              TextStyle(fontSize: 12.0, fontFamily: 'Sarabun'),
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            fontFamily: 'Sarabun',
+                          ),
                         ),
                       ),
                     ),
@@ -136,7 +141,10 @@ class _ListContentHorizontalPrivilege
                 height: 200,
                 color: Colors.transparent,
                 child: renderCard(
-                    widget.title, widget.model, widget.navigationForm),
+                  widget.title,
+                  widget.model,
+                  widget.navigationForm,
+                ),
               ),
             ],
           );
@@ -191,22 +199,29 @@ renderCardList(String title, Future<dynamic> model, Function navigationForm) {
   );
 }
 
-myCard(int index, int lastIndex, dynamic model, BuildContext context,
-    Function navigationForm) {
+myCard(
+  int index,
+  int lastIndex,
+  dynamic model,
+  BuildContext context,
+  Function navigationForm,
+) {
   return InkWell(
     onTap: () {
       navigationForm(model['code'], model);
     },
     child: Container(
-      margin: index == 0
-          ? EdgeInsets.only(left: 10.0, right: 5.0)
-          : index == lastIndex - 1
+      margin:
+          index == 0
+              ? EdgeInsets.only(left: 10.0, right: 5.0)
+              : index == lastIndex - 1
               ? EdgeInsets.only(left: 5.0, right: 15.0)
               : EdgeInsets.symmetric(horizontal: 5.0),
       decoration: BoxDecoration(
-          borderRadius: new BorderRadius.circular(5),
-          // color: Color(0xFF000070),
-          color: Colors.transparent),
+        borderRadius: new BorderRadius.circular(5),
+        // color: Color(0xFF000070),
+        color: Colors.transparent,
+      ),
       width: 170.0,
       child: Stack(
         alignment: Alignment.topCenter,
@@ -220,7 +235,7 @@ myCard(int index, int lastIndex, dynamic model, BuildContext context,
               ),
               color: Colors.white.withAlpha(220),
               image: DecorationImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 image: NetworkImage(model['imageUrl']),
               ),
             ),

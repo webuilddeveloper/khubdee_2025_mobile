@@ -132,7 +132,7 @@ class _FundListState extends State<FundList> {
             physics: const ScrollPhysics(),
             shrinkWrap: true,
             children: [
-              const SizedBox(height: 5),
+              const SizedBox(height: 16),
               KeySearch(
                 show: hideSearch,
                 onKeySearchChange: (String val) {
@@ -143,8 +143,8 @@ class _FundListState extends State<FundList> {
                   });
                 },
               ),
-              const SizedBox(height: 10),
-              // แสดงรายการข้อมูล
+              const SizedBox(height: 16),
+
               _buildFundList(),
             ],
           ),
