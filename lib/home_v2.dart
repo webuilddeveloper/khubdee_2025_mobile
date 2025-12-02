@@ -1209,7 +1209,7 @@ class _HomePageV2State extends State<HomePageV2> {
                 ? true
                 : false;
       });
-      // getMainPopUp();
+      getMainPopUp();
       // _getLocation();
       // print('-------------end response------------');
     } else {
