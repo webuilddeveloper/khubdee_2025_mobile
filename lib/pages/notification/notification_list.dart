@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:KhubDeeDLT/home_v2.dart';
 import 'package:KhubDeeDLT/pages/warning/warning_form.dart';
 import 'package:KhubDeeDLT/pages/welfare/welfare_form.dart';
@@ -39,15 +41,17 @@ class _NotificationList extends State<NotificationList> {
 
   _readNoti() async {
     await storage
-        .read(key: 'username')
+        .read(key: 'dataUserLoginDDPM')
         .then(
           (x) => {
             setState(() {
-              username = x.toString();
+              final data = jsonDecode(x!);
+              print('>>>>>>>>>>>>> ${data['username']}');
+              username = data['username'];
               _futureModel = postDio('${notificationApi}read', {
                 'skip': 0,
                 'limit': 999,
-                'username': username,
+                'username': data['username'],
               });
             }),
           },
