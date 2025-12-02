@@ -25,7 +25,7 @@ class _MyFundPageState extends State<MyFundPage> {
       'amount': 80000.0,
       'monthlyContribution': 5000.0,
       'returnPercent': 4.5,
-      'color': Color(0xFF7847AB), // สีม่วงหลัก
+      'color': Color(0xFF1E40AF), // สีน้ำเงินเข้ม
       'memberSince': '2020',
     },
     {
@@ -35,7 +35,7 @@ class _MyFundPageState extends State<MyFundPage> {
       'amount': 45000.0,
       'monthlyContribution': 3000.0,
       'returnPercent': 3.2,
-      'color': Color(0xFF9B6BC7), // สีม่วงอ่อน
+      'color': Color(0xFF0F766E), // สีเขียวเข้ม
       'memberSince': '2021',
     },
     {
@@ -45,14 +45,17 @@ class _MyFundPageState extends State<MyFundPage> {
       'amount': 25000.0,
       'monthlyContribution': 500.0,
       'returnPercent': 2.0,
-      'color': Color(0xFF5E2D8F), // สีม่วงเข้ม
+      'color': Color(0xFF9333EA), // สีม่วงเข้ม
       'memberSince': '2022',
     },
   ];
 
   String formatCurrency(double amount) {
-    // ใช้ NumberFormat เพื่อการจัดรูปแบบที่เป็นมาตรฐาน
-    return NumberFormat.currency(locale: 'th_TH', symbol: '', decimalDigits: 0).format(amount);
+    return NumberFormat.currency(
+      locale: 'th_TH',
+      symbol: '',
+      decimalDigits: 0,
+    ).format(amount);
   }
 
   @override
@@ -66,25 +69,22 @@ class _MyFundPageState extends State<MyFundPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
-            // การ์ดสรุปภาพรวม
+            // การ์ดสรุปภาพรวม - เน้นความเป็นทางการ
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(28),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFF5E2D8F), Color(0xFF7847AB)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF7847AB).withOpacity(0.3),
+                      color: Colors.black.withOpacity(0.05),
                       blurRadius: 20,
-                      offset: const Offset(0, 8),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
@@ -94,58 +94,85 @@ class _MyFundPageState extends State<MyFundPage> {
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(12),
+                            color: const Color(0xFF1E40AF).withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                              color: const Color(0xFF1E40AF).withOpacity(0.2),
+                              width: 1,
+                            ),
                           ),
                           child: const Icon(
                             Icons.account_balance,
-                            color: Colors.white,
+                            color: Color(0xFF1E40AF),
                             size: 24,
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 16),
                         const Expanded(
-                          child: Text(
-                            'มูลค่ากองทุนรวม',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white70,
-                              fontWeight: FontWeight.w500,
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'มูลค่ากองทุนรวม',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFF64748B),
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                              Text(
+                                'Total Fund Value',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Color(0xFF94A3B8),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     Text(
                       '฿${formatCurrency(totalSavings)}',
                       style: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: -0.5,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF0F172A),
+                        letterSpacing: -1,
+                        height: 1.2,
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const Divider(color: Colors.white24, height: 1),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
+                    Container(height: 1, color: const Color(0xFFE2E8F0)),
+                    const SizedBox(height: 24),
                     Row(
                       children: [
                         Expanded(
                           child: _buildSummaryItem(
-                            'ส่งเงินรายเดือน',
+                            'เงินสมทบรายเดือน',
+                            'Monthly Contribution',
                             '฿${formatCurrency(totalMonthlyContribution)}',
-                            Icons.calendar_month,
+                            Icons.calendar_today,
+                            const Color(0xFF1E40AF),
                           ),
                         ),
-                        Container(width: 1, height: 40, color: Colors.white24),
+                        Container(
+                          width: 1,
+                          height: 60,
+                          color: const Color(0xFFE2E8F0),
+                        ),
                         Expanded(
                           child: _buildSummaryItem(
                             'ผลตอบแทนเฉลี่ย',
+                            'Avg. Return',
                             '+${averageReturn.toStringAsFixed(1)}%',
                             Icons.trending_up,
+                            const Color(0xFF059669),
                           ),
                         ),
                       ],
@@ -159,65 +186,59 @@ class _MyFundPageState extends State<MyFundPage> {
 
             // หัวข้อรายการกองทุน
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     'กองทุนที่เข้าร่วม',
                     style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1E293B),
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF0F172A),
+                      letterSpacing: -0.3,
                     ),
                   ),
-                  Text(
-                    '${myFunds.length} กองทุน',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF64748B),
-                      fontWeight: FontWeight.w500,
-                    ),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Text(
+                        'Enrolled Funds',
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Color(0xFF64748B),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1E40AF).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '${myFunds.length} กองทุน',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFF1E40AF),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
             // รายการกองทุน
             ...myFunds.map((fund) => _buildFundCard(fund)),
 
-            const SizedBox(height: 20),
-
-            // ปุ่มดูกองทุนทั้งหมด
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 16),
-            //   child: OutlinedButton(
-            //     onPressed: () {},
-            //     style: OutlinedButton.styleFrom(
-            //       padding: const EdgeInsets.symmetric(vertical: 16),
-            //       side: const BorderSide(color: Color(0xFF7847AB), width: 2),
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(12),
-            //       ),
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: const [
-            //         Icon(Icons.add_circle_outline, color: Color(0xFF7847AB)),
-            //         SizedBox(width: 8),
-            //         Text(
-            //           'สำรวจกองทุนอื่น ๆ',
-            //           style: TextStyle(
-            //             fontSize: 16,
-            //             fontWeight: FontWeight.bold,
-            //             color: Color(0xFF7847AB),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
             const SizedBox(height: 80),
           ],
         ),
@@ -225,40 +246,63 @@ class _MyFundPageState extends State<MyFundPage> {
     );
   }
 
-  Widget _buildSummaryItem(String label, String value, IconData icon) {
-    return Column(
-      children: [
-        Icon(icon, color: Colors.white70, size: 20),
-        const SizedBox(height: 6),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12, color: Colors.white70),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+  Widget _buildSummaryItem(
+    String label,
+    String sublabel,
+    String value,
+    IconData icon,
+    Color color,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        children: [
+          Icon(icon, color: color, size: 22),
+          const SizedBox(height: 10),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Color(0xFF64748B),
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
           ),
-        ),
-      ],
+          Text(
+            sublabel,
+            style: const TextStyle(
+              fontSize: 10,
+              color: Color(0xFF94A3B8),
+              fontWeight: FontWeight.w400,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 6),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
+              color: color,
+              letterSpacing: -0.3,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildFundCard(Map<String, dynamic> fund) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
-            blurRadius: 10,
+            blurRadius: 12,
             offset: const Offset(0, 2),
           ),
         ],
@@ -267,14 +311,14 @@ class _MyFundPageState extends State<MyFundPage> {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
-            // นำทางไปหน้ารายละเอียดกองทุน
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => FundDetailPage(fund: fund)),
+                builder: (context) => FundDetailPage(fund: fund),
+              ),
             );
           },
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -283,19 +327,19 @@ class _MyFundPageState extends State<MyFundPage> {
                 Row(
                   children: [
                     Container(
-                      width: 56,
-                      height: 56,
+                      width: 64,
+                      height: 64,
                       decoration: BoxDecoration(
-                        color: fund['color'].withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(14),
+                        color: fund['color'].withOpacity(0.08),
+                        borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: fund['color'].withOpacity(0.3),
+                          color: fund['color'].withOpacity(0.2),
                           width: 1.5,
                         ),
                       ),
-                      child: Icon(fund['icon'], color: fund['color'], size: 28),
+                      child: Icon(fund['icon'], color: fund['color'], size: 32),
                     ),
-                    const SizedBox(width: 14),
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -304,37 +348,50 @@ class _MyFundPageState extends State<MyFundPage> {
                             fund['name'],
                             style: const TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1E293B),
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF0F172A),
+                              letterSpacing: -0.2,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          const SizedBox(height: 6),
                           Row(
                             children: [
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2,
+                                  horizontal: 10,
+                                  vertical: 4,
                                 ),
                                 decoration: BoxDecoration(
                                   color: fund['color'].withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: fund['color'].withOpacity(0.2),
+                                    width: 1,
+                                  ),
                                 ),
                                 child: Text(
                                   fund['shortName'],
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 11,
                                     color: fund['color'],
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w700,
+                                    letterSpacing: 0.2,
                                   ),
                                 ),
                               ),
+                              const SizedBox(width: 10),
+                              Icon(
+                                Icons.circle,
+                                size: 4,
+                                color: Color(0xFFCBD5E1),
+                              ),
                               const SizedBox(width: 8),
                               Text(
-                                'สมาชิกตั้งแต่ ${fund['memberSince']}',
+                                'ปี ${fund['memberSince']}',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   color: Color(0xFF94A3B8),
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -342,19 +399,19 @@ class _MyFundPageState extends State<MyFundPage> {
                         ],
                       ),
                     ),
-                    // Icon(
-                    //   Icons.arrow_forward_ios,
-                    //   size: 16,
-                    //   color: Colors.grey[400],
-                    // ),
+                    Icon(
+                      Icons.chevron_right,
+                      size: 20,
+                      color: Color(0xFFCBD5E1),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(18),
                   decoration: BoxDecoration(
                     color: const Color(0xFFF8FAFC),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                       color: const Color(0xFFE2E8F0),
                       width: 1,
@@ -368,22 +425,37 @@ class _MyFundPageState extends State<MyFundPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'ยอดสะสม',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color(0xFF64748B),
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'ยอดสะสม',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Color(0xFF64748B),
+                                        fontWeight: FontWeight.w600,
+                                        letterSpacing: 0.2,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    const Text(
+                                      'Balance',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Color(0xFF94A3B8),
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(height: 6),
+                                const SizedBox(height: 8),
                                 Text(
                                   '฿${formatCurrency(fund['amount'])}',
                                   style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.w700,
                                     color: fund['color'],
                                     letterSpacing: -0.5,
+                                    height: 1.2,
                                   ),
                                 ),
                               ],
@@ -391,27 +463,32 @@ class _MyFundPageState extends State<MyFundPage> {
                           ),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 8,
+                              horizontal: 14,
+                              vertical: 10,
                             ),
                             decoration: BoxDecoration(
                               color: const Color(0xFFDCFCE7),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                color: const Color(0xFF86EFAC),
+                                width: 1,
+                              ),
                             ),
                             child: Row(
                               children: [
                                 const Icon(
                                   Icons.arrow_upward,
-                                  size: 14,
+                                  size: 16,
                                   color: Color(0xFF16A34A),
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 6),
                                 Text(
                                   '${fund['returnPercent'].toStringAsFixed(1)}%',
                                   style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w700,
                                     color: Color(0xFF16A34A),
+                                    letterSpacing: -0.2,
                                   ),
                                 ),
                               ],
@@ -420,30 +497,53 @@ class _MyFundPageState extends State<MyFundPage> {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      const Divider(height: 1, color: Color(0xFFE2E8F0)),
+                      Container(height: 1, color: const Color(0xFFE2E8F0)),
                       const SizedBox(height: 16),
                       Row(
                         children: [
-                          Icon(
-                            Icons.payments_outlined,
-                            size: 18,
-                            color: fund['color'],
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            'ส่งเงินรายเดือน',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFF64748B),
+                          Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: fund['color'].withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(4),
                             ),
+                            child: Icon(
+                              Icons.payments_outlined,
+                              size: 16,
+                              color: fund['color'],
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'เงินสมทบรายเดือน',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF64748B),
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 0.2,
+                                ),
+                              ),
+                              Text(
+                                'Monthly Contribution',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color(0xFF94A3B8),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
                           const Spacer(),
                           Text(
                             '฿${formatCurrency(fund['monthlyContribution'])}',
                             style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1E293B),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF0F172A),
+                              letterSpacing: -0.3,
                             ),
                           ),
                         ],
