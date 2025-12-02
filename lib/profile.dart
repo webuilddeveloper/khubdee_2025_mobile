@@ -157,7 +157,8 @@ class _Profile extends State<Profile> {
           );
         },
         child: Container(
-          margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
+          
+          // margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFFAF86B5), Color(0xFF7948AD)],
@@ -194,6 +195,7 @@ class _Profile extends State<Profile> {
                                     left: 10,
                                     right: 10,
                                     bottom: 5.0,
+                                    top: 5.0,
                                   ),
                                   child: Column(
                                     crossAxisAlignment:
@@ -202,14 +204,26 @@ class _Profile extends State<Profile> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
+                                           padding: const EdgeInsets.only(
+                                    left: 10,
+                                    right: 10,
+                                    bottom: 5,
+                                    top:5,
+                                  ),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
                                             48,
                                           ),
                                           color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.15),
+                                              spreadRadius: 1,
+                                              blurRadius: 4,
+                                              offset: Offset(0, 2), // changes position of shadow
+                                            ),
+                                          ],
                                         ),
-                                        width: 100,
-                                        height: 20,
                                         child: const Text(
                                           'รอยืนยันตัวตน',
                                           style: TextStyle(
@@ -219,31 +233,42 @@ class _Profile extends State<Profile> {
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
-                                      const SizedBox(height: 10),
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'ID Card : ',
-                                            style: TextStyle(
-                                              fontSize: 11.0,
-                                              color: Colors.white,
-                                              fontFamily: 'Sarabun',
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              model['idcard'] ??
-                                                  'กรุณาอัพเดทข้อมูล',
-                                              style: const TextStyle(
-                                                fontSize: 11.0,
-                                                color: Colors.white,
-                                                fontFamily: 'Sarabun',
-                                              ),
-                                              maxLines: 2,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                      SizedBox(height:5),
+                                        Text(
+                                  '${model['firstName']} ${model['lastName']}',
+                                  style: const TextStyle(
+                                    fontSize: 18.0,
+                                    color: Colors.white,
+                                    fontFamily: 'Sarabun',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                      // const SizedBox(height: 10),
+                                      // Row(
+                                      //   children: [
+                                      //     const Text(
+                                      //       'ID Card : ',
+                                      //       style: TextStyle(
+                                      //         fontSize: 11.0,
+                                      //         color: Colors.white,
+                                      //         fontFamily: 'Sarabun',
+                                      //       ),
+                                      //     ),
+                                      //     Expanded(
+                                      //       child: Text(
+                                      //         model['idcard'] ??
+                                      //             'กรุณาอัพเดทข้อมูล',
+                                      //         style: const TextStyle(
+                                      //           fontSize: 11.0,
+                                      //           color: Colors.white,
+                                      //           fontFamily: 'Sarabun',
+                                      //         ),
+                                      //         maxLines: 2,
+                                      //       ),
+                                      //     ),
+                                      //   ],
+                                      // ),
                                     ],
                                   ),
                                 )
@@ -299,6 +324,7 @@ class _Profile extends State<Profile> {
                     ],
                   ),
                 ),
+                // if(model['isDF'] != false)
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -309,6 +335,8 @@ class _Profile extends State<Profile> {
                         color: Colors.white,
                         fontFamily: 'Sarabun',
                         decoration: TextDecoration.underline,
+                        decorationColor: Colors.white, 
+     decorationThickness: 2.0
                       ),
                       maxLines: 2,
                     ),

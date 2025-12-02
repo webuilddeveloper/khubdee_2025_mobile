@@ -1136,7 +1136,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
                       style: TextStyle(
                         fontFamily: 'Sarabun',
                         fontSize: 12,
-                        decoration: TextDecoration.underline,
+                        // decoration: TextDecoration.underline,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -1182,7 +1182,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
                         style: TextStyle(
                           fontFamily: 'Sarabun',
                           fontSize: 12,
-                          decoration: TextDecoration.underline,
+                          // decoration: TextDecoration.underline,
                           color: Colors.white,
                         ),
                       ),
