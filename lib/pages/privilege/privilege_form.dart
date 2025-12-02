@@ -33,13 +33,17 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
   void initState() {
     super.initState();
     code = widget.code;
-    _futureModel = post(
-        '${privilegeApi}read', {'skip': 0, 'limit': 1, 'code': widget.code});
+    _futureModel = post('${privilegeApi}read', {
+      'skip': 0,
+      'limit': 1,
+      'code': widget.code,
+    });
   }
 
   Future<dynamic> readGallery() async {
-    final result =
-        await postObjectData('m/news/gallery/read', {'code': widget.code});
+    final result = await postObjectData('m/news/gallery/read', {
+      'code': widget.code,
+    });
 
     if (result['status'] == 'S') {
       List data = [];
@@ -48,9 +52,11 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
       for (var item in result['objectData']) {
         data.add(item['imageUrl']);
 
-        dataPro.add(item['imageUrl'] != null
-            ? NetworkImage(item['imageUrl'])
-            : const NetworkImage(""));
+        dataPro.add(
+          item['imageUrl'] != null
+              ? NetworkImage(item['imageUrl'])
+              : const NetworkImage(""),
+        );
       }
       setState(() {
         urlImage = data;
@@ -74,7 +80,8 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
 
           if (snapshot.hasData) {
             print(
-                '------------------${snapshot.data.toString()}----------------');
+              '------------------${snapshot.data.toString()}----------------',
+            );
             return myContent(snapshot.data[0]);
           } else {
             if (widget.model != null) {
@@ -94,7 +101,7 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
     List<ImageProvider> imagePro = [
       model['imageUrl'] != null
           ? NetworkImage(model['imageUrl'])
-          : const NetworkImage("")
+          : const NetworkImage(""),
     ];
     // return Container();
     return MediaQuery.removePadding(
@@ -120,10 +127,7 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                     ),
                     Container(
                       // color: Colors.green,
-                      padding: const EdgeInsets.only(
-                        right: 10.0,
-                        left: 10.0,
-                      ),
+                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                       margin: const EdgeInsets.only(right: 50.0, top: 10.0),
                       child: Text(
                         '${model['title']}',
@@ -138,17 +142,16 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                            right: 10,
-                            left: 10,
-                          ),
+                          padding: const EdgeInsets.only(right: 10, left: 10),
                           child: Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage: model['imageUrlCreateBy'] !=
-                                        null
-                                    ? NetworkImage(model['imageUrlCreateBy'])
-                                    : null,
+                                backgroundImage:
+                                    model['imageUrlCreateBy'] != null
+                                        ? NetworkImage(
+                                          model['imageUrlCreateBy'],
+                                        )
+                                        : null,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(10),
@@ -167,7 +170,8 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                                       children: [
                                         Text(
                                           dateStringToDate(
-                                                  model['createDate']) +
+                                                model['createDate'],
+                                              ) +
                                               ' | ',
                                           style: const TextStyle(
                                             fontSize: 10,
@@ -176,7 +180,8 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                                           ),
                                         ),
                                         Text(
-                                          'เข้าชม ' '${model['view']}' +
+                                          'เข้าชม '
+                                                  '${model['view']}' +
                                               ' ครั้ง',
                                           style: const TextStyle(
                                             fontSize: 10,
@@ -194,24 +199,18 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                         ),
                       ],
                     ),
+                    Container(height: 10),
                     Container(
-                      height: 10,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                        right: 10,
-                        left: 10,
-                      ),
+                      padding: const EdgeInsets.only(right: 10, left: 10),
                       child: Html(
-                          data: model['description'],
-                          onLinkTap: (url, context, attributes) {
-                            // ignore: deprecated_member_use
-                            launch(url!);
-                          }),
+                        data: model['description'],
+                        onLinkTap: (url, context, attributes) {
+                          // ignore: deprecated_member_use
+                          launch(url!);
+                        },
+                      ),
                     ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
+                    const SizedBox(height: 20.0),
                     Container(
                       alignment: Alignment.center,
                       width: double.infinity,
@@ -222,9 +221,9 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
                         child: Container(
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.0),
-                              border:
-                                  Border.all(color: const Color(0xFFFF7514))),
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(color: const Color(0xFFFF7514)),
+                          ),
                           child: MaterialButton(
                             minWidth: MediaQuery.of(context).size.width,
                             onPressed: () {
@@ -248,9 +247,7 @@ class _PrivilegeDetailPageState extends State<PrivilegeForm> {
               Positioned(
                 right: 0,
                 top: statusBarHeight + 5,
-                child: Container(
-                  child: buttonCloseBack(context),
-                ),
+                child: Container(child: buttonCloseBack(context)),
               ),
             ],
             // overflow: Overflow.clip,

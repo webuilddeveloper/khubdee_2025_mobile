@@ -3,15 +3,15 @@ import 'package:KhubDeeDLT/component/sso/list_content_horizontal_loading.dart';
 
 // ignore: must_be_immutable
 class ListContentHorizontalPrivilegeSuggested extends StatefulWidget {
-  ListContentHorizontalPrivilegeSuggested(
-      {Key? key,
-      required this.title,
-      required this.url,
-      required this.model,
-      required this.urlComment,
-      required this.navigationList,
-      required this.navigationForm})
-      : super(key: key);
+  ListContentHorizontalPrivilegeSuggested({
+    Key? key,
+    required this.title,
+    required this.url,
+    required this.model,
+    required this.urlComment,
+    required this.navigationList,
+    required this.navigationForm,
+  }) : super(key: key);
 
   final String title;
   final String url;
@@ -64,17 +64,17 @@ class _ListContentHorizontalPrivilegeSuggested
                 widget.navigationList();
               },
               child: Container(
-                  padding: EdgeInsets.only(right: 10.0),
-                  margin: EdgeInsets.only(bottom: 5.0),
-                  child: Text(
-                    'ดูทั้งหมด',
-                    style: TextStyle(fontSize: 12.0, fontFamily: 'Sarabun'),
-                  )
-                  // Image.asset(
-                  //   'assets/images/double_arrow_right.png',
-                  //   height: 15.0,
-                  // )
-                  ),
+                padding: EdgeInsets.only(right: 10.0),
+                margin: EdgeInsets.only(bottom: 5.0),
+                child: Text(
+                  'ดูทั้งหมด',
+                  style: TextStyle(fontSize: 12.0, fontFamily: 'Sarabun'),
+                ),
+                // Image.asset(
+                //   'assets/images/double_arrow_right.png',
+                //   height: 15.0,
+                // )
+              ),
             ),
           ],
         ),
@@ -94,8 +94,13 @@ class _ListContentHorizontalPrivilegeSuggested
   }
 }
 
-renderCard(String title, String url, Future<dynamic> model, String urlComment,
-    Function navigationForm) {
+renderCard(
+  String title,
+  String url,
+  Future<dynamic> model,
+  String urlComment,
+  Function navigationForm,
+) {
   return FutureBuilder<dynamic>(
     future: model, // function where you call your api
     builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -106,8 +111,13 @@ renderCard(String title, String url, Future<dynamic> model, String urlComment,
           scrollDirection: Axis.horizontal,
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
-            return myCard(index, snapshot.data.length, snapshot.data[index],
-                context, navigationForm);
+            return myCard(
+              index,
+              snapshot.data.length,
+              snapshot.data[index],
+              context,
+              navigationForm,
+            );
           },
         );
         // } else if (snapshot.hasError) {
@@ -125,8 +135,13 @@ renderCard(String title, String url, Future<dynamic> model, String urlComment,
   );
 }
 
-myCard(int index, int lastIndex, dynamic model, BuildContext context,
-    Function navigationForm) {
+myCard(
+  int index,
+  int lastIndex,
+  dynamic model,
+  BuildContext context,
+  Function navigationForm,
+) {
   return InkWell(
     onTap: () {
       navigationForm(model['code'], model);
@@ -137,11 +152,13 @@ myCard(int index, int lastIndex, dynamic model, BuildContext context,
           children: [
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Color(0xFF000000)),
-              margin: index == 0
-                  ? EdgeInsets.only(left: 10.0, right: 5.0)
-                  : index == lastIndex - 1
+                borderRadius: BorderRadius.circular(5),
+                color: Color(0xFF000000),
+              ),
+              margin:
+                  index == 0
+                      ? EdgeInsets.only(left: 10.0, right: 5.0)
+                      : index == lastIndex - 1
                       ? EdgeInsets.only(left: 5.0, right: 15.0)
                       : EdgeInsets.symmetric(horizontal: 5.0),
               // height: 334,
@@ -167,9 +184,10 @@ myCard(int index, int lastIndex, dynamic model, BuildContext context,
                           child: Text(
                             'โปรโมชันสัปดาห์นี้',
                             style: TextStyle(
-                                fontFamily: 'Sarabun',
-                                fontSize: 18.0,
-                                color: Colors.white),
+                              fontFamily: 'Sarabun',
+                              fontSize: 18.0,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],

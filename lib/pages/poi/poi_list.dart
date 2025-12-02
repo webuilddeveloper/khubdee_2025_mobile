@@ -179,7 +179,7 @@ class _PoiList extends State<PoiList> {
     double _panelHeightOpen =
         MediaQuery.of(context).size.height -
         (MediaQuery.of(context).padding.top + 50);
-    double _panelHeightClosed = 90;
+    double _panelHeightClosed = MediaQuery.of(context).size.height * 0.35;
     return SlidingUpPanel(
       maxHeight: _panelHeightOpen,
       minHeight: _panelHeightClosed,
@@ -430,7 +430,7 @@ class _PoiList extends State<PoiList> {
               width: double.infinity,
               alignment: Alignment.center,
               child: const Text(
-                'จุดบริการ',
+                'จุดบริการ ',
                 style: TextStyle(
                   fontFamily: 'Sarabun',
                   fontSize: 16,

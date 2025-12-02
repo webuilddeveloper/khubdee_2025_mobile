@@ -669,7 +669,7 @@ class _RegisterWithDriverLicensePageState
         children: [
           Row(
             children: [
-              new Text(
+              Text(
                 title,
                 style: TextStyle(
                   fontWeight: FontWeight.normal,
@@ -685,10 +685,12 @@ class _RegisterWithDriverLicensePageState
             child: Container(
               alignment: Alignment.centerRight,
               child: DropdownButtonFormField(
+                isExpanded: true,
                 items:
                     itemsData.map((item) {
                       return DropdownMenuItem(
-                        child: new Text(
+                        value: item['code'],
+                        child: Text(
                           item['title'],
                           style: TextStyle(
                             fontSize: 15.00,
@@ -696,7 +698,6 @@ class _RegisterWithDriverLicensePageState
                             color: Color(0xFF000070),
                           ),
                         ),
-                        value: item['code'],
                       );
                     }).toList(),
                 // value: selectData,

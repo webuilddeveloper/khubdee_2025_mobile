@@ -93,9 +93,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
             color: Color(0xFFDFCDCA),
             child: Column(
               children: [
-                SizedBox(
-                  height: 34,
-                ),
+                SizedBox(height: 34),
                 Expanded(
                   child: Container(
                     width: double.infinity,
@@ -110,12 +108,9 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                   height: 34,
                   child: Text(
                     'กรุณากรอกข้อมูลตามบัตรประชาชนเพื่อทำการยืนยันตัวตน',
-                    style: TextStyle(
-                      fontFamily: 'Sarabun',
-                      fontSize: 13,
-                    ),
+                    style: TextStyle(fontFamily: 'Sarabun', fontSize: 13),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -167,9 +162,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
             ],
             // textInputType: TextInputType.numberWithOptions(),
           ),
-          SizedBox(
-            height: 8,
-          ),
+          SizedBox(height: 8),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -182,9 +175,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                     borderRadius: BorderRadius.circular(4.5),
                   ),
                 ),
-                SizedBox(
-                  width: 5,
-                ),
+                SizedBox(width: 5),
                 Text(
                   'Laser ID คือรหัสหลังบัตรประชาชนโดย 2 หลักแรกเป็นตัวอักษร',
                   style: TextStyle(
@@ -192,13 +183,11 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                     fontSize: 12,
                     color: Color(0xFFA2A2A2),
                   ),
-                )
+                ),
               ],
             ),
           ),
-          SizedBox(
-            height: 140,
-          ),
+          SizedBox(height: 140),
           InkWell(
             onTap: () {
               dialogVerification();
@@ -220,7 +209,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -261,10 +250,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                   child: Column(
                     children: [
                       SizedBox(height: 20),
-                      Image.asset(
-                        'assets/cross_ quadrangle.png',
-                        height: 50,
-                      ),
+                      Image.asset('assets/cross_ quadrangle.png', height: 50),
                       // Icon(
                       //   Icons.check_circle_outline_outlined,
                       //   color: Color(0xFF5AAC68),
@@ -340,27 +326,20 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
       if (profileCode != '' && profileCode != null) {
         final result =
             await postObjectDataMW(serverMW + 'DOPA/ReadVerifyCard', {
-          'code': profileCode,
-          'createBy': profileCode,
-          'updateBy': profileCode,
-          'pid': idCard.text,
-          'fname': firstName.text,
-          'lname': lastName.text,
-          'laserID': laserID.text,
-          'birthDay': DateFormat("yyyyMMdd").format(
-            DateTime(
-              _selectedYear,
-              _selectedMonth,
-              _selectedDay,
-            ),
-          ),
-        });
+              'code': profileCode,
+              'createBy': profileCode,
+              'updateBy': profileCode,
+              'pid': idCard.text,
+              'fname': firstName.text,
+              'lname': lastName.text,
+              'laserID': laserID.text,
+              'birthDay': DateFormat(
+                "yyyyMMdd",
+              ).format(DateTime(_selectedYear, _selectedMonth, _selectedDay)),
+            });
 
         if (result['status'] == 'S') {
-          storage.write(
-            key: 'idcard',
-            value: idCard.text,
-          );
+          storage.write(key: 'idcard', value: idCard.text);
           return showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -387,10 +366,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                       child: Column(
                         children: [
                           SizedBox(height: 20),
-                          Image.asset(
-                            'assets/check_circle.png',
-                            height: 50,
-                          ),
+                          Image.asset('assets/check_circle.png', height: 50),
                           // Icon(
                           //   Icons.check_circle_outline_outlined,
                           //   color: Color(0xFF5AAC68),
@@ -422,8 +398,8 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      RegisterWithDriverLicense(),
+                                  builder:
+                                      (context) => RegisterWithDriverLicense(),
                                 ),
                               );
                             },
@@ -447,8 +423,8 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      RegisterWithLicensePlate(),
+                                  builder:
+                                      (context) => RegisterWithLicensePlate(),
                                 ),
                               );
                             },
@@ -604,48 +580,45 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
   }
 
   dialogOpenPickerDate() {
-    datatTimePicker.DatePicker.showDatePicker(context,
-        theme: const datatTimePicker.DatePickerTheme(
-          containerHeight: 210.0,
-          itemStyle: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xFF9A1120),
-            fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
-          ),
-          doneStyle: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xFF9A1120),
-            fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
-          ),
-          cancelStyle: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xFF9A1120),
-            fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
-          ),
+    datatTimePicker.DatePicker.showDatePicker(
+      context,
+      theme: const datatTimePicker.DatePickerTheme(
+        containerHeight: 210.0,
+        itemStyle: TextStyle(
+          fontSize: 16.0,
+          color: Color(0xFF9A1120),
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Sarabun',
         ),
-        showTitleActions: true,
-        minTime: DateTime(1800, 1, 1),
-        maxTime: DateTime(year, month, day), onConfirm: (date) {
-      setState(
-        () {
+        doneStyle: TextStyle(
+          fontSize: 16.0,
+          color: Color(0xFF9A1120),
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Sarabun',
+        ),
+        cancelStyle: TextStyle(
+          fontSize: 16.0,
+          color: Color(0xFF9A1120),
+          fontWeight: FontWeight.normal,
+          fontFamily: 'Sarabun',
+        ),
+      ),
+      showTitleActions: true,
+      minTime: DateTime(1800, 1, 1),
+      maxTime: DateTime(year, month, day),
+      onConfirm: (date) {
+        setState(() {
           _selectedYear = date.year;
           _selectedMonth = date.month;
           _selectedDay = date.day;
           birthDay.value = TextEditingValue(
             text: DateFormat("dd-MM-yyyy").format(date),
           );
-        },
-      );
-    },
-        currentTime: DateTime(
-          _selectedYear,
-          _selectedMonth,
-          _selectedDay,
-        ),
-        locale: datatTimePicker.LocaleType.th);
+        });
+      },
+      currentTime: DateTime(_selectedYear, _selectedMonth, _selectedDay),
+      locale: datatTimePicker.LocaleType.th,
+    );
   }
 
   fieldDate({
@@ -678,15 +651,10 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                   fontSize: 13.0,
                 ),
               ),
-              Text(
-                '*',
-                style: TextStyle(color: Colors.red),
-              )
+              Text('*', style: TextStyle(color: Colors.red)),
             ],
           ),
-          SizedBox(
-            width: 15,
-          ),
+          SizedBox(width: 15),
           Expanded(
             child: Container(
               alignment: Alignment.centerRight,
@@ -700,9 +668,7 @@ class _IDCardVerificationPageState extends State<IDCardVerification> {
                   fontFamily: 'Sarabun',
                   fontSize: 13.0,
                 ),
-                decoration: new InputDecoration.collapsed(
-                  hintText: hintText,
-                ),
+                decoration: new InputDecoration.collapsed(hintText: hintText),
                 validator: (model) {
                   return validator!(model);
                 },

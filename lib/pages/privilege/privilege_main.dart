@@ -18,7 +18,11 @@ import 'package:http/http.dart' as http;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class PrivilegeMain extends StatefulWidget {
-  const PrivilegeMain({super.key, required this.title, required this.fromPolicy});
+  const PrivilegeMain({
+    super.key,
+    required this.title,
+    required this.fromPolicy,
+  });
   final String title;
   final bool fromPolicy;
 
@@ -28,7 +32,7 @@ class PrivilegeMain extends StatefulWidget {
 }
 
 class _PrivilegeMain extends State<PrivilegeMain> {
-  final storage =  const FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   late PrivilegeList privilegeList;
   late PrivilegeListVertical gridView;
@@ -45,13 +49,17 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   bool isHighlight = false;
   int _limit = 10;
 
-  final RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
-    _futurePromotion = post(
-        '${privilegeApi}read', {'skip': 0, 'limit': 10, 'isHighlight': true});
+    _futurePromotion = post('${privilegeApi}read', {
+      'skip': 0,
+      'limit': 10,
+      'isHighlight': true,
+    });
     // _futurePrivilegeCategory =
     //     post('${privilegeCategoryApi}read', {'skip': 0, 'limit': 100});
     _futureForceAds = post('${forceAdsApi}read', {'skip': 0, 'limit': 10});
@@ -72,7 +80,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
         },
         child: GestureDetector(
           onTap: () {
-            FocusScope.of(context).requestFocus( FocusNode());
+            FocusScope.of(context).requestFocus(FocusNode());
           },
           child: SmartRefresher(
             enablePullDown: false,
@@ -87,13 +95,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             onLoading: _onLoading,
             child: ListView(
               children: [
-                const SizedBox(
-                  height: 5.0,
-                ),
+                const SizedBox(height: 5.0),
                 tabCategory(),
-                const SizedBox(
-                  height: 10.0,
-                ),
+                const SizedBox(height: 10.0),
                 KeySearch(
                   show: hideSearch,
                   onKeySearchChange: (String val) {
@@ -102,76 +106,68 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                     });
                   },
                 ),
-                const SizedBox(
-                  height: 10.0,
-                ),
+                const SizedBox(height: 10.0),
                 keySearch == ''
                     ? isMain
                         ? ListView(
-                            shrinkWrap: true,
-                            physics: const ClampingScrollPhysics(), // 2nd
-                            children: [
-                              ListContentHorizontalPrivilegeSuggested(
-                                title: 'แนะนำ',
-                                url: knowledgeApi,
-                                model: _futurePromotion,
-                                urlComment: '',
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(), // 2nd
+                          children: [
+                            ListContentHorizontalPrivilegeSuggested(
+                              title: 'แนะนำ',
+                              url: knowledgeApi,
+                              model: _futurePromotion,
+                              urlComment: '',
+                              navigationList: () {
+                                setState(() {
+                                  keySearch = '';
+                                  isMain = false;
+                                  categorySelected = '';
+                                });
+                              },
+                              navigationForm: (String code, dynamic model) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => PrivilegeForm(
+                                          code: code,
+                                          model: model,
+                                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                            for (int i = 0; i < listData.length; i++)
+                              ListContentHorizontalPrivilege(
+                                code: category[i]['code'],
+                                title: category[i]['title'],
+                                model: listData[i],
                                 navigationList: () {
                                   setState(() {
                                     keySearch = '';
                                     isMain = false;
-                                    categorySelected = '';
+                                    categorySelected = category[i]['code'];
                                   });
                                 },
-                                navigationForm: (
-                                  String code,
-                                  dynamic model,
-                                ) {
+                                navigationForm: (String code, dynamic model) {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => PrivilegeForm(
-                                        code: code,
-                                        model: model,
-                                      ),
+                                      builder:
+                                          (context) => PrivilegeForm(
+                                            code: code,
+                                            model: model,
+                                          ),
                                     ),
                                   );
                                 },
                               ),
-                              for (int i = 0; i < listData.length; i++)
-                                 ListContentHorizontalPrivilege(
-                                  code: category[i]['code'],
-                                  title: category[i]['title'],
-                                  model: listData[i],
-                                  navigationList: () {
-                                    setState(() {
-                                      keySearch = '';
-                                      isMain = false;
-                                      categorySelected = category[i]['code'];
-                                    });
-                                  },
-                                  navigationForm: (
-                                    String code,
-                                    dynamic model,
-                                  ) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => PrivilegeForm(
-                                          code: code,
-                                          model: model,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                            ],
-                          )
+                          ],
+                        )
                         : reloadList()
                     : reloadList(),
-                const SizedBox(
-                  height: 30.0,
-                ),
+                const SizedBox(height: 30.0),
               ],
             ),
           ),
@@ -193,8 +189,8 @@ class _PrivilegeMain extends State<PrivilegeMain> {
       dataValue = null;
     }
 
-    var now =  DateTime.now();
-    DateTime date =  DateTime(now.year, now.month, now.day);
+    var now = DateTime.now();
+    DateTime date = DateTime(now.year, now.month, now.day);
 
     if (dataValue != null) {
       var index = dataValue.indexWhere(
@@ -213,7 +209,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             return MainPopupDialog(
               model: _futureForceAds,
               type: 'privilege',
-              username: user['username'], url: '', urlGallery: '',
+              username: user['username'],
+              url: '',
+              urlGallery: '',
             );
           },
         );
@@ -227,7 +225,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
           return MainPopupDialog(
             model: _futureForceAds,
             type: 'privilege',
-            username: user['username'], url: '', urlGallery: '',
+            username: user['username'],
+            url: '',
+            urlGallery: '',
           );
         },
       );
@@ -245,14 +245,16 @@ class _PrivilegeMain extends State<PrivilegeMain> {
     var body = json.encode({
       "permission": "all",
       "skip": 0,
-      "limit": 999 // integer value type
+      "limit": 999, // integer value type
     });
-    var response = await http.post(Uri.parse('${privilegeCategoryApi}read'),
-        body: body,
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        });
+    var response = await http.post(
+      Uri.parse('${privilegeCategoryApi}read'),
+      body: body,
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+    );
 
     var data = json.decode(response.body);
     setState(() {
@@ -261,8 +263,11 @@ class _PrivilegeMain extends State<PrivilegeMain> {
 
     if (category.isNotEmpty) {
       for (int i = 0; i <= category.length - 1; i++) {
-        var res = post('${privilegeApi}read',
-            {'skip': 0, 'limit': 10, 'category': category[i]['code']});
+        var res = post('${privilegeApi}read', {
+          'skip': 0,
+          'limit': 10,
+          'category': category[i]['code'],
+        });
         listData.add(res);
       }
     }
@@ -272,12 +277,9 @@ class _PrivilegeMain extends State<PrivilegeMain> {
     setState(() {
       _limit = _limit + 10;
 
-      gridView =  PrivilegeListVertical(
+      gridView = PrivilegeListVertical(
         site: 'CIO',
-        model: post('${privilegeApi}read', {
-          'skip': 0,
-          'limit': _limit,
-        }),
+        model: post('${privilegeApi}read', {'skip': 0, 'limit': _limit}),
       );
     });
 
@@ -287,14 +289,14 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   }
 
   reloadList() {
-    return gridView =  PrivilegeListVertical(
+    return gridView = PrivilegeListVertical(
       site: 'DDPM',
       model: post('${privilegeApi}read', {
         'skip': 0,
         'limit': _limit,
         'keySearch': keySearch,
         'isHighlight': isHighlight,
-        'category': categorySelected
+        'category': categorySelected,
       }),
     );
   }
@@ -302,9 +304,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   void goBack() async {
     if (widget.fromPolicy) {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => HomePageV2(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePageV2()),
         (Route<dynamic> route) => false,
       );
     } else {
@@ -319,10 +319,10 @@ class _PrivilegeMain extends State<PrivilegeMain> {
 
   tabCategory() {
     return FutureBuilder<dynamic>(
-      future: postCategory(
-        '${privilegeCategoryApi}read',
-        {'skip': 0, 'limit': 100},
-      ), // function where you call your api
+      future: postCategory('${privilegeCategoryApi}read', {
+        'skip': 0,
+        'limit': 100,
+      }), // function where you call your api
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         // AsyncSnapshot<Your object type>
 
@@ -331,7 +331,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             height: 45.0,
             padding: const EdgeInsets.only(left: 5.0, right: 5.0),
             margin: const EdgeInsets.symmetric(horizontal: 10.0),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -340,7 +340,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                   offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
-              borderRadius:  BorderRadius.circular(6.0),
+              borderRadius: BorderRadius.circular(6.0),
               color: Colors.white,
             ),
             child: ListView.builder(
@@ -376,9 +376,10 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                     child: Text(
                       snapshot.data[index]['title'],
                       style: TextStyle(
-                        color: categorySelected == snapshot.data[index]['code']
-                            ? Colors.black
-                            : Colors.grey,
+                        color:
+                            categorySelected == snapshot.data[index]['code']
+                                ? Colors.black
+                                : Colors.grey,
                         decoration:
                             categorySelected == snapshot.data[index]['code']
                                 ? TextDecoration.underline
@@ -399,7 +400,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
             height: 45.0,
             padding: const EdgeInsets.only(left: 5.0, right: 5.0),
             margin: const EdgeInsets.symmetric(horizontal: 30.0),
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -408,7 +409,7 @@ class _PrivilegeMain extends State<PrivilegeMain> {
                   offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
-              borderRadius:  BorderRadius.circular(6.0),
+              borderRadius: BorderRadius.circular(6.0),
               color: Colors.white,
             ),
           );
