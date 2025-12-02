@@ -24,9 +24,7 @@ DateTime now = DateTime.now();
 void main() {
   // Intl.defaultLocale = 'th';
 
-  runApp(LoginPage(
-    title: '',
-  ));
+  runApp(LoginPage(title: ''));
 }
 
 class LoginPage extends StatefulWidget {
@@ -99,7 +97,8 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           loginWithGuest();
           print(
-              '-------------------------------loginWithGuest----1-----------------------------');
+            '-------------------------------loginWithGuest----1-----------------------------',
+          );
         },
         child: const Text(
           'เข้าสู่ระบบ',
@@ -126,10 +125,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               height: MediaQuery.of(context).size.height / 2,
               width: double.infinity,
-              child: Image.asset(
-                'assets/bg_login.png',
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset('assets/bg_login.png', fit: BoxFit.cover),
             ),
             SingleChildScrollView(
               padding: const EdgeInsets.all(10.0),
@@ -149,9 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 80.0,
                     ),
                   ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
+                  const SizedBox(height: 10.0),
                   Container(
                     child: Container(
                       child: Card(
@@ -214,13 +208,9 @@ class _LoginPageState extends State<LoginPage> {
                                 true,
                                 true,
                               ),
-                              const SizedBox(
-                                height: 30.0,
-                              ),
+                              const SizedBox(height: 30.0),
                               loginButon,
-                              const SizedBox(
-                                height: 5.0,
-                              ),
+                              const SizedBox(height: 5.0),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -229,16 +219,17 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgotPasswordPage(),
+                                          builder:
+                                              (context) => ForgotPasswordPage(),
                                         ),
                                       );
                                     },
                                     child: const Text(
                                       'Forgot Password', // Replace with your own text
                                       style: TextStyle(
-                                        color: Colors
-                                            .blue, // Customize the color if needed
+                                        color:
+                                            Colors
+                                                .blue, // Customize the color if needed
                                       ),
                                     ),
                                   ),
@@ -255,22 +246,23 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              RegisterPage(
-                                            username: "",
-                                            password: "",
-                                            facebookID: "",
-                                            appleID: "",
-                                            googleID: "",
-                                            lineID: "",
-                                            email: "",
-                                            imageUrl: "",
-                                            category: "guest",
-                                            prefixName: "",
-                                            firstName: "",
-                                            lastName: "",
-                                            key: null,
-                                          ),
+                                          builder:
+                                              (BuildContext context) =>
+                                                  RegisterPage(
+                                                    username: "",
+                                                    password: "",
+                                                    facebookID: "",
+                                                    appleID: "",
+                                                    googleID: "",
+                                                    lineID: "",
+                                                    email: "",
+                                                    imageUrl: "",
+                                                    category: "guest",
+                                                    prefixName: "",
+                                                    firstName: "",
+                                                    lastName: "",
+                                                    key: null,
+                                                  ),
                                         ),
                                       );
                                     },
@@ -311,16 +303,16 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: 8.0,
-                              ),
+                              const SizedBox(height: 8.0),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   if (Platform.isIOS)
                                     Container(
-                                      alignment:
-                                          const FractionalOffset(0.5, 0.5),
+                                      alignment: const FractionalOffset(
+                                        0.5,
+                                        0.5,
+                                      ),
                                       height: 50.0,
                                       width: 50.0,
                                       child: IconButton(
@@ -364,6 +356,7 @@ class _LoginPageState extends State<LoginPage> {
                                       padding: EdgeInsets.all(5.0),
                                     ),
                                   ),
+
                                   Container(
                                     alignment: FractionalOffset(0.5, 0.5),
                                     height: 50.0,
@@ -375,21 +368,23 @@ class _LoginPageState extends State<LoginPage> {
                                         // print('----- obj -----' + obj.toString());
                                         final idToken = obj.accessToken.idToken;
                                         // print('----- idToken -----' + idToken.toString());
-                                        final userEmail = (idToken != null)
-                                            ? idToken['email'] ?? ''
-                                            : '';
+                                        final userEmail =
+                                            (idToken != null)
+                                                ? idToken['email'] ?? ''
+                                                : '';
 
                                         var model = {
-                                          "username": userEmail == ''
-                                              ? obj.userProfile?.userId
-                                              : userEmail,
+                                          "username":
+                                              userEmail == ''
+                                                  ? obj.userProfile?.userId
+                                                  : userEmail,
                                           "email": userEmail,
                                           "imageUrl":
                                               obj.userProfile?.pictureUrl,
                                           "firstName":
                                               obj.userProfile?.displayName,
                                           "lastName": '',
-                                          "lineID": obj.userProfile?.userId
+                                          "lineID": obj.userProfile?.userId,
                                         };
 
                                         Dio dio = Dio();
@@ -414,8 +409,7 @@ class _LoginPageState extends State<LoginPage> {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                HomePageV2(),
+                                            builder: (context) => HomePageV2(),
                                           ),
                                         );
                                       },
@@ -423,6 +417,25 @@ class _LoginPageState extends State<LoginPage> {
                                         "assets/logo/socials/Group381.png",
                                       ),
                                       padding: EdgeInsets.all(5.0),
+                                    ),
+                                  ),
+
+                                  GestureDetector(
+                                    onTap: () {
+                                      showToast();
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            "assets/logo/socials/thaiid-icon.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -433,9 +446,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
+                  const SizedBox(height: 15.0),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -474,7 +485,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -486,9 +497,7 @@ class _LoginPageState extends State<LoginPage> {
     String? value = await storage.read(key: 'dataUserLoginDDPM');
     if (value != null && value != '') {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => HomePageV2(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePageV2()),
         (Route<dynamic> route) => false,
       );
     }
@@ -501,113 +510,11 @@ class _LoginPageState extends State<LoginPage> {
       return showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text(
-            'กรุณากรอกชื่อผู้ใช้',
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Sarabun',
-              color: Colors.black,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          content: const Text(" "),
-          actions: [
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: const Text(
-                "ตกลง",
+        builder:
+            (BuildContext context) => CupertinoAlertDialog(
+              title: const Text(
+                'กรุณากรอกชื่อผู้ใช้',
                 style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: 'Sarabun',
-                  color: Color(0xFF000070),
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      );
-    } else if ((_password == '') && _category == 'guest') {
-      return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text(
-            'กรุณากรอกรหัสผ่าน',
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Sarabun',
-              color: Colors.black,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          content: const Text(" "),
-          actions: [
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: const Text(
-                "ตกลง",
-                style: TextStyle(
-                  fontSize: 13,
-                  fontFamily: 'Sarabun',
-                  color: Color(0xFF000070),
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      );
-    } else {
-      String url = _category == 'guest'
-          ? 'm/Register/login'
-          : 'm/Register/${_category}/login';
-
-      final result = await postLoginRegister(url, {
-        'username': _username.toString(),
-        'password': _password.toString(),
-        'category': _category.toString(),
-        'email': _email.toString(),
-      });
-
-      if (result.status == 'S' || result.status == 's') {
-        await storage.write(
-            key: 'dataUserLoginDDPM', value: jsonEncode(result.objectData));
-        storage.write(key: 'profileCode2', value: result.objectData?.code);
-        storage.write(key: 'username', value: result.objectData?.username);
-        storage.write(
-            key: 'profileImageUrl', value: result.objectData?.imageUrl);
-
-        storage.write(key: 'idcard', value: result.objectData?.idcard);
-
-        storage.write(key: 'profileCategory', value: 'guest');
-        storage.write(
-            key: 'profileFirstName', value: result.objectData?.firstName);
-        storage.write(
-            key: 'profileLastName', value: result.objectData?.lastName);
-
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => HomePageV2(),
-          ),
-          (Route<dynamic> route) => false,
-        );
-      } else {
-        if (_category == 'guest') {
-          return showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) => CupertinoAlertDialog(
-              title: Text(
-                result.message ?? '',
-                style: const TextStyle(
                   fontSize: 16,
                   fontFamily: 'Sarabun',
                   color: Colors.black,
@@ -633,6 +540,118 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
+      );
+    } else if ((_password == '') && _category == 'guest') {
+      return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder:
+            (BuildContext context) => CupertinoAlertDialog(
+              title: const Text(
+                'กรุณากรอกรหัสผ่าน',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Sarabun',
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              content: const Text(" "),
+              actions: [
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: const Text(
+                    "ตกลง",
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Sarabun',
+                      color: Color(0xFF000070),
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+      );
+    } else {
+      String url =
+          _category == 'guest'
+              ? 'm/Register/login'
+              : 'm/Register/${_category}/login';
+
+      final result = await postLoginRegister(url, {
+        'username': _username.toString(),
+        'password': _password.toString(),
+        'category': _category.toString(),
+        'email': _email.toString(),
+      });
+
+      if (result.status == 'S' || result.status == 's') {
+        await storage.write(
+          key: 'dataUserLoginDDPM',
+          value: jsonEncode(result.objectData),
+        );
+        storage.write(key: 'profileCode2', value: result.objectData?.code);
+        storage.write(key: 'username', value: result.objectData?.username);
+        storage.write(
+          key: 'profileImageUrl',
+          value: result.objectData?.imageUrl,
+        );
+
+        storage.write(key: 'idcard', value: result.objectData?.idcard);
+
+        storage.write(key: 'profileCategory', value: 'guest');
+        storage.write(
+          key: 'profileFirstName',
+          value: result.objectData?.firstName,
+        );
+        storage.write(
+          key: 'profileLastName',
+          value: result.objectData?.lastName,
+        );
+
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomePageV2()),
+          (Route<dynamic> route) => false,
+        );
+      } else {
+        if (_category == 'guest') {
+          return showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder:
+                (BuildContext context) => CupertinoAlertDialog(
+                  title: Text(
+                    result.message ?? '',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Sarabun',
+                      color: Colors.black,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  content: const Text(" "),
+                  actions: [
+                    CupertinoDialogAction(
+                      isDefaultAction: true,
+                      child: const Text(
+                        "ตกลง",
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Sarabun',
+                          color: Color(0xFF000070),
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                ),
           );
         } else {
           register();
@@ -660,7 +679,7 @@ class _LoginPageState extends State<LoginPage> {
       'platform': Platform.operatingSystem.toString(),
       'birthDay': "",
       'phone': "",
-      'countUnit': "[]"
+      'countUnit': "[]",
     });
 
     if (result.status == 'S') {
@@ -670,44 +689,43 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => HomePageV2(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePageV2()),
         (Route<dynamic> route) => false,
       );
     } else {
       return showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-          title: Text(
-            result.message ?? '',
-            style: const TextStyle(
-              fontSize: 16,
-              fontFamily: 'Sarabun',
-              color: Colors.black,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          content: const Text(" "),
-          actions: [
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text(
-                "ตกลง",
+        builder:
+            (BuildContext context) => CupertinoAlertDialog(
+              title: Text(
+                result.message ?? '',
                 style: const TextStyle(
-                  fontSize: 13,
+                  fontSize: 16,
                   fontFamily: 'Sarabun',
-                  color: Color(0xFF000070),
+                  color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              content: const Text(" "),
+              actions: [
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text(
+                    "ตกลง",
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Sarabun',
+                      color: Color(0xFF000070),
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
             ),
-          ],
-        ),
       );
     }
   }
@@ -733,14 +751,13 @@ class _LoginPageState extends State<LoginPage> {
     login();
   }
 
-  TextStyle style = const TextStyle(
-    fontFamily: 'Sarabun',
-    fontSize: 18.0,
-  );
+  TextStyle style = const TextStyle(fontFamily: 'Sarabun', fontSize: 18.0);
 
   // Added helper function for storage management
-  Future<void> createStorageApp(
-      {required Map model, required String category}) async {
+  Future<void> createStorageApp({
+    required Map model,
+    required String category,
+  }) async {
     await storage.write(key: 'profileCode2', value: model['code']);
     await storage.write(key: 'profileCategory', value: category);
     await storage.write(key: 'dataUserLoginDDPM', value: jsonEncode(model));
@@ -760,7 +777,7 @@ class _LoginPageState extends State<LoginPage> {
       "imageUrl": '',
       "firstName": obj.user?.email,
       "lastName": '',
-      "appleID": obj.user?.uid
+      "appleID": obj.user?.uid,
     };
 
     Dio dio = Dio();
@@ -771,16 +788,11 @@ class _LoginPageState extends State<LoginPage> {
 
     // print('----- code ----- ${response.data['objectData']['code']}');
 
-    createStorageApp(
-      model: response.data['objectData'],
-      category: 'apple',
-    );
+    createStorageApp(model: response.data['objectData'], category: 'apple');
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => HomePageV2(),
-      ),
+      MaterialPageRoute(builder: (context) => HomePageV2()),
     );
   }
 
@@ -795,7 +807,7 @@ class _LoginPageState extends State<LoginPage> {
         "imageUrl": obj.user?.photoURL ?? '',
         "firstName": obj.user?.displayName,
         "lastName": '',
-        "facebookID": obj.user?.uid
+        "facebookID": obj.user?.uid,
       };
 
       Dio dio = Dio();
@@ -817,9 +829,7 @@ class _LoginPageState extends State<LoginPage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => HomePageV2(),
-        ),
+        MaterialPageRoute(builder: (context) => HomePageV2()),
       );
     }
   }
@@ -834,7 +844,7 @@ class _LoginPageState extends State<LoginPage> {
       "imageUrl": obj.user?.photoURL != null ? obj.user?.photoURL : '',
       "firstName": obj.user?.displayName,
       "lastName": '',
-      "googleID": obj.user?.uid
+      "googleID": obj.user?.uid,
     };
 
     Dio dio = Dio();
@@ -843,38 +853,30 @@ class _LoginPageState extends State<LoginPage> {
       data: model,
     );
 
-    await storage.write(
-      key: 'categorySocial',
-      value: 'Google',
-    );
+    await storage.write(key: 'categorySocial', value: 'Google');
 
     await storage.write(
       key: 'imageUrlSocial',
       value: obj.user?.photoURL != null ? obj.user!.photoURL : '',
     );
 
-    createStorageApp(
-      model: response.data['objectData'],
-      category: 'google',
-    );
+    createStorageApp(model: response.data['objectData'], category: 'google');
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => HomePageV2(),
-      ),
+      MaterialPageRoute(builder: (context) => HomePageV2()),
     );
   }
 
-  showToast(){
+  showToast() {
     return Fluttertoast.showToast(
-        msg: "ยังไม่เปิดใช้งานสำหรับเวอร์ชั่นทดลอง",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
+      msg: "🔒 ฟีเจอร์นี้ยังไม่เปิดใช้งานในเวอร์ชั่นทดลอง",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 2,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 15.0,
     );
   }
 }
