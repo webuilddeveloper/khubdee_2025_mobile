@@ -14,6 +14,7 @@ import 'package:KhubDeeDLT/pages/poll/poll_form.dart';
 import 'package:KhubDeeDLT/pages/privilege/privilege_form.dart';
 import 'package:KhubDeeDLT/shared/api_provider.dart';
 import 'package:KhubDeeDLT/shared/extension.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class NotificationList extends StatefulWidget {
@@ -27,17 +28,30 @@ class NotificationList extends StatefulWidget {
 
 class _NotificationList extends State<NotificationList> {
   late Future<dynamic> _futureModel;
+  final storage = FlutterSecureStorage();
+  String username = '';
 
   @override
   void initState() {
+    _readNoti();
     super.initState();
+  }
 
-    setState(() {
-      _futureModel = postDio(
-        '${notificationApi}read',
-        {'skip': 0, 'limit': 999},
-      );
-    });
+  _readNoti() async {
+    await storage
+        .read(key: 'username')
+        .then(
+          (x) => {
+            setState(() {
+              username = x.toString();
+              _futureModel = postDio('${notificationApi}read', {
+                'skip': 0,
+                'limit': 999,
+                'username': username,
+              });
+            }),
+          },
+        );
   }
 
   checkNavigationPage(String page, dynamic model) {
@@ -47,20 +61,25 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NewsForm(
-                url: '${newsApi}read',
-                code: model['reference'],
-                model: model,
-                urlComment: newsCommentApi,
-                urlGallery: newsGalleryApi,
-              ),
+              builder:
+                  (context) => NewsForm(
+                    url: '${newsApi}read',
+                    code: model['reference'],
+                    model: model,
+                    urlComment: newsCommentApi,
+                    urlGallery: newsGalleryApi,
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel =
-                      postDio('${notificationApi}read', {'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -69,20 +88,26 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => EventCalendarForm(
-                url: '${eventCalendarApi}read',
-                code: model['reference'],
-                model: model,
-                urlComment: eventCalendarCommentApi,
-                urlGallery: eventCalendarGalleryApi,
-              ),
+              builder:
+                  (context) => EventCalendarForm(
+                    url: '${eventCalendarApi}read',
+                    code: model['reference'],
+                    model: model,
+                    urlComment: eventCalendarCommentApi,
+                    urlGallery: eventCalendarGalleryApi,
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -91,17 +116,21 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PrivilegeForm(
-                code: model['reference'],
-                model: model,
-              ),
+              builder:
+                  (context) =>
+                      PrivilegeForm(code: model['reference'], model: model),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -110,18 +139,24 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => KnowledgeForm(
-                code: model['reference'],
-                model: model,
-                urlComment: '',
-              ),
+              builder:
+                  (context) => KnowledgeForm(
+                    code: model['reference'],
+                    model: model,
+                    urlComment: '',
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -130,20 +165,26 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PoiForm(
-                url: '${poiApi}read',
-                code: model['reference'],
-                model: model,
-                urlComment: poiCommentApi,
-                urlGallery: poiGalleryApi,
-              ),
+              builder:
+                  (context) => PoiForm(
+                    url: '${poiApi}read',
+                    code: model['reference'],
+                    model: model,
+                    urlComment: poiCommentApi,
+                    urlGallery: poiGalleryApi,
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -152,17 +193,20 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PollForm(
-                code: model['reference'],
-                model: model,
-              ),
+              builder:
+                  (context) => PollForm(code: model['reference'], model: model),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -171,20 +215,26 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WarningForm(
-                code: model['reference'],
-                model: model,
-                url: '',
-                urlComment: '',
-                urlGallery: '',
-              ),
+              builder:
+                  (context) => WarningForm(
+                    code: model['reference'],
+                    model: model,
+                    url: '',
+                    urlComment: '',
+                    urlGallery: '',
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -193,20 +243,26 @@ class _NotificationList extends State<NotificationList> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WelfareForm(
-                code: model['reference'],
-                model: model,
-                url: '',
-                urlComment: '',
-                urlGallery: '',
-              ),
+              builder:
+                  (context) => WelfareForm(
+                    code: model['reference'],
+                    model: model,
+                    url: '',
+                    urlComment: '',
+                    urlGallery: '',
+                  ),
             ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -214,15 +270,18 @@ class _NotificationList extends State<NotificationList> {
         {
           return Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => HomePageV2(),
-            ),
-          ).then((value) => {
-                setState(() {
-                  _futureModel = postDio(
-                      '${notificationApi}read', {'skip': 0, 'limit': 999});
-                })
-              });
+            MaterialPageRoute(builder: (context) => HomePageV2()),
+          ).then(
+            (value) => {
+              setState(() {
+                _futureModel = postDio('${notificationApi}read', {
+                  'skip': 0,
+                  'limit': 999,
+                  'username': username,
+                });
+              }),
+            },
+          );
         }
         break;
 
@@ -276,9 +335,7 @@ class _NotificationList extends State<NotificationList> {
                     Container(
                       height: 70,
                       width: width,
-                      child: Image.asset(
-                        'assets/logo/logo.png',
-                      ),
+                      child: Image.asset('assets/logo/logo.png'),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: height * 1 / 100),
@@ -292,7 +349,7 @@ class _NotificationList extends State<NotificationList> {
                           fontFamily: 'Sarabun',
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               );
@@ -305,12 +362,17 @@ class _NotificationList extends State<NotificationList> {
               child: InkWell(
                 onTap: () {
                   setState(() {
-                    _futureModel = postDio(
-                        '${notificationApi}read', {'skip': 0, 'limit': 999});
+                    _futureModel = postDio('${notificationApi}read', {
+                      'skip': 0,
+                      'limit': 999,
+                    });
                   });
                 },
-                child:
-                    const Icon(Icons.refresh, size: 50.0, color: Colors.blue),
+                child: const Icon(
+                  Icons.refresh,
+                  size: 50.0,
+                  color: Colors.blue,
+                ),
               ),
             );
           } else {
@@ -319,10 +381,7 @@ class _NotificationList extends State<NotificationList> {
               physics: const ClampingScrollPhysics(),
               itemCount: 10,
               itemBuilder: (context, index) {
-                return BlankLoading(
-                  width: width,
-                  height: height * 15 / 100,
-                );
+                return BlankLoading(width: width, height: height * 15 / 100);
               },
             );
           }
@@ -335,16 +394,18 @@ class _NotificationList extends State<NotificationList> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return InkWell(
-      onTap: () => {
-        postAny('${notificationApi}update', {
-          'category': '${model['category']}',
-          "code": '${model['code']}'
-        }).then((response) {
-          if (response == 'S') {
-            checkNavigationPage(model['category'], model);
-          }
-        })
-      },
+      onTap:
+          () => {
+            postAny('${notificationApi}update', {
+              'category': '${model['category']}',
+              "code": '${model['code']}',
+              'username': username,
+            }).then((response) {
+              if (response == 'S') {
+                checkNavigationPage(model['category'], model);
+              }
+            }),
+          },
       child: Slidable(
         child: Container(
           margin: EdgeInsets.symmetric(vertical: height * 0.2 / 100),
@@ -368,14 +429,18 @@ class _NotificationList extends State<NotificationList> {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(
-                    horizontal: width * 1 / 100, vertical: height * 1.2 / 100),
+                  horizontal: width * 1 / 100,
+                  vertical: height * 1.2 / 100,
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: EdgeInsets.only(
-                          top: height * 0.7 / 100, right: width * 1 / 100),
+                        top: height * 0.7 / 100,
+                        right: width * 1 / 100,
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(height * 1 / 100),
                         color:
@@ -402,7 +467,9 @@ class _NotificationList extends State<NotificationList> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(
-                    horizontal: width * 5 / 100, vertical: height * 1.5 / 100),
+                  horizontal: width * 5 / 100,
+                  vertical: height * 1.5 / 100,
+                ),
                 child: Text(
                   '${dateStringToDate(model['createDate'])}',
                   style: TextStyle(
@@ -440,11 +507,14 @@ class _NotificationList extends State<NotificationList> {
               ),
               onPressed: () {
                 setState(() {
-                  postAny('${notificationApi}update', {}).then((response) {
+                  postAny('${notificationApi}update', {'username': username,}).then((response) {
                     if (response == 'S') {
                       setState(() {
-                        _futureModel = postDio('${notificationApi}read',
-                            {'skip': 0, 'limit': 999});
+                        _futureModel = postDio('${notificationApi}read', {
+                          'skip': 0,
+                          'limit': 999,
+                          'username': username,
+                        });
                       });
                     }
                   });
@@ -466,8 +536,11 @@ class _NotificationList extends State<NotificationList> {
                   postAny('${notificationApi}delete', {}).then((response) {
                     if (response == 'S') {
                       setState(() {
-                        _futureModel = postDio('${notificationApi}read',
-                            {'skip': 0, 'limit': 999});
+                        _futureModel = postDio('${notificationApi}read', {
+                          'skip': 0,
+                          'limit': 999,
+                          'username': username,
+                        });
                       });
                     }
                   });
@@ -477,13 +550,15 @@ class _NotificationList extends State<NotificationList> {
           ],
           cancelButton: CupertinoActionSheetAction(
             isDefaultAction: true,
-            child: const Text('ยกเลิก',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontFamily: 'Sarabun',
-                  fontWeight: FontWeight.normal,
-                  color: Colors.lightBlue,
-                )),
+            child: const Text(
+              'ยกเลิก',
+              style: TextStyle(
+                fontSize: 15.0,
+                fontFamily: 'Sarabun',
+                fontWeight: FontWeight.normal,
+                color: Colors.lightBlue,
+              ),
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
