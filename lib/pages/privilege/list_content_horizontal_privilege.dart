@@ -100,38 +100,38 @@ class _ListContentHorizontalPrivilege
         } else {
           return Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 10.0),
-                    margin: EdgeInsets.only(bottom: 5.0),
-                    child: Text(
-                      widget.title,
-                      style: TextStyle(
-                        // color: Color(0xFF000070),
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
-                        fontFamily: 'Sarabun',
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      widget.navigationList();
-                    },
-                    child: Container(
-                        padding: EdgeInsets.only(right: 10.0),
-                        margin: EdgeInsets.only(bottom: 5.0),
-                        child: Image.asset(
-                          'assets/images/double_arrow_right.png',
-                          height: 15.0,
-                        )),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       alignment: Alignment.centerLeft,
+              //       padding: EdgeInsets.only(left: 10.0),
+              //       margin: EdgeInsets.only(bottom: 5.0),
+              //       child: Text(
+              //         widget.title,
+              //         style: TextStyle(
+              //           // color: Color(0xFF000070),
+              //           color: Colors.black,
+              //           fontWeight: FontWeight.bold,
+              //           fontSize: 18.0,
+              //           fontFamily: 'Sarabun',
+              //         ),
+              //       ),
+              //     ),
+              //     InkWell(
+              //       onTap: () {
+              //         widget.navigationList();
+              //       },
+              //       child: Container(
+              //           padding: EdgeInsets.only(right: 10.0),
+              //           margin: EdgeInsets.only(bottom: 5.0),
+              //           child: Image.asset(
+              //             'assets/images/double_arrow_right.png',
+              //             height: 15.0,
+              //           )),
+              //     ),
+              //   ],
+              // ),
               Container(
                 height: 200,
                 color: Colors.transparent,

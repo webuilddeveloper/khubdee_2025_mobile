@@ -484,16 +484,18 @@ class _HomePageV2State extends State<HomePageV2> {
             },
           ),
           colorItem(
-            'สิทธิพิเศษ',
-            '(Gift)',
-            'assets/icons/Icon_privileage.png',
+            'สิทธิประโยชน์',
+            '(Benefits)',
+            'assets/icons/gift.png',
             1,
             callback: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder:
-                      (context) => PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
+                      (context) => 
+                      // PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
+                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: true,),
                 ),
               );
             },
