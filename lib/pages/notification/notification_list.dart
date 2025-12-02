@@ -306,6 +306,7 @@ class _NotificationList extends State<NotificationList> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: header(
         context,
         () => goBack(),
@@ -313,83 +314,117 @@ class _NotificationList extends State<NotificationList> {
         isButtonRight: true,
         rightButton: () => _handleClickMe(),
         imageRightButton: 'assets/images/task_list.png',
+        isBg: false
       ),
       backgroundColor: Colors.white,
-      body: FutureBuilder<dynamic>(
-        future: _futureModel, // function where you call your api
-        builder: (context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            // print('snapshot.data.length' + snapshot.data.length);
-            if (snapshot.data.length > 0) {
-              return ListView.builder(
-                shrinkWrap: true, // 1st add
-                physics: const ClampingScrollPhysics(), // 2nd
-                // scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return card(context, snapshot.data[index]);
-                },
-              );
-            } else {
-              return Container(
-                width: width,
-                margin: EdgeInsets.only(top: height * 30 / 100),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 70,
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ShaderMask(
+              shaderCallback: (rect) {
+                return const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white, // เห็นภาพชัด
+                    Colors.transparent, // ค่อย ๆ หายไป
+                  ],
+                ).createShader(rect);
+              },
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                'assets/bg_header.png',
+                width: double.infinity,
+                fit: BoxFit.cover,
+                height: 250, // ปรับความยาวของ fade ได้
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: kToolbarHeight + 64),
+            child: FutureBuilder<dynamic>(
+              future: _futureModel, // function where you call your api
+              builder: (context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData) {
+                  // print('snapshot.data.length' + snapshot.data.length);
+                  if (snapshot.data.length > 0) {
+                    return ListView.separated(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: false, // 1st add
+                      physics: const ScrollPhysics(), // 2nd
+                      // scrollDirection: Axis.horizontal,
+                      separatorBuilder: (context, index) => SizedBox(height: 8,),
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return card(context, snapshot.data[index]);
+                      },
+                    );
+                  } else {
+                    return Container(
                       width: width,
-                      child: Image.asset('assets/logo/logo.png'),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: height * 1 / 100),
-                      alignment: Alignment.center,
-                      width: width,
-                      child: const Text(
-                        'ไม่พบข้อมูล',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
-                        ),
+                      margin: EdgeInsets.only(top: height * 30 / 100),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 70,
+                            width: width,
+                            child: Image.asset('assets/logo/logo.png'),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: height * 1 / 100),
+                            alignment: Alignment.center,
+                            width: width,
+                            child: const Text(
+                              'ไม่พบข้อมูล',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'Sarabun',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                } else if (snapshot.hasError) {
+                  print('error-----');
+                  return SizedBox(
+                    width: width,
+                    height: height,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _futureModel = postDio('${notificationApi}read', {
+                            'skip': 0,
+                            'limit': 999,
+                          });
+                        });
+                      },
+                      child: const Icon(
+                        Icons.refresh,
+                        size: 50.0,
+                        color: Colors.blue,
                       ),
                     ),
-                  ],
-                ),
-              );
-            }
-          } else if (snapshot.hasError) {
-            print('error-----');
-            return SizedBox(
-              width: width,
-              height: height,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    _futureModel = postDio('${notificationApi}read', {
-                      'skip': 0,
-                      'limit': 999,
-                    });
-                  });
-                },
-                child: const Icon(
-                  Icons.refresh,
-                  size: 50.0,
-                  color: Colors.blue,
-                ),
-              ),
-            );
-          } else {
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return BlankLoading(width: width, height: height * 15 / 100);
+                  );
+                } else {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return BlankLoading(width: width, height: height * 15 / 100);
+                    },
+                  );
+                }
               },
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -397,96 +432,100 @@ class _NotificationList extends State<NotificationList> {
   card(BuildContext context, dynamic model) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return InkWell(
-      onTap:
-          () => {
-            postAny('${notificationApi}update', {
-              'category': '${model['category']}',
-              "code": '${model['code']}',
-              'username': username,
-            }).then((response) {
-              if (response == 'S') {
-                checkNavigationPage(model['category'], model);
-              }
-            }),
-          },
-      child: Slidable(
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: height * 0.2 / 100),
-          height: (height * 15) / 100,
-          width: width,
-          decoration: BoxDecoration(
-            color:
-                model['status'] == 'A' ? Colors.white : const Color(0xFFE7E7EE),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 0,
-                blurRadius: 7,
-                offset: const Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 1 / 100,
-                  vertical: height * 1.2 / 100,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: InkWell(
+        onTap:
+            () => {
+              postAny('${notificationApi}update', {
+                'category': '${model['category']}',
+                "code": '${model['code']}',
+                'username': username,
+              }).then((response) {
+                if (response == 'S') {
+                  checkNavigationPage(model['category'], model);
+                }
+              }),
+            },
+        child: Slidable(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: height * 0.2 / 100),
+            height: (height * 14) / 100,
+            width: width,
+            decoration: BoxDecoration(
+              color:
+                  model['status'] == 'A' ? Colors.white : const Color.fromARGB(255, 224, 224, 230),
+                  borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 0,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: height * 0.7 / 100,
-                        right: width * 1 / 100,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(height * 1 / 100),
-                        color:
-                            model['status'] == 'A' ? Colors.white : Colors.red,
-                      ),
-                      height: height * 2 / 100,
-                      width: height * 2 / 100,
-                    ),
-                    Expanded(
-                      child: Text(
-                        '${model['title']}',
-                        style: TextStyle(
-                          fontSize: (height * 2) / 100,
-                          fontFamily: 'Sarabun',
-                          fontWeight: FontWeight.normal,
-                          color: const Color(0xFFFF7514),
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 5 / 100,
-                  vertical: height * 1.5 / 100,
-                ),
-                child: Text(
-                  '${dateStringToDate(model['createDate'])}',
-                  style: TextStyle(
-                    fontSize: (height * 1.7) / 100,
-                    fontFamily: 'Sarabun',
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black,
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width * 1 / 100,
+                    vertical: height * 1.2 / 100,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          top: height * 0.7 / 100,
+                          right: width * 1 / 100,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(height * 1 / 100),
+                          color:
+                              model['status'] == 'A' ? Colors.white : Colors.red,
+                        ),
+                        height: height * 2 / 100,
+                        width: height * 2 / 100,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '${model['title']}',
+                          style: TextStyle(
+                            fontSize: (height * 2) / 100,
+                            fontFamily: 'Sarabun',
+                            fontWeight: FontWeight.normal,
+                            color: const Color(0xFFFF7514),
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: width * 5 / 100,
+                    vertical: height * 1.5 / 100,
+                  ),
+                  child: Text(
+                    '${dateStringToDate(model['createDate'])}',
+                    style: TextStyle(
+                      fontSize: (height * 1.7) / 100,
+                      fontFamily: 'Sarabun',
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
