@@ -39,7 +39,7 @@ class _DriverLicenseConsentPageState extends State<DriverLicenseConsentPage> {
                   children: [
                     // 🔹 ThaiID Icon อยู่ด้านบน
                     Image.asset(
-                      'assets/logo/socials/thaiid_icon.png', // <= ใส่ path icon จริงของเพื่อนเลิฟ
+                      'assets/logo/socials/thaiid-icon.png', // <= ใส่ path icon จริงของเพื่อนเลิฟ
                       height: 80,
                     ),
                     SizedBox(height: 16),
