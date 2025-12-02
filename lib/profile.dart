@@ -2,7 +2,9 @@ import 'package:KhubDeeDLT/component/material/check_avatar.dart';
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/pages/behavior_points.dart';
 import 'package:KhubDeeDLT/pages/profile/drivers_info.dart';
+import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';
 import 'package:KhubDeeDLT/pages/profile/id_card_verification.dart';
+import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:KhubDeeDLT/pages/blank_page/blank_loading.dart';
@@ -124,8 +126,13 @@ class _Profile extends State<Profile> {
     return Expanded(
       child: InkWell(
         onTap: () {
+             // ? Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => DriverLicenseConsentPage()),
+              //   )
           model['isDF'] == false
-              ? showDialog(
+            ? showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return _buildDialogdriverLicence();
@@ -499,7 +506,7 @@ class _Profile extends State<Profile> {
         contentPadding: const EdgeInsets.all(0),
         content: Container(
           width: 325,
-          height: 301,
+          height: 351,
           // width: MediaQuery.of(context).size.width / 1.3,
           // height: MediaQuery.of(context).size.height / 2.5,
           decoration: new BoxDecoration(
@@ -539,6 +546,30 @@ class _Profile extends State<Profile> {
                   ),
                 ),
                 const SizedBox(height: 28),
+                Container(height: 0.5, color: const Color(0xFFcfcfcf)),
+                InkWell(
+                  onTap: () {
+                    // Navigator.pop(context,false);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DriverLicenseConsentPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'ยืนยันตัวตนผ่านแอพ ThaiD',
+                      style: TextStyle(
+                        fontFamily: 'Sarabun',
+                        fontSize: 15,
+                        color: Color(0xFF4D4D4D),
+                      ),
+                    ),
+                  ),
+                ),
                 Container(height: 0.5, color: const Color(0xFFcfcfcf)),
                 InkWell(
                   onTap: () {
