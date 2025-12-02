@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class CarouselBanner extends StatefulWidget {
   CarouselBanner({Key? key, required this.model, required this.nav})
-      : super(key: key);
+    : super(key: key);
 
   final Future<dynamic> model;
   final Function(String, String, dynamic, String, String) nav;
@@ -65,62 +65,60 @@ class _CarouselBanner extends State<CarouselBanner> {
                         });
                       },
                     ),
-                    items: snapshot.data.map<Widget>(
-                      (document) {
-                        return new Container(
-                          child: Center(
-                            child: Image.network(
-                              document['imageUrl'],
-                              fit: BoxFit.fill,
-                              height: 161,
-                              width: double.infinity,
+                    items:
+                        snapshot.data.map<Widget>((document) {
+                          return new Container(
+                            child: Center(
+                              child: Image.network(
+                                document['imageUrl'],
+                                fit: BoxFit.cover,
+                                height: 161,
+                                width: double.infinity,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ).toList(),
+                          );
+                        }).toList(),
                   ),
                 ),
                 Container(
                   color: Color(0xFFF5F8FB),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: snapshot.data.map<Widget>((url) {
-                      int index = snapshot.data.indexOf(url);
-                      return Container(
-                        width: _current == index ? 20.0 : 5.0,
-                        height: 5.0,
-                        margin: _current == index
-                            ? EdgeInsets.symmetric(
-                                vertical: 5.0,
-                                horizontal: 1.0,
-                              )
-                            : EdgeInsets.symmetric(
-                                vertical: 5.0,
-                                horizontal: 2.0,
-                              ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: _current == index
-                              ? Color(0xFF323232)
-                              : Color(0xFF323232).withOpacity(0.4),
-                          // : Color.fromRGBO(0, 0, 0, 0.4),
-                        ),
-                      );
-                    }).toList(),
+                    children:
+                        snapshot.data.map<Widget>((url) {
+                          int index = snapshot.data.indexOf(url);
+                          return Container(
+                            width: _current == index ? 20.0 : 5.0,
+                            height: 5.0,
+                            margin:
+                                _current == index
+                                    ? EdgeInsets.symmetric(
+                                      vertical: 5.0,
+                                      horizontal: 1.0,
+                                    )
+                                    : EdgeInsets.symmetric(
+                                      vertical: 5.0,
+                                      horizontal: 2.0,
+                                    ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color:
+                                  _current == index
+                                      ? Color(0xFF323232)
+                                      : Color(0xFF323232).withOpacity(0.4),
+                              // : Color.fromRGBO(0, 0, 0, 0.4),
+                            ),
+                          );
+                        }).toList(),
                   ),
                 ),
               ],
             );
           } else {
-            return Container(
-              height: (height * 22.5) / 100,
-            );
+            return Container(height: (height * 22.5) / 100);
           }
         } else {
-          return Container(
-            height: (height * 22.5) / 100,
-          );
+          return Container(height: (height * 22.5) / 100);
         }
       },
     );

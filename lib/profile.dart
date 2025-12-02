@@ -126,13 +126,13 @@ class _Profile extends State<Profile> {
     return Expanded(
       child: InkWell(
         onTap: () {
-             // ? Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => DriverLicenseConsentPage()),
-              //   )
+          // ? Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => DriverLicenseConsentPage()),
+          //   )
           model['isDF'] == false
-            ? showDialog(
+              ? showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return _buildDialogdriverLicence();
@@ -561,7 +561,7 @@ class _Profile extends State<Profile> {
                     height: 45,
                     alignment: Alignment.center,
                     child: const Text(
-                      'ยืนยันตัวตนผ่านแอพ ThaiD',
+                      'ยืนยันตัวตนผ่านแอพ ThaID',
                       style: TextStyle(
                         fontFamily: 'Sarabun',
                         fontSize: 15,
