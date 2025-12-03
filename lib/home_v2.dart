@@ -23,6 +23,7 @@ import 'package:KhubDeeDLT/pages/about_us/about_us_form.dart';
 import 'package:KhubDeeDLT/pages/menu_grid_item.dart';
 import 'package:KhubDeeDLT/pages/notification/notification_list.dart';
 import 'package:KhubDeeDLT/pages/poi/poi_list.dart';
+import 'package:KhubDeeDLT/pages/poi/poi_main.dart';
 import 'package:KhubDeeDLT/pages/poll/poll_list.dart';
 import 'package:KhubDeeDLT/pages/welfare/welfare_list.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -596,7 +597,7 @@ class _HomePageV2State extends State<HomePageV2> {
                 context,
                 MaterialPageRoute(
                   builder:
-                      (context) => PoiList(title: 'จุดบริการ', latLng: latLng),
+                      (context) => PoiMain(title: 'จุดบริการ', latLng: latLng),
                 ),
               );
             },

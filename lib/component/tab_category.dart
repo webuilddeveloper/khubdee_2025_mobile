@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/shared/api_provider.dart';
 
 class CategorySelector extends StatefulWidget {
-  CategorySelector({Key? key, this.site, this.model, this.onChange})
-    : super(key: key);
+  CategorySelector(
+      {Key? key, this.site, this.model, this.onChange, this.code})
+      : super(key: key);
 
   //  final VoidCallback onTabCategory;
   final String? site;
   final Function(String)? onChange;
   final Future<dynamic>? model;
+  final String? code;
 
   @override
   _CategorySelectorState createState() => _CategorySelectorState();
@@ -16,10 +18,12 @@ class CategorySelector extends StatefulWidget {
 
 class _CategorySelectorState extends State<CategorySelector> {
   int selectedIndex = 0;
+  bool _isIndexInitialized = false;
 
   @override
   void initState() {
     super.initState();
+    _isIndexInitialized = widget.code == null || widget.code!.isEmpty;
   }
 
   @override
@@ -30,6 +34,14 @@ class _CategorySelectorState extends State<CategorySelector> {
         // AsyncSnapshot<Your object type>
 
         if (snapshot.hasData) {
+          if (!_isIndexInitialized && snapshot.data != null) {
+            final initialIndex = snapshot.data.indexWhere(
+                (item) => item['code'] == widget.code);
+            if (initialIndex != -1) {
+              selectedIndex = initialIndex;
+            }
+            _isIndexInitialized = true;
+          }
           return Container(
             height: 45.0,
             padding: EdgeInsets.symmetric(horizontal: 3, vertical: 5),

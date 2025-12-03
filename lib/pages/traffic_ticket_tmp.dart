@@ -75,28 +75,6 @@ class _TrafficTicketTMPPageState extends State<TrafficTicketTMP> {
   _screen(dynamic model, int totalData) {
     return Column(
       children: [
-        Container(
-          color: const Color(0xFFEDF0F3),
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'ทั้งหมด',
-                style: TextStyle(fontFamily: 'Sarabun', fontSize: 15),
-              ),
-              Text(
-                totalData.toString() + ' รายการ',
-                style: const TextStyle(
-                  fontFamily: 'Sarabun',
-                  fontSize: 15,
-                  color: Color(0xFFB1B1B1),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
         Expanded(
           child: SmartRefresher(
             enablePullDown: false,
@@ -111,6 +89,7 @@ class _TrafficTicketTMPPageState extends State<TrafficTicketTMP> {
             onLoading: _onLoading,
             onRefresh: _onRefresh,
             child: ListView.builder(
+              padding: const EdgeInsets.only(top: 8),
               physics: const ScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
@@ -131,215 +110,211 @@ class _TrafficTicketTMPPageState extends State<TrafficTicketTMP> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder:
-                (context) => TrafficTicketDetail(
-                  cardID: model['card_ID'],
-                  ticketID: model['ticket_ID'],
-                ),
+            builder: (context) => TrafficTicketDetail(model: model),
           ),
         );
       },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.4),
-              spreadRadius: 0,
-              blurRadius: 4,
-              offset: const Offset(1, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'วันที่กระทำความผิด',
-                      style: TextStyle(
-                        fontFamily: 'Sarabun',
-                        fontSize: 13,
-                        color: Color(0xFF9E9E9E),
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'เลขที่ใบสั่ง: ${model['ticket_ID']}',
+                        style: const TextStyle(
+                          fontFamily: 'Sarabun',
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      dateStringToDate(model['occur_DT']),
-                      style: const TextStyle(
-                        fontFamily: 'Sarabun',
-                        fontSize: 13,
+                      const SizedBox(height: 4),
+                      Text(
+                        'วันที่: ${dateStringToDate(model['occur_DT'])}',
+                        style: const TextStyle(
+                          fontFamily: 'Sarabun',
+                          fontSize: 14,
+                          color: Colors.black54,
+                        ),
                       ),
+                    ],
+                  ),
+                  if (model['ticket_STATUS'] != null)
+                    statusBox(model['ticket_STATUS']),
+                ],
+              ),
+              const Divider(height: 24),
+              _infoRow(
+                icon: Icons.location_on_outlined,
+                title: 'สถานที่:',
+                value: model['place'],
+              ),
+              const SizedBox(height: 8),
+              _infoRow(
+                icon: Icons.account_balance_outlined,
+                title: 'หน่วยงาน:',
+                value: model['org_ABBR'],
+              ),
+              const Divider(height: 24),
+              _buildOffenseList(model),
+              const Divider(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'ค่าปรับทั้งหมด',
+                    style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-              ],
-            ),
-            _line(),
-            _textRowExpanded(
-              title: 'สถานที่เกิดเหตุ',
-              value: model['place'],
-              titleColor: const Color(0xFF9E9E9E),
-              spaceBetween: 60,
-            ),
-            _textRowExpanded(
-              title: 'เลขที่ใบสั่ง',
-              value: model['org_CODE'],
-              titleColor: const Color(0xFF9E9E9E),
-              spaceBetween: 60,
-            ),
-            _textRowExpanded(
-              title: 'หน่วยงานที่ออกใบสั่ง',
-              value: model['org_ABBR'],
-              titleColor: const Color(0xFF9E9E9E),
-              spaceBetween: 60,
-            ),
-            _line(),
-            _textRowExpanded(
-              title: 'ข้อหา',
-              value: 'ค่าปรับ(บาท)',
-              titleColor: const Color(0xFF9E9E9E),
-              valueColor: const Color(0xFF9E9E9E),
-            ),
-            if (model['accuse1_CODE'] != null)
-              _textRowExpanded(
-                title: model['accuse1_CODE'],
-                value: model['fine1'],
-                valueColor: const Color(0xFFFF7B06),
-                expandedRight: false,
-                spaceBetween: 60,
+                  ),
+                  Text(
+                    '${model['fine_AMT']} บาท',
+                    style: const TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFFF7B06),
+                    ),
+                  ),
+                ],
               ),
-            if (model['accuse2_CODE'] != null)
-              _textRowExpanded(
-                title: model['accuse2_CODE'],
-                value: model['fine2'],
-                valueColor: const Color(0xFFFF7B06),
-                expandedRight: false,
-                spaceBetween: 60,
-              ),
-            if (model['accuse3_CODE'] != null)
-              _textRowExpanded(
-                title: model['accuse3_CODE'],
-                value: model['fine3'],
-                valueColor: const Color(0xFFFF7B06),
-                expandedRight: false,
-                spaceBetween: 60,
-              ),
-            if (model['accuse4_CODE'] != null)
-              _textRowExpanded(
-                title: model['accuse4_CODE'],
-                value: model['fine4'],
-                valueColor: const Color(0xFFFF7B06),
-                expandedRight: false,
-                spaceBetween: 60,
-              ),
-            if (model['accuse5_CODE'] != null)
-              _textRowExpanded(
-                title: model['accuse5_CODE'],
-                value: model['fine5'],
-                valueColor: const Color(0xFFFF7B06),
-                expandedRight: false,
-                spaceBetween: 60,
-              ),
-            _line(),
-            _textRowExpanded(
-              title: 'ค่าปรับทั้งหมด',
-              value: model['fine_AMT'],
-              valueColor: const Color(0xFFFF7B06),
-              valueSize: 20,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
-  _line() {
-    return Container(
-      height: 2,
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      color: const Color(0xFFEDF0F3),
+  Widget _buildOffenseList(dynamic model) {
+    final offenses = [];
+    for (int i = 1; i <= 5; i++) {
+      if (model['accuse${i}_CODE'] != null && model['fine$i'] != null) {
+        offenses.add({
+          'title': model['accuse${i}_CODE'],
+          'fine': model['fine$i'],
+        });
+      }
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'รายการข้อหา',
+          style: TextStyle(
+            fontFamily: 'Sarabun',
+            fontSize: 14,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(height: 8),
+        ...offenses.map((offense) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    '• ${offense['title']}',
+                    style: const TextStyle(fontFamily: 'Sarabun', fontSize: 14),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Text(
+                  '${offense['fine']} บาท',
+                  style: const TextStyle(
+                    fontFamily: 'Sarabun',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ],
     );
   }
 
-  _textRowExpanded({
-    String title = '',
-    String value = '',
-    Color titleColor = Colors.black,
-    Color valueColor = Colors.black,
-    double valueSize = 13,
-    bool expandedRight = true,
-    double spaceBetween = 15,
+  Widget _infoRow({
+    required IconData icon,
+    required String title,
+    required String value,
   }) {
-    return title != ''
-        ? Container(
-          margin: const EdgeInsets.only(bottom: 8),
-          child:
-              expandedRight
-                  ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontFamily: 'Sarabun',
-                          fontSize: 13,
-                          color: titleColor,
-                        ),
-                      ),
-                      SizedBox(width: spaceBetween),
-                      Expanded(
-                        child: Text(
-                          value,
-                          style: TextStyle(
-                            fontFamily: 'Sarabun',
-                            fontSize: valueSize,
-                            color: valueColor,
-                          ),
-                          textAlign: TextAlign.right,
-                          maxLines: 2,
-                        ),
-                      ),
-                    ],
-                  )
-                  : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            fontFamily: 'Sarabun',
-                            fontSize: 13,
-                            color: titleColor,
-                          ),
-                          maxLines: 2,
-                        ),
-                      ),
-                      SizedBox(width: spaceBetween),
-                      Text(
-                        value,
-                        style: TextStyle(
-                          fontFamily: 'Sarabun',
-                          fontSize: valueSize,
-                          color: valueColor,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                    ],
-                  ),
-        )
-        : Container();
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 16, color: Colors.grey),
+        const SizedBox(width: 8),
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: 'Sarabun',
+            fontSize: 14,
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            value,
+            textAlign: TextAlign.end,
+            style: const TextStyle(
+              fontFamily: 'Sarabun',
+              fontSize: 14,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  statusBox(String value) {
+    var status = '';
+    List<Color> colors = [const Color(0xFF07C9A8), const Color(0xFF03996F)];
+    if (value == '1') {
+      status = 'ค้างชำระ';
+      colors = [const Color(0xFFFF2525), const Color(0xFFBC0611)];
+    } else if (value == '2') {
+      status = 'เกินกำหนด';
+      colors = [const Color(0xFFFFC200), const Color(0xFFFF7B06)];
+    } else if (value == '3') {
+      status = 'ชำระแล้ว';
+    }
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(horizontal: 7),
+      height: 30,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: colors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Text(
+        status,
+        style: const TextStyle(
+          fontFamily: 'Sarabun',
+          fontSize: 11,
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 
   // function
@@ -375,6 +350,11 @@ class _TrafficTicketTMPPageState extends State<TrafficTicketTMP> {
               'accuse5_CODE': null,
               'fine5': null,
               'fine_AMT': "1,500",
+                  'pic1':
+                  'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+              'pic2':
+                  'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
+              'code': 'QR001',
             },
             {
               'card_ID': '654321',
@@ -395,47 +375,62 @@ class _TrafficTicketTMPPageState extends State<TrafficTicketTMP> {
               'accuse5_CODE': null,
               'fine5': null,
               'fine_AMT': "200",
+              'pic1':
+                  'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+              'pic2':
+                  'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
+              'code': 'QR002',
             },
-            {
-              'card_ID': '789012',
-              'ticket_ID': 'TICKET003',
-              'occur_DT': '25680607',
-              'ticket_STATUS': '3',
-              'place': 'พระราม 9',
-              'org_CODE': '967321',
-              'org_ABBR': 'POLICE',
-              'accuse1_CODE': 'ขับรถย้อนศร',
-              'fine1': "700",
-              'accuse2_CODE': 'กลับรถที่ทางร่วมทางแยก',
-              'fine2': "1,300",
-              'accuse3_CODE': null,
-              'fine3': null,
-              'accuse4_CODE': null,
-              'fine4': null,
-              'accuse5_CODE': null,
-              'fine5': null,
-              'fine_AMT': "2,000",
-            },
-            {
-              'card_ID': '987654',
-              'ticket_ID': 'TICKET004',
-              'occur_DT': '25680310',
-              'ticket_STATUS': '3',
-              'place': 'เยาวราช',
-              'org_CODE': '488210',
-              'org_ABBR': 'TRAFFIC',
-              'accuse1_CODE': 'แข่งรถบนถนนทางสาธารณะ',
-              'fine1': "1,000",
-              'accuse2_CODE': null,
-              'fine2': null,
-              'accuse3_CODE': null,
-              'fine3': null,
-              'accuse4_CODE': null,
-              'fine4': null,
-              'accuse5_CODE': null,
-              'fine5': null,
-              'fine_AMT': "1,000",
-            },
+            // {
+            //   'card_ID': '789012',
+            //   'ticket_ID': 'TICKET003',
+            //   'occur_DT': '25680607',
+            //   'ticket_STATUS': '3',
+            //   'place': 'พระราม 9',
+            //   'org_CODE': '967321',
+            //   'org_ABBR': 'POLICE',
+            //   'accuse1_CODE': 'ขับรถย้อนศร',
+            //   'fine1': "700",
+            //   'accuse2_CODE': 'กลับรถที่ทางร่วมทางแยก',
+            //   'fine2': "1,300",
+            //   'accuse3_CODE': null,
+            //   'fine3': null,
+            //   'accuse4_CODE': null,
+            //   'fine4': null,
+            //   'accuse5_CODE': null,
+            //   'fine5': null,
+            //   'fine_AMT': "2,000",
+            //   'pic1':
+            //       'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+            //   'pic2':
+            //       'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
+            //   'code': 'QR003',
+            // },
+            // {
+            //   'card_ID': '987654',
+            //   'ticket_ID': 'TICKET004',
+            //   'occur_DT': '25680310',
+            //   'ticket_STATUS': '3',
+            //   'place': 'เยาวราช',
+            //   'org_CODE': '488210',
+            //   'org_ABBR': 'TRAFFIC',
+            //   'accuse1_CODE': 'แข่งรถบนถนนทางสาธารณะ',
+            //   'fine1': "1,000",
+            //   'accuse2_CODE': null,
+            //   'fine2': null,
+            //   'accuse3_CODE': null,
+            //   'fine3': null,
+            //   'accuse4_CODE': null,
+            //   'fine4': null,
+            //   'accuse5_CODE': null,
+            //   'fine5': null,
+            //   'fine_AMT': "1,000",
+            //   'pic1':
+            //       'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
+            //   'pic2':
+            //       'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
+            //   'code': 'QR004',
+            // },
           ]
           .where(
             (a) =>

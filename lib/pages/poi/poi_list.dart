@@ -17,10 +17,18 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PoiList extends StatefulWidget {
-  PoiList({Key? key, required this.title, required this.latLng})
-    : super(key: key);
+  PoiList({
+    Key? key,
+    required this.title,
+    required this.latLng,
+    this.categoryCode,
+    this.categoryTitle,
+  }) : super(key: key);
+
   final String title;
   final LatLng latLng;
+  final String? categoryCode;
+  final String? categoryTitle;
 
   @override
   _PoiList createState() => _PoiList();
@@ -34,6 +42,7 @@ class _PoiList extends State<PoiList> {
   bool hideSearch = true;
   String keySearch = '';
   String category = '';
+  String categoryTitle = '';
   int _limit = 10;
 
   final RefreshController _refreshController = RefreshController(
@@ -78,11 +87,15 @@ class _PoiList extends State<PoiList> {
   void initState() {
     super.initState();
 
+    category = widget.categoryCode ?? '';
+    categoryTitle = widget.categoryTitle ?? '';
+
     // ป้องกัน error จาก latitude/longitude ที่อาจเป็น null หรือค่าไม่ถูกต้อง
     try {
       _futureModel = post('${poiApi}read', {
         'skip': 0,
         'limit': 10,
+        'category': category,
         'latitude': widget.latLng.latitude,
         'longitude': widget.latLng.longitude,
       });
@@ -189,7 +202,7 @@ class _PoiList extends State<PoiList> {
         padding: EdgeInsets.only(
           bottom: _panelHeightClosed + MediaQuery.of(context).padding.top + 50,
         ),
-        child: googleMap(_futureModel),
+        child: MapWidget(modelData: _futureModel, latLng: widget.latLng, initLatLngBounds: initLatLngBounds),
       ),
       panelBuilder: (sc) => _panel(sc),
       borderRadius: BorderRadius.only(
@@ -202,159 +215,6 @@ class _PoiList extends State<PoiList> {
               positionScroll = pos;
             }),
           },
-    );
-  }
-
-  Widget googleMap(Future<dynamic> modelData) {
-    return FutureBuilder<dynamic>(
-      future: modelData,
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        // เพิ่มการจัดการกรณี error และ loading
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          print("Error loading map data: ${snapshot.error}");
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.error_outline, size: 50, color: Colors.red),
-                SizedBox(height: 10),
-                Text(
-                  "เกิดข้อผิดพลาดในการโหลดแผนที่",
-                  style: TextStyle(fontFamily: 'Sarabun'),
-                ),
-                TextButton(
-                  onPressed:
-                      () => setState(() {
-                        _futureModel = post('${poiApi}read', {
-                          'skip': 0,
-                          'limit': 10,
-                          'latitude': widget.latLng.latitude,
-                          'longitude': widget.latLng.longitude,
-                        });
-                      }),
-                  child: Text(
-                    "ลองใหม่",
-                    style: TextStyle(fontFamily: 'Sarabun'),
-                  ),
-                ),
-              ],
-            ),
-          );
-        } else if (snapshot.hasData) {
-          List<Marker> _markers = <Marker>[];
-
-          try {
-            if (snapshot.data != null && snapshot.data.length > 0) {
-              for (var item in snapshot.data) {
-                try {
-                  // ใช้ try-catch เพื่อจัดการกรณีที่ข้อมูล lat/lng ไม่ถูกต้อง
-                  double lat = double.parse(item['latitude'] ?? "0.0");
-                  double lng = double.parse(item['longitude'] ?? "0.0");
-
-                  if (lat != 0.0 && lng != 0.0) {
-                    _markers.add(
-                      Marker(
-                        markerId: MarkerId(
-                          item['code'] ?? DateTime.now().toString(),
-                        ),
-                        position: LatLng(lat, lng),
-                        infoWindow: InfoWindow(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:
-                                    (context) => PoiForm(
-                                      code: item['code'],
-                                      model: item,
-                                      urlComment: '',
-                                      url: '',
-                                      urlGallery: '',
-                                    ),
-                              ),
-                            );
-                          },
-                          title: item['title']?.toString() ?? "",
-                        ),
-                        icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueRed,
-                        ),
-                      ),
-                    );
-                  }
-                } catch (e) {
-                  print("Error creating marker: $e");
-                  // ข้ามไปสร้าง marker ตัวถัดไป
-                  continue;
-                }
-              }
-            }
-          } catch (e) {
-            print("Error processing map data: $e");
-          }
-
-          return GoogleMap(
-            myLocationEnabled: true,
-            myLocationButtonEnabled: true,
-            compassEnabled: true,
-            tiltGesturesEnabled: false,
-            mapType: MapType.normal,
-            initialCameraPosition: CameraPosition(
-              target: widget.latLng,
-              zoom: 15,
-            ),
-            gestureRecognizers:
-                <Factory<OneSequenceGestureRecognizer>>[
-                  Factory<OneSequenceGestureRecognizer>(
-                    () => EagerGestureRecognizer(),
-                  ),
-                ].toSet(),
-            onMapCreated: (GoogleMapController controller) {
-              try {
-                if (!_mapInitialized) {
-                  // ใช้ try-catch เพื่อป้องกัน error จากการเรียกใช้ animation
-                  try {
-                    controller.moveCamera(
-                      CameraUpdate.newLatLngBounds(initLatLngBounds, 5.0),
-                    );
-                  } catch (e) {
-                    print("Error moving camera: $e");
-                  }
-
-                  try {
-                    controller.animateCamera(
-                      CameraUpdate.newCameraPosition(
-                        CameraPosition(target: widget.latLng, zoom: 15),
-                      ),
-                    );
-                  } catch (e) {
-                    print("Error animating camera: $e");
-                  }
-
-                  _mapController.complete(controller);
-                  _mapInitialized = true;
-                }
-              } catch (e) {
-                print("Error initializing map: $e");
-              }
-            },
-            markers:
-                _markers.isNotEmpty
-                    ? _markers.toSet()
-                    : <Marker>[]
-                        .toSet(), // ไม่ต้องสร้าง default marker ที่ 0,0 ถ้าไม่มีข้อมูล
-          );
-        } else {
-          return Center(
-            child: Text(
-              "ไม่พบข้อมูลแผนที่",
-              style: TextStyle(fontFamily: 'Sarabun'),
-            ),
-          );
-        }
-      },
     );
   }
 
@@ -439,6 +299,14 @@ class _PoiList extends State<PoiList> {
               ),
             ),
             const SizedBox(height: 5),
+            CategorySelector(
+              model: futureCategory,
+              code: category,
+              onChange: (String val) {
+                setData(val, keySearch);
+              },
+            ),
+            const SizedBox(height: 5),
             Container(child: gridView),
           ],
         ),
@@ -459,6 +327,7 @@ class _PoiList extends State<PoiList> {
           SizedBox(height: 5),
           CategorySelector(
             model: futureCategory,
+            code: category,
             onChange: (String val) {
               setData(val, keySearch);
             },
@@ -481,7 +350,14 @@ class _PoiList extends State<PoiList> {
 
   FutureBuilder buildList() {
     return FutureBuilder<dynamic>(
-      future: _futureModel,
+      future: post('${poiApi}read', {
+        'skip': 0,
+        'limit': _limit,
+        'category': category,
+        "keySearch": keySearch,
+        'latitude': widget.latLng.latitude,
+        'longitude': widget.latLng.longitude,
+      }),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           if (showLoadingItem) {
@@ -719,6 +595,144 @@ class _PoiList extends State<PoiList> {
         'latitude': widget.latLng.latitude,
         'longitude': widget.latLng.longitude,
       });
+      gridView = PoiListVertical(model: _futureModel);
     });
+  }
+}
+
+class MapWidget extends StatefulWidget {
+  final Future<dynamic> modelData;
+  final LatLng latLng;
+  final LatLngBounds initLatLngBounds;
+
+  const MapWidget({
+    Key? key,
+    required this.modelData,
+    required this.latLng,
+    required this.initLatLngBounds,
+  }) : super(key: key);
+
+  @override
+  _MapWidgetState createState() => _MapWidgetState();
+}
+
+class _MapWidgetState extends State<MapWidget> {
+  Completer<GoogleMapController> _mapController = Completer();
+  Set<Marker> _markers = {};
+  bool _mapInitialized = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _updateMarkers();
+  }
+
+  @override
+  void didUpdateWidget(MapWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.modelData != oldWidget.modelData) {
+      _updateMarkers();
+    }
+  }
+
+  void _updateMarkers() async {
+    try {
+      var data = await widget.modelData;
+      if (data == null || data.isEmpty) {
+        if (mounted) {
+          setState(() {
+            _markers.clear();
+          });
+        }
+        return;
+      }
+
+      List<Marker> newMarkers = [];
+      for (var item in data) {
+        try {
+          double lat = double.parse(item['latitude'] ?? "0.0");
+          double lng = double.parse(item['longitude'] ?? "0.0");
+
+          if (lat != 0.0 && lng != 0.0) {
+            newMarkers.add(
+              Marker(
+                markerId: MarkerId(item['code'] ?? DateTime.now().toString()),
+                position: LatLng(lat, lng),
+                infoWindow: InfoWindow(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PoiForm(
+                          code: item['code'],
+                          model: item,
+                          urlComment: '',
+                          url: '',
+                          urlGallery: '',
+                        ),
+                      ),
+                    );
+                  },
+                  title: item['title']?.toString() ?? "",
+                ),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                  BitmapDescriptor.hueRed,
+                ),
+              ),
+            );
+          }
+        } catch (e) {
+          print("Error creating marker: $e");
+          continue;
+        }
+      }
+
+      if (mounted) {
+        setState(() {
+          _markers = newMarkers.toSet();
+        });
+      }
+    } catch (e) {
+      print("Error processing map data: $e");
+      if (mounted) {
+        setState(() {
+          _markers.clear();
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleMap(
+      myLocationEnabled: true,
+      myLocationButtonEnabled: true,
+      compassEnabled: true,
+      tiltGesturesEnabled: false,
+      mapType: MapType.normal,
+      initialCameraPosition: CameraPosition(
+        target: widget.latLng,
+        zoom: 15,
+      ),
+      gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+        Factory<OneSequenceGestureRecognizer>(
+          () => EagerGestureRecognizer(),
+        ),
+      },
+      onMapCreated: (GoogleMapController controller) {
+        if (!_mapInitialized) {
+          try {
+            controller.moveCamera(
+              CameraUpdate.newLatLngBounds(widget.initLatLngBounds, 5.0),
+            );
+          } catch (e) {
+            print("Error moving camera on create: $e");
+          }
+          _mapController.complete(controller);
+          _mapInitialized = true;
+        }
+      },
+      markers: _markers,
+    );
   }
 }
