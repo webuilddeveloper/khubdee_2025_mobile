@@ -3,7 +3,11 @@ import 'package:KhubDeeDLT/pages/knowledge/knowledge_form.dart';
 
 class KnowledgeListVertical extends StatefulWidget {
   // ignore: use_super_parameters
-  const KnowledgeListVertical({Key? key, required this.site, required this.model}) : super(key: key);
+  const KnowledgeListVertical({
+    Key? key,
+    required this.site,
+    required this.model,
+  }) : super(key: key);
 
   final String site;
   final Future<dynamic> model;
@@ -19,8 +23,10 @@ class _KnowledgeListVertical extends State<KnowledgeListVertical> {
     super.initState();
   }
 
-  final List<String> items =
-      List<String>.generate(10, (index) => "Item: ${++index}");
+  final List<String> items = List<String>.generate(
+    10,
+    (index) => "Item: ${++index}",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +55,7 @@ class _KnowledgeListVertical extends State<KnowledgeListVertical> {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.1,
+                  childAspectRatio: 1 / 1.2,
                 ),
                 physics: ClampingScrollPhysics(),
                 shrinkWrap: true,
@@ -64,9 +70,11 @@ class _KnowledgeListVertical extends State<KnowledgeListVertical> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => KnowledgeForm(
-                                  code: snapshot.data[index]['code'], urlComment: '',
-                                ),
+                                builder:
+                                    (context) => KnowledgeForm(
+                                      code: snapshot.data[index]['code'],
+                                      urlComment: '',
+                                    ),
                               ),
                             );
                           },
@@ -80,7 +88,8 @@ class _KnowledgeListVertical extends State<KnowledgeListVertical> {
                               child: Image.network(
                                 snapshot.data[index]['imageUrl'],
                                 fit: BoxFit.cover,
-                                height: MediaQuery.of(context).size.height *
+                                height:
+                                    MediaQuery.of(context).size.height *
                                     20 /
                                     100,
                               ),
@@ -105,44 +114,43 @@ class _KnowledgeListVertical extends State<KnowledgeListVertical> {
             padding: EdgeInsets.only(left: 5.0, right: 5.0),
             child: GridView.count(
               crossAxisCount: 2,
-              children: List.generate(
-                10,
-                (index) {
-                  return Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {},
+              children: List.generate(10, (index) {
+                return Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 30, right: 30),
                           child: Container(
-                            padding: const EdgeInsets.only(left: 30, right: 30),
-                            child: Container(
-                              decoration: new BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.2),
-                                    spreadRadius: 0,
-                                    blurRadius: 7,
-                                    offset: Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                                borderRadius: new BorderRadius.circular(6.0),
-                              ),
+                            decoration: new BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  spreadRadius: 0,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                    0,
+                                    3,
+                                  ), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: new BorderRadius.circular(6.0),
                             ),
-                            // height: 205,
                           ),
+                          // height: 205,
                         ),
                       ),
-                      Container(
-                        child: Center(
-                          child: Image.asset('assets/images/bar.png'),
-                        ),
+                    ),
+                    Container(
+                      child: Center(
+                        child: Image.asset('assets/images/bar.png'),
                       ),
-                    ],
-                  );
-                },
-              ),
+                    ),
+                  ],
+                );
+              }),
             ),
           );
         }
