@@ -10,29 +10,33 @@ header(
   Function? rightButton,
   String menu = '',
   bool isBg = true,
+  bool isBackShow = true,
 }) {
   return PreferredSize(
     preferredSize: const Size.fromHeight(60),
     child: AppBar(
       centerTitle: true,
-      flexibleSpace: isBg ? Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/bg_header.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        // decoration: BoxDecoration(
-        //   gradient: LinearGradient(
-        //     begin: Alignment.centerLeft,
-        //     end: Alignment.centerRight,
-        //     colors: <Color>[
-        //       Color(0xFFFF7900),
-        //       Color(0xFFFF7900),
-        //     ],
-        //   ),
-        // ),
-      ) : Container(),
+      flexibleSpace:
+          isBg
+              ? Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/bg_header.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // decoration: BoxDecoration(
+                //   gradient: LinearGradient(
+                //     begin: Alignment.centerLeft,
+                //     end: Alignment.centerRight,
+                //     colors: <Color>[
+                //       Color(0xFFFF7900),
+                //       Color(0xFFFF7900),
+                //     ],
+                //   ),
+                // ),
+              )
+              : Container(),
       // backgroundColor: Color(0xFFFF7900),
       backgroundColor: Colors.transparent,
       elevation: 0.0,
@@ -44,36 +48,35 @@ header(
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
           color: Colors.white,
         ),
       ),
-      leading: InkWell(
-        onTap: () => functionGoBack(),
-        child: Container(
-          padding: const EdgeInsets.all(12),
-          child: Image.asset(
-            "assets/icons/arrow_left_1.png",
-            color: Colors.white,
-          ),
-        ),
-      ),
-      actions: <Widget>[
-        isButtonRight
-            ? Container(
-                width: 42.0,
-                height: 42.0,
-                margin:
-                    const EdgeInsets.only(top: 6.0, right: 10.0, bottom: 6.0),
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () => rightButton!(),
+      leading:
+          isBackShow
+              ? InkWell(
+                onTap: () => functionGoBack(),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
                   child: Image.asset(
-                    imageRightButton,
+                    "assets/icons/arrow_left_1.png",
                     color: Colors.white,
                   ),
                 ),
               )
+              : Container(),
+      actions: <Widget>[
+        isButtonRight
+            ? Container(
+              width: 42.0,
+              height: 42.0,
+              margin: const EdgeInsets.only(top: 6.0, right: 10.0, bottom: 6.0),
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () => rightButton!(),
+                child: Image.asset(imageRightButton, color: Colors.white),
+              ),
+            )
             : Container(),
       ],
     ),

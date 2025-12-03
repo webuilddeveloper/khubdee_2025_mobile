@@ -13,7 +13,7 @@ labelTextFormFieldPasswordOldNew(String lable, bool showSubtitle) {
                 lable,
                 style: const TextStyle(
                   fontSize: 15.000,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFFCB0000),
                 ),
               ),
@@ -22,7 +22,7 @@ labelTextFormFieldPasswordOldNew(String lable, bool showSubtitle) {
                   '(รหัสผ่านต้องเป็นตัวอักษร a-z, A-Z และ 0-9 ความยาวขั้นต่ำ 6 ตัวอักษร)',
                   style: TextStyle(
                     fontSize: 10.00,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Color(0xFFFF0000),
                   ),
                 ),
@@ -47,7 +47,7 @@ textFormFieldPasswordOldNew(
     style: TextStyle(
       color: enabled ? const Color(0xFF000070) : const Color(0xFFFFFFFF),
       fontWeight: FontWeight.normal,
-      fontFamily: 'Sarabun',
+      fontFamily: 'Kanit',
       fontSize: 15.00,
     ),
     decoration: InputDecoration(
@@ -61,7 +61,7 @@ textFormFieldPasswordOldNew(
       ),
       errorStyle: const TextStyle(
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         fontSize: 10.0,
       ),
     ),
@@ -99,14 +99,14 @@ labelTextFormFieldPassword(String lable) {
                 lable,
                 style: const TextStyle(
                   fontSize: 15.000,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                 ),
               ),
               const Text(
                 '(รหัสผ่านต้องเป็นตัวอักษร a-z, A-Z และ 0-9 ความยาวขั้นต่ำ 6 ตัวอักษร)',
                 style: TextStyle(
                   fontSize: 10.00,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFFFF0000),
                 ),
               ),
@@ -125,7 +125,7 @@ labelTextFormField(String label) {
       label,
       style: const TextStyle(
         fontSize: 15.000,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         // color: Color(0xFFCB0000),
       ),
     ),
@@ -146,7 +146,7 @@ textFormField(
     style: TextStyle(
       color: enabled ? const Color(0xFF000070) : const Color(0xFFFFFFFF),
       fontWeight: FontWeight.normal,
-      fontFamily: 'Sarabun',
+      fontFamily: 'Kanit',
       fontSize: 15.00,
     ),
     decoration: InputDecoration(
@@ -163,7 +163,7 @@ textFormField(
       ),
       errorStyle: const TextStyle(
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         fontSize: 10.0,
       ),
     ),
@@ -207,7 +207,7 @@ textFormFieldNoValidator(
     style: TextStyle(
       color: enabled ? const Color(0xFF000070) : const Color(0xFFFFFFFF),
       fontWeight: FontWeight.normal,
-      fontFamily: 'Sarabun',
+      fontFamily: 'Kanit',
       fontSize: 15.00,
     ),
     decoration: InputDecoration(
@@ -221,7 +221,7 @@ textFormFieldNoValidator(
       ),
       errorStyle: const TextStyle(
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         fontSize: 10.0,
       ),
     ),
@@ -253,7 +253,7 @@ textFormPhoneField(
     style: TextStyle(
       color: enabled ? const Color(0xFF000070) : const Color(0xFFFFFFFF),
       fontWeight: FontWeight.normal,
-      fontFamily: 'Sarabun',
+      fontFamily: 'Kanit',
       fontSize: 15.00,
     ),
     decoration: InputDecoration(
@@ -267,7 +267,7 @@ textFormPhoneField(
       ),
       errorStyle: const TextStyle(
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         fontSize: 10.0,
       ),
     ),
@@ -299,7 +299,7 @@ textFormIdCardField(
     style: TextStyle(
       color: enabled ? const Color(0xFF000070) : const Color(0xFFFFFFFF),
       fontWeight: FontWeight.normal,
-      fontFamily: 'Sarabun',
+      fontFamily: 'Kanit',
       fontSize: 15.00,
     ),
     decoration: InputDecoration(
@@ -313,7 +313,7 @@ textFormIdCardField(
       ),
       errorStyle: const TextStyle(
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         fontSize: 10.0,
       ),
     ),

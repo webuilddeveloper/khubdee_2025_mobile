@@ -86,7 +86,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว',
             style: TextStyle(
               fontSize: 16,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
@@ -99,7 +99,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 "ยกเลิก",
                 style: TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFF000070),
                   fontWeight: FontWeight.normal,
                 ),
@@ -119,7 +119,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             'เปลี่ยนรหัสผ่านไม่สำเร็จ',
             style: TextStyle(
               fontSize: 16,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
@@ -128,7 +128,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             result['message'],
             style: TextStyle(
               fontSize: 13,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
@@ -140,7 +140,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 "ยกเลิก",
                 style: TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFF000070),
                   fontWeight: FontWeight.normal,
                 ),
@@ -191,7 +191,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             style: TextStyle(
               color: Color(0xFF000070),
               fontWeight: FontWeight.normal,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontSize: 15.0,
             ),
             decoration: InputDecoration(
@@ -215,7 +215,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               errorStyle: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 10.0,
               ),
             ),
@@ -233,7 +233,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             style: TextStyle(
               color: Color(0xFF000070),
               fontWeight: FontWeight.normal,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontSize: 15.0,
             ),
             decoration: InputDecoration(
@@ -257,7 +257,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               errorStyle: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 10.0,
               ),
             ),
@@ -281,7 +281,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             style: TextStyle(
               color: Color(0xFF000070),
               fontWeight: FontWeight.normal,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontSize: 15.0,
             ),
             decoration: InputDecoration(
@@ -307,7 +307,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
               errorStyle: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 10.0,
               ),
             ),
@@ -356,7 +356,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       fontSize: 18.0,
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                   ),
                 ),
@@ -398,7 +398,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 fontSize: 12.0,
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),

@@ -586,7 +586,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 'อัพเดตข้อมูลเรียบร้อยแล้ว',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -599,7 +599,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF000070),
                       fontWeight: FontWeight.normal,
                     ),
@@ -634,7 +634,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 'อัพเดตข้อมูลไม่สำเร็จ',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -643,7 +643,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 result['message'],
                 style: const TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -655,7 +655,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF000070),
                       fontWeight: FontWeight.normal,
                     ),
@@ -743,19 +743,19 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             fontSize: 16.0,
             color: Color(0xFF000070),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           doneStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF000070),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           cancelStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF000070),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
         ),
         showTitleActions: true,
@@ -799,7 +799,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
               'ข้อมูลผู้ใช้งาน',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -820,7 +820,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
               'ข้อมูลส่วนตัว',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -852,7 +852,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //     decoration: InputDecoration(
             //       errorStyle: TextStyle(
             //         fontWeight: FontWeight.normal,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //         fontSize: 10.0,
             //       ),
             //       enabledBorder: UnderlineInputBorder(
@@ -867,7 +867,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //       'กรุณาเลือกคำนำหน้า',
             //       style: TextStyle(
             //         fontSize: 15.00,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //       ),
             //     ),
             //     value: _selectedPrefixName != '' ? _selectedPrefixName : '',
@@ -883,7 +883,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //           prefixName,
             //           style: TextStyle(
             //             fontSize: 15.00,
-            //             fontFamily: 'Sarabun',
+            //             fontFamily: 'Kanit',
             //             color: Color(
             //               0xFF000070,
             //             ),
@@ -924,7 +924,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                   style: const TextStyle(
                     color: Color(0xFF000070),
                     fontWeight: FontWeight.normal,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 15.0,
                   ),
                   decoration: InputDecoration(
@@ -939,7 +939,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     ),
                     errorStyle: const TextStyle(
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontSize: 10.0,
                     ),
                   ),
@@ -1008,7 +1008,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 decoration: const InputDecoration(
                   errorStyle: TextStyle(
                     fontWeight: FontWeight.normal,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 10.0,
                   ),
                   enabledBorder: UnderlineInputBorder(
@@ -1024,7 +1024,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                   'เพศ',
                   style: TextStyle(
                     fontSize: 15.00,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                   ),
                 ),
                 value: _selectedSex,
@@ -1041,7 +1041,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       item['title'],
                       style: const TextStyle(
                         fontSize: 15.00,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         color: Color(
                           0xFF000070,
                         ),
@@ -1097,7 +1097,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1113,7 +1113,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedProvince,
@@ -1137,7 +1137,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1150,7 +1150,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1166,7 +1166,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       // ignore: non_constant_identifier_names
@@ -1189,7 +1189,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1219,7 +1219,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1235,7 +1235,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedDistrict,
@@ -1257,7 +1257,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1270,7 +1270,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1286,7 +1286,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       // ignore: non_constant_identifier_names
@@ -1307,7 +1307,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1336,7 +1336,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1352,7 +1352,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedSubDistrict,
@@ -1371,7 +1371,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1384,7 +1384,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1400,7 +1400,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       // ignore: non_constant_identifier_names
@@ -1418,7 +1418,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1448,7 +1448,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1464,7 +1464,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedPostalCode,
@@ -1479,7 +1479,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['postCode'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1493,7 +1493,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -1509,7 +1509,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onChanged: (Value) {
@@ -1523,7 +1523,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                             item['postCode'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1561,7 +1561,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         fontSize: 18.0,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                       ),
                     ),
                   ),
@@ -1604,7 +1604,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 fontSize: 12.0,
                 color: const Color(0xFF000070),
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),
@@ -1669,7 +1669,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       'อัลบั้มรูปภาพ',
                       style: const TextStyle(
                         fontSize: 13,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -1683,7 +1683,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     'กล้องถ่ายรูป',
                     style: const TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontWeight: FontWeight.normal,
                     ),
                   ),

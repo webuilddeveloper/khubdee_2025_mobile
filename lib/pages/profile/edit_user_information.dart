@@ -307,7 +307,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 'อัพเดตข้อมูลเรียบร้อยแล้ว',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -320,7 +320,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF9A1120),
                       fontWeight: FontWeight.normal,
                     ),
@@ -354,7 +354,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 'อัพเดตข้อมูลไม่สำเร็จ',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -363,7 +363,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 result['message'],
                 style: TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -375,7 +375,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF9A1120),
                       fontWeight: FontWeight.normal,
                     ),
@@ -462,19 +462,19 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           doneStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           cancelStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
         ),
         showTitleActions: true,
@@ -518,7 +518,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //   'ข้อมูลผู้ใช้งาน',
             //   style: TextStyle(
             //     fontSize: 18.00,
-            //     fontFamily: 'Sarabun',
+            //     fontFamily: 'Kanit',
             //     fontWeight: FontWeight.w500,
             //     // color: Color(0xFFBC0611),
             //   ),
@@ -539,7 +539,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //   'ข้อมูลส่วนตัว',
             //   style: TextStyle(
             //     fontSize: 18.00,
-            //     fontFamily: 'Sarabun',
+            //     fontFamily: 'Kanit',
             //     fontWeight: FontWeight.w500,
             //     // color: Color(0xFFBC0611),
             //   ),
@@ -583,7 +583,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //       style: TextStyle(
             //         color: Color(0xFF9A1120),
             //         fontWeight: FontWeight.normal,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //         fontSize: 15.0,
             //       ),
             //       decoration: InputDecoration(
@@ -597,7 +597,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //         ),
             //         errorStyle: TextStyle(
             //           fontWeight: FontWeight.normal,
-            //           fontFamily: 'Sarabun',
+            //           fontFamily: 'Kanit',
             //           fontSize: 10.0,
             //         ),
             //       ),
@@ -666,7 +666,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //     decoration: InputDecoration(
             //       errorStyle: TextStyle(
             //         fontWeight: FontWeight.normal,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //         fontSize: 10.0,
             //       ),
             //       enabledBorder: UnderlineInputBorder(
@@ -682,7 +682,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //       'เพศ',
             //       style: TextStyle(
             //         fontSize: 15.00,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //       ),
             //     ),
             //     value: _selectedSex,
@@ -697,7 +697,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //           item['title'],
             //           style: TextStyle(
             //             fontSize: 15.00,
-            //             fontFamily: 'Sarabun',
+            //             fontFamily: 'Kanit',
             //             color: Color(
             //               0xFF9A1120,
             //             ),
@@ -753,7 +753,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //           decoration: InputDecoration(
             //             errorStyle: TextStyle(
             //               fontWeight: FontWeight.normal,
-            //               fontFamily: 'Sarabun',
+            //               fontFamily: 'Kanit',
             //               fontSize: 10.0,
             //             ),
             //             enabledBorder: UnderlineInputBorder(
@@ -769,7 +769,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //             'รหัสไปรษณีย์',
             //             style: TextStyle(
             //               fontSize: 15.00,
-            //               fontFamily: 'Sarabun',
+            //               fontFamily: 'Kanit',
             //             ),
             //           ),
             //           value: _selectedPostalCode,
@@ -784,7 +784,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //                 item['postCode'],
             //                 style: TextStyle(
             //                   fontSize: 15.00,
-            //                   fontFamily: 'Sarabun',
+            //                   fontFamily: 'Kanit',
             //                   color: Color(
             //                     0xFF9A1120,
             //                   ),
@@ -798,7 +798,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //           decoration: InputDecoration(
             //             errorStyle: TextStyle(
             //               fontWeight: FontWeight.normal,
-            //               fontFamily: 'Sarabun',
+            //               fontFamily: 'Kanit',
             //               fontSize: 10.0,
             //             ),
             //             enabledBorder: UnderlineInputBorder(
@@ -814,7 +814,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //             'รหัสไปรษณีย์',
             //             style: TextStyle(
             //               fontSize: 15.00,
-            //               fontFamily: 'Sarabun',
+            //               fontFamily: 'Kanit',
             //             ),
             //           ),
             //           onChanged: (newValue) {
@@ -828,7 +828,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
             //                 item['postCode'],
             //                 style: TextStyle(
             //                   fontSize: 15.00,
-            //                   fontFamily: 'Sarabun',
+            //                   fontFamily: 'Kanit',
             //                   color: Color(
             //                     0xFF9A1120,
             //                   ),
@@ -866,7 +866,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                         fontSize: 13.0,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                       ),
                     ),
                   ),
@@ -909,7 +909,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                 fontSize: 12.0,
                 color: Color(0xFF9A1120),
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),
@@ -974,7 +974,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                       'อัลบั้มรูปภาพ',
                       style: TextStyle(
                         fontSize: 13,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -988,7 +988,7 @@ class _EditUserInformationPageState extends State<EditUserInformationPage> {
                     'กล้องถ่ายรูป',
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontWeight: FontWeight.normal,
                     ),
                   ),

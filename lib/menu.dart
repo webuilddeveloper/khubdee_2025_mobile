@@ -3,6 +3,9 @@ import 'dart:ui';
 
 import 'package:KhubDeeDLT/component/material/check_avatar.dart';
 import 'package:KhubDeeDLT/home_v2.dart';
+import 'package:KhubDeeDLT/pages/event_calendar/event_calendar_main.dart';
+import 'package:KhubDeeDLT/pages/notification/notification_list.dart';
+import 'package:KhubDeeDLT/pages/profile/user_information.dart';
 import 'package:KhubDeeDLT/profile.dart';
 import 'package:KhubDeeDLT/shared/api_provider.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +38,9 @@ class _MenuMainState extends State<MenuMain> {
     _loadUserProfile();
     pages = <Widget>[
       HomePageV2(),
-      Profile(model: _futureProfile),
+      EventCalendarMain(title: 'ปฏิทินกิจกรรม'),
+      NotificationList(title: 'แจ้งเตือน'),
+      UserInformationPage()
       // Profile(model: modelProfile),
       // Profile(model: modelProfile)
     ];
@@ -55,7 +60,7 @@ class _MenuMainState extends State<MenuMain> {
         modelProfile = data;
         imageUrl = data['imageUrl'];
         print('>>>>>>>>>>>>>>>> ${data['code']}');
-        _futureProfile = postDio(profileReadApi, {"code": data['code']});
+        // _futureProfile = postDio(profileReadApi, {"code": data['code']});
       });
     }
   }
@@ -64,6 +69,9 @@ class _MenuMainState extends State<MenuMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
+      drawerScrimColor: Colors.transparent,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: WillPopScope(
@@ -71,60 +79,53 @@ class _MenuMainState extends State<MenuMain> {
           child: IndexedStack(index: _currentPage, children: pages),
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.fromLTRB(20, 0, 20, 20), // เว้นขอบให้ลอย
-      //   child: Container(
-      //     height: 70,
-      //     decoration: BoxDecoration(
-      //       color: Colors.white,
-      //       borderRadius: BorderRadius.circular(30),
-      //       boxShadow: [
-      //         BoxShadow(
-      //           color: Colors.black.withOpacity(0.15),
-      //           blurRadius: 20,
-      //           offset: Offset(0, 10),
-      //         ),
-      //       ],
-      //     ),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [
-      //         _bottomItem(Icons.home, 0),
-      //         _bottomItem(Icons.card_giftcard, 1),
-      //         _bottomItem(Icons.notifications, 2),
-      //         _bottomItem(Icons.person, 3),
-      //       ],
-      //     ),
-      //   ),
-      // ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20), // ระยะลอยจากขอบ
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(45),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-            child: Container(
+      
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45)),
+                boxShadow: [
+              BoxShadow(
+                color: Color(0xFF00000026),
+                blurRadius: 15,
+                offset: Offset(-10, -10),
+              ),
+            ],
+              ),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20), // ระยะลอยจากขอบ
+        child: 
+        // ClipRRect(
+        //   // borderRadius: BorderRadius.circular(45),
+        //   child: BackdropFilter(
+        //     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+        //     child: 
+            Container(
               height: 70,
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor.withOpacity(0.01),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(45),
-                border: Border.all(
-                  color: Theme.of(context).primaryColor.withOpacity(0.2),
-                  width: 1.2,
-                ),
+                // border: Border.all(
+                //   color: Theme.of(context).primaryColor.withOpacity(0.2),
+                //   width: 1.2,
+                // ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _bottomItem(Icons.home, 0),
-                  _bottomItem(Icons.card_giftcard, 1),
-                  _bottomItem(Icons.notifications, 2),
-                  _bottomItem(Icons.person, 3, isImageUrl: true),
+                  _bottomItem(Icons.home, 0, title: 'หน้าแรก'),
+                  _bottomItem(Icons.card_giftcard, 1, title: 'ปฏิทินกิจกรรม'),
+                  _bottomItem(Icons.notifications, 2, title: 'แจ้งเตือน'),
+                  _bottomItem(
+                    Icons.person,
+                    3,
+                    isImageUrl: true,
+                    title: 'โปรไฟล์',
+                  ),
                 ],
               ),
             ),
-          ),
-        ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -144,7 +145,12 @@ class _MenuMainState extends State<MenuMain> {
     return Future.value(true);
   }
 
-  Widget _bottomItem(IconData icon, int index, {bool isImageUrl = false}) {
+  Widget _bottomItem(
+    IconData icon,
+    int index, {
+    bool isImageUrl = false,
+    required String title,
+  }) {
     final isSelected = _currentPage == index;
     return GestureDetector(
       onTap: () {
@@ -154,31 +160,31 @@ class _MenuMainState extends State<MenuMain> {
         _loadUserProfile();
       },
       // borderRadius: BorderRadius.circular(50),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
-        curve: Curves.linearToEaseOut,
-        // padding: EdgeInsets.all(12),
-        padding: EdgeInsets.symmetric(
-          horizontal: isSelected ? 40 : 10,
-          vertical: 10,
-        ),
+      child:
+      // AnimatedContainer(
+      //   duration: Duration(milliseconds: 500),
+      //   curve: Curves.linearToEaseOut,
+      //   // padding: EdgeInsets.all(12),
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
-          color:
-              isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+          // color:
+          //     isSelected ? Theme.of(context).primaryColor : Colors.transparent,
           borderRadius: BorderRadius.circular(45),
-          boxShadow: [
-            BoxShadow(
-              color:
-                  isSelected
-                      ? Colors.black.withOpacity(0.2)
-                      : Colors.transparent,
-              blurRadius: 20,
-              offset: Offset(0, 10),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color:
+          //         isSelected
+          //             ? Colors.black.withOpacity(0.2)
+          //             : Colors.transparent,
+          //     blurRadius: 20,
+          //     offset: Offset(0, 10),
+          //   ),
+          // ],
           // shape: BoxShape.circle,
         ),
-        child:
+        child: Column(
+          children: [
             isImageUrl
                 ? Container(
                   padding: EdgeInsets.all('${imageUrl}' != '' ? 0.0 : 5.0),
@@ -186,24 +192,31 @@ class _MenuMainState extends State<MenuMain> {
                     borderRadius: BorderRadius.circular(30),
                     // color: const Color(0xFFFF7900),
                   ),
-                  height: isSelected ? 35 : 30,
-                  width: isSelected ? 35 : 30,
+                  height: 30,
+                  width: 30,
                   child:
                       imageUrl != ''
                           ? checkAvatar(context, '${imageUrl}')
                           : Icon(
                             icon,
-                            size: isSelected ? 35 : 30,
+                            size: 30,
                             color:
-                                isSelected ? Colors.white : Color(0xFF7847AB),
+                                isSelected
+                                    ? Color(0xFF4A0768)
+                                    : Color(0xFF877573),
                           ),
                 )
                 : Icon(
                   icon,
-                  size: isSelected ? 35 : 30,
-                  color: isSelected ? Colors.white : Color(0xFF7847AB),
+                  size: 30,
+                  color: isSelected ? Color(0xFF4A0768) : Color(0xFF877573),
                 ),
+            Text(title, style: TextStyle(fontSize: 12, color: isSelected ? Color(0xFF4A0768) : Color(0xFF877573))),
+          ],
+        ),
       ),
     );
+    //   ),
+    // );
   }
 }

@@ -64,7 +64,7 @@ class _Profile extends State<Profile> {
             const Text(
               'กรุณาลงทะเบียนด้วยบัตรประชาชน',
               style: TextStyle(
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 13,
                 color: Colors.white,
               ),
@@ -74,7 +74,7 @@ class _Profile extends State<Profile> {
             const Text(
               'เพื่อเชื่อมต่อใบอนุญาตและข้อมูลพาหนะในครอบครอง',
               style: TextStyle(
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 13,
                 color: Colors.white,
               ),
@@ -101,7 +101,7 @@ class _Profile extends State<Profile> {
                 child: const Text(
                   'ลงทะเบียนเพื่อตรวจสอบใบอนุญาต',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 13,
                     color: Color(0xFFFA8500),
                   ),
@@ -117,14 +117,14 @@ class _Profile extends State<Profile> {
   _buildCard(dynamic model) {
     return Container(
       height: 118,
-      color: Colors.white,
+      // color: Colors.white,
       child: Row(children: [_leftItem(model), _rightItem(model)]),
     );
   }
 
   _leftItem(dynamic model) {
     return Expanded(
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           // ? Navigator.push(
           //     context,
@@ -156,191 +156,212 @@ class _Profile extends State<Profile> {
             MaterialPageRoute(builder: (context) => DriversInfo()),
           );
         },
-        child: Container(
-          
-          // margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFFAF86B5), Color(0xFF7948AD)],
-              begin: Alignment.centerLeft,
-              // end: new Alignment(1, 0.0),
-              end: Alignment.centerRight,
-            ),
-          ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
           child: Container(
-            padding: const EdgeInsets.all(7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            // margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              gradient: LinearGradient(
+                colors: [Color(0xFFAF86B5), Color(0xFF7948AD)],
+                begin: Alignment.centerLeft,
+                // end: new Alignment(1, 0.0),
+                end: Alignment.centerRight,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: 6,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Row(
               children: [
+                Container(
+                  // padding: EdgeInsets.all(
+                  //   '${model['imageUrl']}' != '' ? 0.0 : 5.0,
+                  // ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                    ),
+                    // color: const Color(0xFFFF7900),
+                    image: DecorationImage(
+                      // image: NetworkImage('${model['imageUrl']}'),
+                      image: NetworkImage(model['imageUrl']),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  height: 120,
+                  width: 90,
+                  // child: avatarSquare(context, '${model['imageUrl']}'),
+                ),
                 Expanded(
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(
-                          '${model['imageUrl']}' != '' ? 0.0 : 5.0,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: const Color(0xFFFF7900),
-                        ),
-                        height: 60,
-                        width: 60,
-                        child: checkAvatar(context, '${model['imageUrl']}'),
-                      ),
-                      Expanded(
-                        child:
-                            model['isDF'] == false
-                                ? Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 10,
-                                    right: 10,
-                                    bottom: 5.0,
-                                    top: 5.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        model['isDF'] == false
+                            ? Container(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                                bottom: 5.0,
+                                top: 5.0,
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    '${model['firstName']} ${model['lastName']}',
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.white,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                           padding: const EdgeInsets.only(
-                                    left: 10,
-                                    right: 10,
-                                    bottom: 5,
-                                    top:5,
-                                  ),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            48,
-                                          ),
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black.withOpacity(0.15),
-                                              spreadRadius: 1,
-                                              blurRadius: 4,
-                                              offset: Offset(0, 2), // changes position of shadow
-                                            ),
-                                          ],
+                                  SizedBox(height: 5),
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 5,
+                                      top: 5,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(48),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.15),
+                                          spreadRadius: 1,
+                                          blurRadius: 4,
+                                          offset: Offset(
+                                            0,
+                                            2,
+                                          ), // changes position of shadow
                                         ),
-                                        child: const Text(
-                                          'รอยืนยันตัวตน',
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: Color(0xFFFF7B06),
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
+                                      ],
+                                    ),
+                                    child: const Text(
+                                      'รอยืนยันตัวตน',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Color(0xFFFF7B06),
                                       ),
-                                      SizedBox(height:5),
-                                        Text(
-                                  '${model['firstName']} ${model['lastName']}',
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.white,
-                                    fontFamily: 'Sarabun',
-                                    fontWeight: FontWeight.bold,
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                      // const SizedBox(height: 10),
-                                      // Row(
-                                      //   children: [
-                                      //     const Text(
-                                      //       'ID Card : ',
-                                      //       style: TextStyle(
-                                      //         fontSize: 11.0,
-                                      //         color: Colors.white,
-                                      //         fontFamily: 'Sarabun',
-                                      //       ),
-                                      //     ),
-                                      //     Expanded(
-                                      //       child: Text(
-                                      //         model['idcard'] ??
-                                      //             'กรุณาอัพเดทข้อมูล',
-                                      //         style: const TextStyle(
-                                      //           fontSize: 11.0,
-                                      //           color: Colors.white,
-                                      //           fontFamily: 'Sarabun',
-                                      //         ),
-                                      //         maxLines: 2,
-                                      //       ),
-                                      //     ),
-                                      //   ],
-                                      // ),
-                                    ],
-                                  ),
-                                )
-                                : Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 10,
-                                    right: 10,
-                                    bottom: 5.0,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
+
+                                  // const SizedBox(height: 10),
+                                  // Row(
+                                  //   children: [
+                                  //     const Text(
+                                  //       'ID Card : ',
+                                  //       style: TextStyle(
+                                  //         fontSize: 11.0,
+                                  //         color: Colors.white,
+                                  //         fontFamily: 'Kanit',
+                                  //       ),
+                                  //     ),
+                                  //     Expanded(
+                                  //       child: Text(
+                                  //         model['idcard'] ??
+                                  //             'กรุณาอัพเดทข้อมูล',
+                                  //         style: const TextStyle(
+                                  //           fontSize: 11.0,
+                                  //           color: Colors.white,
+                                  //           fontFamily: 'Kanit',
+                                  //         ),
+                                  //         maxLines: 2,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                ],
+                              ),
+                            )
+                            : Container(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                                bottom: 5.0,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            'ID Card : ',
-                                            style: TextStyle(
-                                              fontSize: 13.0,
-                                              color: Colors.white,
-                                              fontFamily: 'Sarabun',
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              model['idcard'] ??
-                                                  'กรุณาอัพเดทข้อมูล',
-                                              style: const TextStyle(
-                                                fontSize: 13.0,
-                                                color: Colors.white,
-                                                fontFamily: 'Sarabun',
-                                              ),
-                                              maxLines: 2,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        '${model['firstName']} ${model['lastName']}',
-                                        style: const TextStyle(
+                                      const Text(
+                                        'ID Card : ',
+                                        style: TextStyle(
                                           fontSize: 13.0,
                                           color: Colors.white,
-                                          fontFamily: 'Sarabun',
-                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'Kanit',
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          model['idcard'] ??
+                                              'กรุณาอัพเดทข้อมูล',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: Colors.white,
+                                            fontFamily: 'Kanit',
+                                          ),
+                                          maxLines: 2,
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                      ),
-                    ],
-                  ),
-                ),
-                // if(model['isDF'] != false)
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'ดูใบอนุญาตทั้งหมด',
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        color: Colors.white,
-                        fontFamily: 'Sarabun',
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.white, 
-     decorationThickness: 2.0
-                      ),
-                      maxLines: 2,
+                                  Text(
+                                    '${model['firstName']} ${model['lastName']}',
+                                    style: const TextStyle(
+                                      fontSize: 13.0,
+                                      color: Colors.white,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        // if(model['isDF'] != false)
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'ดูใบอนุญาตทั้งหมด',
+                              style: TextStyle(
+                                fontSize: 13.0,
+                                color: Colors.white,
+                                fontFamily: 'Kanit',
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.white,
+                                decorationThickness: 2.0,
+                              ),
+                              maxLines: 2,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
@@ -351,60 +372,71 @@ class _Profile extends State<Profile> {
   }
 
   _rightItem(dynamic model) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BehaviorPoints()),
-        );
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ComingSoon(code: 'N1'),
-        //   ),
-        // );
-      },
-      child: Container(
-        width: 118,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFFEBE2C), Color(0xFFFD8E25)],
-            begin: Alignment.centerRight,
-            // end: new Alignment(1, 0.0),
-            end: Alignment.centerLeft,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BehaviorPoints()),
+          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => ComingSoon(code: 'N1'),
+          //   ),
+          // );
+        },
+        child: Container(
+          width: 118,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            gradient: LinearGradient(
+              colors: [Color(0xFFFEBE2C), Color(0xFFFD8E25)],
+              begin: Alignment.centerRight,
+              // end: new Alignment(1, 0.0),
+              end: Alignment.centerLeft,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                blurRadius: 6,
+                offset: Offset(0, 3),
+              ),
+            ],
           ),
-        ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'สถานะการขับขี่',
-              style: TextStyle(
-                fontSize: 13.0,
-                color: Colors.white,
-                fontFamily: 'Sarabun',
-                fontWeight: FontWeight.bold,
+          child: const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'สถานะการขับขี่',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.white,
+                  fontFamily: 'Kanit',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              '80',
-              style: TextStyle(
-                fontSize: 40.0,
-                color: Colors.white,
-                fontFamily: 'Sarabun',
-                fontWeight: FontWeight.bold,
+              Text(
+                '80',
+                style: TextStyle(
+                  fontSize: 40.0,
+                  color: Colors.white,
+                  fontFamily: 'Kanit',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              'เต็ม 100 คะแนน',
-              style: TextStyle(
-                fontSize: 13.0,
-                color: Colors.white,
-                fontFamily: 'Sarabun',
-                // fontWeight: FontWeight.bold,
+              Text(
+                'เต็ม 100 คะแนน',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.white,
+                  fontFamily: 'Kanit',
+                  // fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -442,7 +474,7 @@ class _Profile extends State<Profile> {
                 const Text(
                   'ยืนยันตัวตน',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 15,
                     color: Color(0xFF4D4D4D),
                   ),
@@ -451,7 +483,7 @@ class _Profile extends State<Profile> {
                 const Text(
                   'กรุณาลงทะเบียนด้วยบัตรประชาชน',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 13,
                     color: Color(0xFF4D4D4D),
                   ),
@@ -459,7 +491,7 @@ class _Profile extends State<Profile> {
                 const Text(
                   'เพื่อเชื่อมต่อใบอนุญาต และข้อมูลพาหนะในครอบครอง',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 13,
                     color: Color(0xFF4D4D4D),
                   ),
@@ -482,7 +514,7 @@ class _Profile extends State<Profile> {
                     child: const Text(
                       'ลงทะเบียนเพื่อตรวจสอบใบอนุญาต',
                       style: TextStyle(
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontSize: 13,
                         color: Color(0xFF4D4D4D),
                       ),
@@ -508,7 +540,7 @@ class _Profile extends State<Profile> {
                       child: const Text(
                         'ยกเลิก',
                         style: TextStyle(
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 13,
                           color: Color(0xFF9C0000),
                         ),
@@ -559,7 +591,7 @@ class _Profile extends State<Profile> {
                 const Text(
                   'ยืนยันตัวตน',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 15,
                     // color: Colors.black,
                   ),
@@ -568,7 +600,7 @@ class _Profile extends State<Profile> {
                 const Text(
                   'กรุณายืนยันตัวผ่านตัวเลือกดังต่อไปนี้',
                   style: TextStyle(
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 15,
                     color: Color(0xFF4D4D4D),
                   ),
@@ -591,7 +623,7 @@ class _Profile extends State<Profile> {
                     child: const Text(
                       'ยืนยันตัวตนผ่านแอพ ThaID',
                       style: TextStyle(
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontSize: 15,
                         color: Color(0xFF4D4D4D),
                       ),
@@ -615,7 +647,7 @@ class _Profile extends State<Profile> {
                     child: const Text(
                       'ยืนยันตัวตนผ่านใบขับขี่',
                       style: TextStyle(
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontSize: 15,
                         color: Color(0xFF4D4D4D),
                       ),
@@ -639,7 +671,7 @@ class _Profile extends State<Profile> {
                     child: const Text(
                       'ยืนยันตัวตนผ่านทะเบียนรถที่ครอบครอง',
                       style: TextStyle(
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontSize: 15,
                         color: Color(0xFF4D4D4D),
                       ),
@@ -657,7 +689,7 @@ class _Profile extends State<Profile> {
                     child: const Text(
                       'ยกเลิก',
                       style: TextStyle(
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontSize: 15,
                         color: Color(0xFF9C0000),
                       ),

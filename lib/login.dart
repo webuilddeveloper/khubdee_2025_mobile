@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:KhubDeeDLT/menu.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/pages/auth/register.dart';
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
             fontSize: 18.0,
             color: Colors.white,
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
         ),
       ),
@@ -166,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                                     'เข้าสู่ระบบ',
                                     style: TextStyle(
                                       fontSize: 18.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -237,7 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                                     '|',
                                     style: TextStyle(
                                       fontSize: 15.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                       color: Colors.blueAccent,
                                     ),
                                   ),
@@ -270,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                                       "สมัครสมาชิก",
                                       style: TextStyle(
                                         fontSize: 12.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                   ),
@@ -283,14 +284,14 @@ class _LoginPageState extends State<LoginPage> {
                                     '',
                                     style: TextStyle(
                                       fontSize: 14.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                     ),
                                   ),
                                   Text(
                                     ' หรือเข้าสู่ระบบโดย ',
                                     style: TextStyle(
                                       fontSize: 14.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                       // color: Color(0xFFFF7514),
                                     ),
                                   ),
@@ -298,7 +299,7 @@ class _LoginPageState extends State<LoginPage> {
                                     '',
                                     style: TextStyle(
                                       fontSize: 14.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                     ),
                                   ),
                                 ],
@@ -409,7 +410,7 @@ class _LoginPageState extends State<LoginPage> {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => HomePageV2(),
+                                            builder: (context) => MenuMain(),
                                           ),
                                         );
                                       },
@@ -497,7 +498,7 @@ class _LoginPageState extends State<LoginPage> {
     String? value = await storage.read(key: 'dataUserLoginDDPM');
     if (value != null && value != '') {
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => HomePageV2()),
+        MaterialPageRoute(builder: (context) => MenuMain()),
         (Route<dynamic> route) => false,
       );
     }
@@ -516,7 +517,7 @@ class _LoginPageState extends State<LoginPage> {
                 'กรุณากรอกชื่อผู้ใช้',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -529,7 +530,7 @@ class _LoginPageState extends State<LoginPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF000070),
                       fontWeight: FontWeight.normal,
                     ),
@@ -551,7 +552,7 @@ class _LoginPageState extends State<LoginPage> {
                 'กรุณากรอกรหัสผ่าน',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -564,7 +565,7 @@ class _LoginPageState extends State<LoginPage> {
                     "ตกลง",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF000070),
                       fontWeight: FontWeight.normal,
                     ),
@@ -614,7 +615,7 @@ class _LoginPageState extends State<LoginPage> {
         );
 
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePageV2()),
+          MaterialPageRoute(builder: (context) => MenuMain()),
           (Route<dynamic> route) => false,
         );
       } else {
@@ -628,7 +629,7 @@ class _LoginPageState extends State<LoginPage> {
                     result.message ?? '',
                     style: const TextStyle(
                       fontSize: 16,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
@@ -641,7 +642,7 @@ class _LoginPageState extends State<LoginPage> {
                         "ตกลง",
                         style: TextStyle(
                           fontSize: 13,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Color(0xFF000070),
                           fontWeight: FontWeight.normal,
                         ),
@@ -689,7 +690,7 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => HomePageV2()),
+        MaterialPageRoute(builder: (context) => MenuMain()),
         (Route<dynamic> route) => false,
       );
     } else {
@@ -702,7 +703,7 @@ class _LoginPageState extends State<LoginPage> {
                 result.message ?? '',
                 style: const TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -715,7 +716,7 @@ class _LoginPageState extends State<LoginPage> {
                     "ตกลง",
                     style: const TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFF000070),
                       fontWeight: FontWeight.normal,
                     ),
@@ -751,7 +752,7 @@ class _LoginPageState extends State<LoginPage> {
     login();
   }
 
-  TextStyle style = const TextStyle(fontFamily: 'Sarabun', fontSize: 18.0);
+  TextStyle style = const TextStyle(fontFamily: 'Kanit', fontSize: 18.0);
 
   // Added helper function for storage management
   Future<void> createStorageApp({
@@ -792,7 +793,7 @@ class _LoginPageState extends State<LoginPage> {
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => HomePageV2()),
+      MaterialPageRoute(builder: (context) => MenuMain()),
     );
   }
 
@@ -829,7 +830,7 @@ class _LoginPageState extends State<LoginPage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePageV2()),
+        MaterialPageRoute(builder: (context) => MenuMain()),
       );
     }
   }
@@ -864,7 +865,7 @@ class _LoginPageState extends State<LoginPage> {
 
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => HomePageV2()),
+      MaterialPageRoute(builder: (context) => MenuMain()),
     );
   }
 

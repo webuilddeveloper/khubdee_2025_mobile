@@ -240,120 +240,123 @@ class _VerifyTicket extends State<VerifyTicket> {
 
   leftItem() {
     return Expanded(
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TrafficTicket(),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(8, 8, 4, 8),
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TrafficTicket(),
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFFD3913F).withOpacity(0.5),
+                  const Color(0xFFD3913F).withOpacity(0.3),
+                ],
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+              ),
             ),
-          );
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                const Color(0xFFD3913F).withOpacity(0.5),
-                const Color(0xFFD3913F).withOpacity(0.3),
-              ],
-              begin: Alignment.centerRight,
-              end: Alignment.centerLeft,
-            ),
-          ),
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFD3913F),
-                      ),
-                      child: const Column(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'ตรวจสอบใบสั่ง',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                fontFamily: 'Sarabun',
-                                fontWeight: FontWeight.bold,
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFD3913F),
+                        ),
+                        child: const Column(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'ตรวจสอบใบสั่ง',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  fontFamily: 'Sarabun',
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            '(Traffic Tickets)',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 11.0,
-                              fontFamily: 'Sarabun',
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            'สำนักงานตำรวจแห่งชาติอำนวยความสะดวกให้ท่าน',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.0,
-                              fontFamily: 'Sarabun',
-                            ),
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            'สามารถตรวจสอบใบสั่งย้อนหลังได้สูงสุด 1 ปี',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.0,
-                              fontFamily: 'Sarabun',
-                            ),
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 10),
-                          SizedBox(
-                            width: double.infinity,
-                            // color: Colors.white,
-                            child: Text(
-                              '(PTM)',
+                            Text(
+                              '(Traffic Tickets)',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 11.0,
                                 fontFamily: 'Sarabun',
                               ),
-                              maxLines: 2,
-                              textAlign: TextAlign.right,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 5),
+                            Text(
+                              'สำนักงานตำรวจแห่งชาติอำนวยความสะดวกให้ท่าน',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10.0,
+                                fontFamily: 'Sarabun',
+                              ),
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                            ),
+                            Text(
+                              'สามารถตรวจสอบใบสั่งย้อนหลังได้สูงสุด 1 ปี',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10.0,
+                                fontFamily: 'Sarabun',
+                              ),
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 10),
+                            SizedBox(
+                              width: double.infinity,
+                              // color: Colors.white,
+                              child: Text(
+                                '(PTM)',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 11.0,
+                                  fontFamily: 'Sarabun',
+                                ),
+                                maxLines: 2,
+                                textAlign: TextAlign.right,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0),
-                // padding: EdgeInsets.all(5),
-                height: 30,
-                width: 32,
-                decoration: const BoxDecoration(
-                  // color: Colors.transparent,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    bottomRight: Radius.circular(15),
-                  ),
+                  ],
                 ),
-                child: Image.asset(
-                  'assets/icons/traffic_ticket_icon.png',
-                  // color: Color(0xFFFFC200),
-                ),
-              )
-            ],
+                Container(
+                  margin: const EdgeInsets.only(top: 10.0),
+                  // padding: EdgeInsets.all(5),
+                  height: 30,
+                  width: 32,
+                  decoration: const BoxDecoration(
+                    // color: Colors.transparent,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
+                    ),
+                  ),
+                  child: Image.asset(
+                    'assets/icons/traffic_ticket_icon.png',
+                    // color: Color(0xFFFFC200),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

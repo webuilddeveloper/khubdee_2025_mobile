@@ -247,7 +247,7 @@ class _EventCalendarList extends State<EventCalendarList> {
                                 : 13.0,
                         fontWeight: FontWeight.normal,
                         letterSpacing: 1.2,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                       ),
                     ),
                   ),

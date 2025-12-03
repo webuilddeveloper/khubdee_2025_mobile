@@ -191,7 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 'กรุณาติ้ก ยอมรับข้อตกลงเงื่อนไข',
                 style: const TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -204,7 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     "ตกลง",
                     style: const TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Color(0xFFFF7514),
                       fontWeight: FontWeight.normal,
                     ),
@@ -267,7 +267,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   'ลงทะเบียนเรียบร้อยแล้ว',
                   style: const TextStyle(
                     fontSize: 16,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
                   ),
@@ -280,7 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       "ตกลง",
                       style: const TextStyle(
                         fontSize: 13,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         color: Color(0xFFFF7514),
                         fontWeight: FontWeight.normal,
                       ),
@@ -309,7 +309,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   result.message ?? '',
                   style: const TextStyle(
                     fontSize: 16,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
                   ),
@@ -322,7 +322,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       "ตกลง",
                       style: const TextStyle(
                         fontSize: 13,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         color: Color(0xFFFF7514),
                         fontWeight: FontWeight.normal,
                       ),
@@ -348,19 +348,19 @@ class _RegisterPageState extends State<RegisterPage> {
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
         doneStyle: TextStyle(
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
         cancelStyle: TextStyle(
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       showTitleActions: true,
@@ -415,7 +415,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 20.0,
                             color: _isShowStep1 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         decoration: new BoxDecoration(
@@ -437,7 +437,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 10.0,
                           color: Colors.white,
                           fontWeight: FontWeight.w100,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ],
@@ -465,7 +465,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 20.0,
                             color: _isShowStep2 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         decoration: new BoxDecoration(
@@ -487,7 +487,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 10.0,
                           color: Colors.white,
                           fontWeight: FontWeight.w100,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ],
@@ -538,7 +538,7 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(
                 fontSize: 10.0,
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
             value: _checkedValue,
@@ -576,7 +576,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.normal,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                 ),
               ),
             )),
@@ -595,7 +595,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'ข้อมูลผู้ใช้งาน',
             style: TextStyle(
               fontSize: 18.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               // color: Color(0xFFBC0611),
             ),
@@ -647,7 +647,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'ข้อมูลส่วนตัว',
             style: TextStyle(
               fontSize: 18.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               // color: Color(0xFFBC0611),
             ),
@@ -680,7 +680,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //     decoration: InputDecoration(
           //       errorStyle: TextStyle(
           //         fontWeight: FontWeight.normal,
-          //         fontFamily: 'Sarabun',
+          //         fontFamily: 'Kanit',
           //         fontSize: 10.0,
           //       ),
           //       enabledBorder: UnderlineInputBorder(
@@ -695,7 +695,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //       'กรุณาเลือกคำนำหน้า',
           //       style: TextStyle(
           //         fontSize: 15.00,
-          //         fontFamily: 'Sarabun',
+          //         fontFamily: 'Kanit',
           //       ),
           //     ),
           //     value: _selectedPrefixName,
@@ -710,7 +710,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //           prefixName,
           //           style: TextStyle(
           //             fontSize: 15.00,
-          //             fontFamily: 'Sarabun',
+          //             fontFamily: 'Kanit',
           //             color: Color(
           //               0xFFFF7514,
           //             ),
@@ -754,7 +754,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 style: const TextStyle(
                   color: Color(0xFFFF7514),
                   fontWeight: FontWeight.normal,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   fontSize: 15.0,
                 ),
                 decoration: InputDecoration(
@@ -768,7 +768,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   errorStyle: const TextStyle(
                     fontWeight: FontWeight.normal,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 10.0,
                   ),
                 ),
@@ -822,7 +822,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 18.0,
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                   ),
                 ),

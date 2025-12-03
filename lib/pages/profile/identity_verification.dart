@@ -424,7 +424,7 @@ print('----------${result['objectData'][0]['birthDay']}');
               'ข้อมูลซ้ำ กรุณาเลือกใหม่',
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -437,7 +437,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                   "ตกลง",
                   style: TextStyle(
                     fontSize: 13,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Color(0xFF9A1120),
                     fontWeight: FontWeight.normal,
                   ),
@@ -496,7 +496,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             'กรุณาเพิ่มหน่วยงานอย่างน้อย 1 หน่วยงาน',
             style: TextStyle(
               fontSize: 16,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
@@ -509,7 +509,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                 "ตกลง",
                 style: TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFF9A1120),
                   fontWeight: FontWeight.normal,
                 ),
@@ -659,7 +659,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                     'ยืนยันตัวตนเรียบร้อยแล้ว',
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
@@ -672,7 +672,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         "ตกลง",
                         style: TextStyle(
                           fontSize: 13,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Color(0xFF9A1120),
                           fontWeight: FontWeight.normal,
                         ),
@@ -702,7 +702,7 @@ print('----------${result['objectData'][0]['birthDay']}');
               'ยืนยันตัวตนไม่สำเร็จ',
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -711,7 +711,7 @@ print('----------${result['objectData'][0]['birthDay']}');
               result['message'],
               style: const TextStyle(
                 fontSize: 13,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -723,7 +723,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                   "ตกลง",
                   style: TextStyle(
                     fontSize: 13,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Color(0xFF9A1120),
                     fontWeight: FontWeight.normal,
                   ),
@@ -794,19 +794,19 @@ print('----------${result['objectData'][0]['birthDay']}');
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           doneStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
           cancelStyle: TextStyle(
             fontSize: 16.0,
             color: Color(0xFF9A1120),
             fontWeight: FontWeight.normal,
-            fontFamily: 'Sarabun',
+            fontFamily: 'Kanit',
           ),
         ),
         showTitleActions: true,
@@ -876,7 +876,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                 dataCountUnit[i]['titleLv0'].toString(),
                                 style: const TextStyle(
                                   fontSize: 13.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF9A1120,
                                   ),
@@ -887,7 +887,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                 dataCountUnit[i]['titleLv1'].toString(),
                                 style: const TextStyle(
                                   fontSize: 13.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF9A1120,
                                   ),
@@ -900,7 +900,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       dataCountUnit[i]['titleLv2'].toString(),
                                       style: const TextStyle(
                                         fontSize: 13.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         color: Color(
                                           0xFF9A1120,
                                         ),
@@ -914,7 +914,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       dataCountUnit[i]['titleLv3'].toString(),
                                       style: const TextStyle(
                                         fontSize: 13.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         color: Color(
                                           0xFF9A1120,
                                         ),
@@ -928,7 +928,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       dataCountUnit[i]['titleLv4'].toString(),
                                       style: const TextStyle(
                                         fontSize: 13.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         color: Color(
                                           0xFF9A1120,
                                         ),
@@ -942,7 +942,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       dataCountUnit[i]['titleLv5'].toString(),
                                       style: const TextStyle(
                                         fontSize: 13.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         color: Color(
                                           0xFF9A1120,
                                         ),
@@ -1014,7 +1014,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                   decoration: const InputDecoration(
                                     errorStyle: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                       fontSize: 10.0,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
@@ -1031,7 +1031,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     'โปรดระบุ',
                                     style: TextStyle(
                                       fontSize: 15.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                     ),
                                   ),
                                   value: _selectedLv0,
@@ -1069,7 +1069,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                         item['title'],
                                         style: const TextStyle(
                                           fontSize: 15.00,
-                                          fontFamily: 'Sarabun',
+                                          fontFamily: 'Kanit',
                                           color: Color(
                                             0xFF9A1120,
                                           ),
@@ -1082,7 +1082,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                   decoration: const InputDecoration(
                                     errorStyle: TextStyle(
                                       fontWeight: FontWeight.normal,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                       fontSize: 10.0,
                                     ),
                                     enabledBorder: UnderlineInputBorder(
@@ -1099,7 +1099,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     'โปรดระบุ',
                                     style: TextStyle(
                                       fontSize: 15.00,
-                                      fontFamily: 'Sarabun',
+                                      fontFamily: 'Kanit',
                                     ),
                                   ),
                                   onTap: () {
@@ -1136,7 +1136,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                         item['title'],
                                         style: const TextStyle(
                                           fontSize: 15.00,
-                                          fontFamily: 'Sarabun',
+                                          fontFamily: 'Kanit',
                                           color: Color(
                                             0xFF9A1120,
                                           ),
@@ -1168,7 +1168,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1185,7 +1185,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     value: _selectedLv1,
@@ -1221,7 +1221,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1234,7 +1234,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1251,7 +1251,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     onTap: () {
@@ -1286,7 +1286,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1318,7 +1318,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1335,7 +1335,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     value: _selectedLv2,
@@ -1369,7 +1369,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1382,7 +1382,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1399,7 +1399,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     onTap: () {
@@ -1432,7 +1432,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1464,7 +1464,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1481,7 +1481,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     value: _selectedLv3,
@@ -1513,7 +1513,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1526,7 +1526,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1543,7 +1543,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     onTap: () {
@@ -1574,7 +1574,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1606,7 +1606,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1623,7 +1623,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     value: _selectedLv4,
@@ -1653,7 +1653,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1666,7 +1666,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1683,7 +1683,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     onTap: () {
@@ -1712,7 +1712,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1744,7 +1744,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1761,7 +1761,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     value: _selectedLv5,
@@ -1787,7 +1787,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1800,7 +1800,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     decoration: const InputDecoration(
                                       errorStyle: TextStyle(
                                         fontWeight: FontWeight.normal,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                         fontSize: 10.0,
                                       ),
                                       enabledBorder: UnderlineInputBorder(
@@ -1817,7 +1817,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                       'โปรดระบุ',
                                       style: TextStyle(
                                         fontSize: 15.00,
-                                        fontFamily: 'Sarabun',
+                                        fontFamily: 'Kanit',
                                       ),
                                     ),
                                     onTap: () {
@@ -1842,7 +1842,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                           item['title'],
                                           style: const TextStyle(
                                             fontSize: 15.00,
-                                            fontFamily: 'Sarabun',
+                                            fontFamily: 'Kanit',
                                             color: Color(
                                               0xFF9A1120,
                                             ),
@@ -1877,7 +1877,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     fontSize: 18.0,
                                     color: Colors.white,
                                     fontWeight: FontWeight.normal,
-                                    fontFamily: 'Sarabun',
+                                    fontFamily: 'Kanit',
                                   ),
                                 ),
                               ),
@@ -1918,7 +1918,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                                     fontSize: 18.0,
                                     color: Colors.white,
                                     fontWeight: FontWeight.normal,
-                                    fontFamily: 'Sarabun',
+                                    fontFamily: 'Kanit',
                                   ),
                                 ),
                               ),
@@ -1938,7 +1938,7 @@ print('----------${result['objectData'][0]['birthDay']}');
               'ข้อมูลผู้ใช้งาน',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -1959,7 +1959,7 @@ print('----------${result['objectData'][0]['birthDay']}');
               'ข้อมูลส่วนตัว',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -1991,7 +1991,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             //     decoration: InputDecoration(
             //       errorStyle: TextStyle(
             //         fontWeight: FontWeight.normal,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //         fontSize: 10.0,
             //       ),
             //       enabledBorder: UnderlineInputBorder(
@@ -2006,7 +2006,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             //       'กรุณาเลือกคำนำหน้า',
             //       style: TextStyle(
             //         fontSize: 15.00,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //       ),
             //     ),
             //     value: _selectedPrefixName != '' ? _selectedPrefixName : '',
@@ -2022,7 +2022,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             //           prefixName,
             //           style: TextStyle(
             //             fontSize: 15.00,
-            //             fontFamily: 'Sarabun',
+            //             fontFamily: 'Kanit',
             //             color: Color(
             //               0xFF9A1120,
             //             ),
@@ -2067,7 +2067,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                   style: const TextStyle(
                     // color: Color(0xFF9A1120),
                     fontWeight: FontWeight.normal,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 15.0,
                   ),
                   decoration: InputDecoration(
@@ -2082,7 +2082,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                     ),
                     errorStyle: const TextStyle(
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontSize: 10.0,
                     ),
                   ),
@@ -2152,7 +2152,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2167,7 +2167,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'เพศ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedSex,
@@ -2187,7 +2187,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2200,7 +2200,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2215,7 +2215,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'เพศ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       // value: _selectedSex,
@@ -2235,7 +2235,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2291,7 +2291,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2307,7 +2307,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedProvince,
@@ -2334,7 +2334,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2347,7 +2347,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2363,7 +2363,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onTap: () {
@@ -2389,7 +2389,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2417,7 +2417,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2433,7 +2433,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedDistrict,
@@ -2458,7 +2458,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2471,7 +2471,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2487,7 +2487,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onTap: () {
@@ -2511,7 +2511,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2539,7 +2539,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2555,7 +2555,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedSubDistrict,
@@ -2578,7 +2578,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2591,7 +2591,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2607,7 +2607,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onTap: () {
@@ -2629,7 +2629,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['title'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2657,7 +2657,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2673,7 +2673,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedPostalCode,
@@ -2693,7 +2693,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['postCode'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2706,7 +2706,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                       decoration: const InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -2722,7 +2722,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onTap: () {
@@ -2741,7 +2741,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                             item['postCode'],
                             style: const TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF9A1120,
                               ),
@@ -2778,7 +2778,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                         fontSize: 18.0,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                       ),
                     ),
                   ),
@@ -2800,7 +2800,7 @@ print('----------${result['objectData'][0]['birthDay']}');
       decoration: const InputDecoration(
         errorStyle: TextStyle(
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
           fontSize: 10.0,
         ),
         enabledBorder: UnderlineInputBorder(
@@ -2814,7 +2814,7 @@ print('----------${result['objectData'][0]['birthDay']}');
         title,
         style: const TextStyle(
           fontSize: 15.00,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       value: selected,
@@ -2830,7 +2830,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             item['title'],
             style: const TextStyle(
               fontSize: 15.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Color(
                 0xFF9A1120,
               ),
@@ -2850,7 +2850,7 @@ print('----------${result['objectData'][0]['birthDay']}');
       decoration: const InputDecoration(
         errorStyle: TextStyle(
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
           fontSize: 10.0,
         ),
         enabledBorder: UnderlineInputBorder(
@@ -2865,7 +2865,7 @@ print('----------${result['objectData'][0]['birthDay']}');
         title,
         style: const TextStyle(
           fontSize: 15.00,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       // value: _selected,
@@ -2881,7 +2881,7 @@ print('----------${result['objectData'][0]['birthDay']}');
             item['title'],
             style: const TextStyle(
               fontSize: 15.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Color(
                 0xFF9A1120,
               ),
@@ -2922,7 +2922,7 @@ print('----------${result['objectData'][0]['birthDay']}');
                 fontSize: 12.0,
                 color: Color(0xFF9A1120),
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),

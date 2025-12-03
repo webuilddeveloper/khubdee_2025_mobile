@@ -298,7 +298,7 @@ class _NotificationList extends State<NotificationList> {
   }
 
   void goBack() async {
-    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 
   @override
@@ -310,6 +310,7 @@ class _NotificationList extends State<NotificationList> {
       appBar: header(
         context,
         () => goBack(),
+        isBackShow: false,
         title: widget.title,
         isButtonRight: true,
         rightButton: () => _handleClickMe(),
@@ -382,7 +383,7 @@ class _NotificationList extends State<NotificationList> {
                               style: TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.normal,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                               ),
                             ),
                           ),
@@ -496,7 +497,7 @@ class _NotificationList extends State<NotificationList> {
                           '${model['title']}',
                           style: TextStyle(
                             fontSize: (height * 2) / 100,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                             fontWeight: FontWeight.normal,
                             color: const Color(0xFFFF7514),
                           ),
@@ -516,7 +517,7 @@ class _NotificationList extends State<NotificationList> {
                     '${dateStringToDate(model['createDate'])}',
                     style: TextStyle(
                       fontSize: (height * 1.7) / 100,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontWeight: FontWeight.normal,
                       color: Colors.black,
                     ),
@@ -543,7 +544,7 @@ class _NotificationList extends State<NotificationList> {
                 'อ่านทั้งหมด',
                 style: TextStyle(
                   fontSize: 15.0,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   fontWeight: FontWeight.normal,
                   color: Colors.lightBlue,
                 ),
@@ -569,7 +570,7 @@ class _NotificationList extends State<NotificationList> {
                 'ลบทั้งหมด',
                 style: TextStyle(
                   fontSize: 15.0,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   fontWeight: FontWeight.normal,
                   color: Colors.red,
                 ),
@@ -597,7 +598,7 @@ class _NotificationList extends State<NotificationList> {
               'ยกเลิก',
               style: TextStyle(
                 fontSize: 15.0,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.normal,
                 color: Colors.lightBlue,
               ),

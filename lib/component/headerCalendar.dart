@@ -6,6 +6,7 @@ headerCalendar(
   bool showCalendar, {
   String title = '',
   Function? rightButton,
+  bool isBackShow = true
 }) {
   return AppBar(
     centerTitle: true,
@@ -31,11 +32,11 @@ headerCalendar(
       style: TextStyle(
         fontSize: 15,
         fontWeight: FontWeight.normal,
-        fontFamily: 'Sarabun',
+        fontFamily: 'Kanit',
         color: Colors.white,
       ),
     ),
-    leading: InkWell(
+    leading: isBackShow ? InkWell(
       onTap: () => functionGoBack(),
       child: Container(
         child: Image.asset(
@@ -45,7 +46,7 @@ headerCalendar(
           height: 40,
         ),
       ),
-    ),
+    ) : Container(),
     actions: <Widget>[
       Container(
         child: Container(

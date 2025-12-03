@@ -99,16 +99,16 @@ class _UserInformationPageState extends State<UserInformationPage> {
                     alignment: Alignment.topLeft,
                     width: 80,
                     height: 60,
-                    child: InkWell(
-                      onTap: () => _goBack(),
-                      child: Container(
-                        margin: const EdgeInsets.all(17),
-                        child: Image.asset(
-                          'assets/icons/arrow_left_1.png',
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    // child: InkWell(
+                    //   onTap: () => _goBack(),
+                    //   child: Container(
+                    //     margin: const EdgeInsets.all(17),
+                    //     child: Image.asset(
+                    //       'assets/icons/arrow_left_1.png',
+                    //       color: Colors.white,
+                    //     ),
+                    //   ),
+                    // ),
                   ),
                 ],
               ),
@@ -160,7 +160,7 @@ class _UserInformationPageState extends State<UserInformationPage> {
                         child: Text(
                           model['firstName'] + ' ' + model['lastName'],
                           style: const TextStyle(
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                             fontSize: 25.0,
                             color: Colors.white,
                           ),
@@ -374,7 +374,7 @@ class _UserInformationPageState extends State<UserInformationPage> {
                             child: const Text(
                               'ออกจากระบบ',
                               style: TextStyle(
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 fontSize: 15,
                                 color: Colors.red,
                               ),
@@ -423,7 +423,7 @@ class _UserInformationPageState extends State<UserInformationPage> {
             child: Text(
               title,
               style: const TextStyle(
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 15.0,
                 color: Color(0xFF4A4A4A),
               ),
