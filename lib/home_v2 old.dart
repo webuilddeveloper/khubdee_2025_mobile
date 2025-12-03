@@ -14,6 +14,10 @@ import 'package:KhubDeeDLT/login.dart';
 import 'package:KhubDeeDLT/pages/blank_page/blank_loading.dart';
 import 'package:KhubDeeDLT/pages/blank_page/toast_fail.dart';
 import 'package:KhubDeeDLT/pages/dispute_an_allegation.dart';
+import 'package:KhubDeeDLT/pages/training/e_learning_courses.dart';
+import 'package:KhubDeeDLT/pages/training/upskill_courses.dart';
+import 'package:KhubDeeDLT/pages/training/e_certificate_list.dart';
+import 'package:KhubDeeDLT/pages/privilegeSpecial/privilege_special_list.dart';
 import 'package:KhubDeeDLT/pages/reporter/reporte r_main.dart';
 import 'package:KhubDeeDLT/pages/warning/warning_list.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +43,14 @@ import 'pages/event_calendar/event_calendar_main.dart';
 import 'pages/knowledge/knowledge_list.dart';
 import 'pages/main_popup/dialog_main_popup.dart';
 
-class HomePageV2 extends StatefulWidget {
-  const HomePageV2({super.key});
+class HomePageV2Old extends StatefulWidget {
+  const HomePageV2Old({super.key});
 
   @override
-  _HomePageV2State createState() => _HomePageV2State();
+  _HomePageV2OldState createState() => _HomePageV2OldState();
 }
 
-class _HomePageV2State extends State<HomePageV2> {
+class _HomePageV2OldState extends State<HomePageV2Old> {
   final storage = new FlutterSecureStorage();
   late DateTime currentBackPressTime;
 
@@ -83,41 +87,9 @@ class _HomePageV2State extends State<HomePageV2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      // backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: _buildHeader(),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: ShaderMask(
-              shaderCallback: (rect) {
-                return const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.white, // เห็นภาพชัด
-                    Colors.transparent, // ค่อย ๆ หายไป
-                  ],
-                ).createShader(rect);
-              },
-              blendMode: BlendMode.dstIn,
-              child: Image.asset(
-                'assets/bg_header.png',
-                width: double.infinity,
-                fit: BoxFit.cover,
-                height: 250, // ปรับความยาวของ fade ได้
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: kToolbarHeight + 64),
-            child: WillPopScope(child: _buildBackground(), onWillPop: confirmExit),
-          ),
-        ],
-      ),
+      body: WillPopScope(child: _buildBackground(), onWillPop: confirmExit),
     );
   }
 
@@ -268,16 +240,15 @@ class _HomePageV2State extends State<HomePageV2> {
     return PreferredSize(
       preferredSize: Size.fromHeight(40 + MediaQuery.of(context).padding.top),
       child: AppBar(
-        backgroundColor: Colors.transparent,
         flexibleSpace: Container(
           width: double.infinity,
           // height: double.infinity,
-          // decoration: const BoxDecoration(
-          //   image: DecorationImage(
-          //     image: AssetImage('assets/bg_header.png'),
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg_header.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -309,58 +280,58 @@ class _HomePageV2State extends State<HomePageV2> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  // InkWell(
-                  //   onTap: () async {
-                  //     final msg = await Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //         builder: (context) => UserInformationPage(),
-                  //       ),
-                  //     );
+                  InkWell(
+                    onTap: () async {
+                      final msg = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserInformationPage(),
+                        ),
+                      );
 
-                  //     if (!msg) {
-                  //       _read();
-                  //     }
-                  //   },
-                  //   child: FutureBuilder<dynamic>(
-                  //     future: _futureProfile,
-                  //     builder: (
-                  //       BuildContext context,
-                  //       AsyncSnapshot<dynamic> snapshot,
-                  //     ) {
-                  //       if (snapshot.hasData) {
-                  //         if (profileCode == snapshot.data['code']) {
-                  //           return Container(
-                  //             height: 50,
-                  //             padding: const EdgeInsets.only(right: 10),
-                  //             child: checkAvatar(
-                  //               context,
-                  //               '${snapshot.data['imageUrl']}',
-                  //             ),
-                  //           );
-                  //         } else {
-                  //           return Container(
-                  //             height: 30,
-                  //             child: Image.asset(
-                  //               'assets/images/user_not_found.png',
-                  //               color: Colors.white,
-                  //             ),
-                  //           );
-                  //         }
-                  //       } else if (snapshot.hasError) {
-                  //         return const BlankLoading();
-                  //       } else {
-                  //         return SizedBox(
-                  //           height: 30,
-                  //           child: Image.asset(
-                  //             'assets/images/user_not_found.png',
-                  //             color: Colors.white,
-                  //           ),
-                  //         );
-                  //       }
-                  //     },
-                  //   ),
-                  // ),
+                      if (!msg) {
+                        _read();
+                      }
+                    },
+                    child: FutureBuilder<dynamic>(
+                      future: _futureProfile,
+                      builder: (
+                        BuildContext context,
+                        AsyncSnapshot<dynamic> snapshot,
+                      ) {
+                        if (snapshot.hasData) {
+                          if (profileCode == snapshot.data['code']) {
+                            return Container(
+                              height: 50,
+                              padding: const EdgeInsets.only(right: 10),
+                              child: checkAvatar(
+                                context,
+                                '${snapshot.data['imageUrl']}',
+                              ),
+                            );
+                          } else {
+                            return Container(
+                              height: 30,
+                              child: Image.asset(
+                                'assets/images/user_not_found.png',
+                                color: Colors.white,
+                              ),
+                            );
+                          }
+                        } else if (snapshot.hasError) {
+                          return const BlankLoading();
+                        } else {
+                          return SizedBox(
+                            height: 30,
+                            child: Image.asset(
+                              'assets/images/user_not_found.png',
+                              color: Colors.white,
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -524,7 +495,7 @@ class _HomePageV2State extends State<HomePageV2> {
                   builder:
                       (context) =>
                       // PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
-                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: false),
+                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: true),
                 ),
               );
             },

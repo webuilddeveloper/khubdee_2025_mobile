@@ -358,14 +358,15 @@ class _PrivilegeMain extends State<PrivilegeMain> {
   }
 
   void goBack() async {
-    if (widget.fromPolicy) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => HomePageV2()),
-        (Route<dynamic> route) => false,
-      );
-    } else {
-      Navigator.pop(context, false);
-    }
+    // if (widget.fromPolicy) {
+    //   Navigator.of(context).pushAndRemoveUntil(
+    //     MaterialPageRoute(builder: (context) => HomePageV2()),
+    //     (Route<dynamic> route) => false,
+    //   );
+    // } else {
+    //   Navigator.pop(context, false);
+    // }
+    Navigator.pop(context, false);
     // Navigator.of(context).push(
     //   MaterialPageRoute(
     //     builder: (context) => Menu(),

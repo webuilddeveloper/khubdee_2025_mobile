@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:KhubDeeDLT/menu.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -48,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
     if (value != null && value != '') {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (context) => HomePageV2(),
+          builder: (context) => MenuMain(),
         ),
         (Route<dynamic> route) => false,
       );
