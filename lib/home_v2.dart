@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
+import 'package:KhubDeeDLT/fund/fund-recommend.dart';
 import 'package:KhubDeeDLT/pages/behavior_points.dart';
 import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';
 import 'package:KhubDeeDLT/pages/profile/drivers_info.dart';
@@ -270,8 +271,8 @@ class _HomePageV2State extends State<HomePageV2> {
         const SizedBox(height: 15),
         _buildMenuGroup(),
         const SizedBox(height: 15),
-        cardMenu(
-          imageMenuUrl: 'assets/icons/menu_bottom_1.png',
+        cardMenu2(
+          imageMenuUrl: 'assets/icons/menu_bottom_3.png',
           onTap: () {
             Navigator.push(
               context,
@@ -388,6 +389,37 @@ class _HomePageV2State extends State<HomePageV2> {
 
   cardMenu({required VoidCallback onTap, required String imageMenuUrl}) {
     return GestureDetector(onTap: onTap, child: Image.asset(imageMenuUrl));
+  }
+
+  cardMenu2({required VoidCallback onTap, required String imageMenuUrl}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        children: [
+          
+
+          Image.asset(imageMenuUrl),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Color(0xFF4A0768),
+                borderRadius: BorderRadius.only(topRight: Radius.circular(16), bottomLeft: Radius.circular(16))
+              ),
+              child: Text(
+                'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500
+                ),
+                textAlign: TextAlign.center,
+              ))),
+        ],
+      ),
+    );
   }
 
   Widget _buildMenuGroup() {
@@ -1226,10 +1258,10 @@ class _HomePageV2State extends State<HomePageV2> {
             // ครั้งแรกหลังเปิดแอพ
             isFirstFund = false;
 
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => FundRecommend()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FundRecommend()),
+            );
           } else {
             Navigator.push(
               context,
