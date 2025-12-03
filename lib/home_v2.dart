@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
-import 'package:KhubDeeDLT/fund/fund-list.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
 import 'package:KhubDeeDLT/pages/behavior_points.dart';
 import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';

@@ -41,7 +41,6 @@ import 'package:KhubDeeDLT/component/carousel_form.dart';
 import 'pages/event_calendar/event_calendar_main.dart';
 import 'pages/knowledge/knowledge_list.dart';
 import 'pages/main_popup/dialog_main_popup.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageV2Old extends StatefulWidget {
   const HomePageV2Old({super.key});
