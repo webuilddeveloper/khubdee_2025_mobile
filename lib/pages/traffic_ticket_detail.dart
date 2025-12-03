@@ -1,20 +1,18 @@
 import 'package:KhubDeeDLT/component/gallery_view.dart';
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/pages/appeal.dart';
+import 'package:KhubDeeDLT/pages/blank_page/blank_loading.dart';
 import 'package:KhubDeeDLT/pages/blank_page/toast_fail.dart';
 import 'package:KhubDeeDLT/pages/qr_payment.dart';
-import 'package:KhubDeeDLT/shared/api_provider.dart';
 import 'package:KhubDeeDLT/shared/extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/header.dart';
 
 class TrafficTicketDetail extends StatefulWidget {
-  TrafficTicketDetail({Key? key, required this.cardID, required this.ticketID})
-    : super(key: key);
+  final dynamic model;
 
-  final String cardID;
-  final String ticketID;
+  const TrafficTicketDetail({Key? key, required this.model}) : super(key: key);
 
   @override
   _TrafficTicketDetailPageState createState() =>
@@ -22,20 +20,8 @@ class TrafficTicketDetail extends StatefulWidget {
 }
 
 class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
-  late Future<dynamic> futureModel;
-  String imageTemp =
-      'https://instagram.fbkk5-6.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.180.1440.1440a/s640x640/133851894_231577355006812_2104786467046058604_n.jpg?_nc_ht=instagram.fbkk5-6.fna.fbcdn.net&_nc_cat=1&_nc_ohc=t-y0eYG-FkYAX8VbpYj&tp=1&oh=d5fed0e8846f1056c70836b6fce223eb&oe=601E2B77';
-
-  @override
-  void initState() {
-    super.initState();
-
-    read();
-  }
-
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     super.dispose();
   }
 
@@ -45,250 +31,305 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
       appBar: header(context, () {
         Navigator.pop(context);
       }, title: 'รายละเอียดใบสั่ง'),
-      backgroundColor: Color(0xFFF5F8FB),
-      body: _futureBuilder(),
-    );
-  }
-
-  _futureBuilder() {
-    return FutureBuilder<dynamic>(
-      future: futureModel, // function where you call your api
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasData) {
-          if (snapshot.data.length > 0)
-            return _screen(snapshot.data[0]);
-          else
-            return Container();
-        } else if (snapshot.hasError) {
-          return Container();
-        } else {
-          return Container();
-        }
-      },
+      backgroundColor: const Color(0xFFF5F8FB),      
+      body: _screen(widget.model),      
+      bottomNavigationBar: _buildBottomButtons(widget.model),
     );
   }
 
   _screen(dynamic model) {
+    if (model == null) {
+      return const Center(child: Text('ไม่พบข้อมูลใบสั่ง'));
+    }
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 40,
-            width: double.infinity,
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            color: Color(0xFFEDF0F3),
-            child: const Text(
-              'รายละเอียดใบสั่ง',
-              style: TextStyle(fontFamily: 'Sarabun', fontSize: 15),
-            ),
-          ),
-          _textRow(
-            title: 'วันที่กระทำความผิด',
-            value: dateStringToDate(model['ticket_DATE']),
-          ),
-          _textRow(title: 'เลขที่ใบสั่ง', value: model['org_CODE']),
-          _textRow(title: 'หมายเลขหนังสือ', value: 'xxxxxxxxxxxxxxx'),
-          _textRow(title: 'ชนิดยานภาหนะ', value: 'รถยนต์ส่วนบุคคล'),
-          _textRow(title: 'หมายเลขทะเบียน', value: model['plate']),
-          Container(height: 5, color: Colors.white),
-          _textRow(
-            title: 'ข้อหา',
-            value: ' - ' + model['accuse1_CODE'],
-            maxLine: 10,
-            spaceBetween: 30,
-          ),
-          if (model['accuse2_CODE'] != null)
-            _textRow(
-              title: '',
-              value: ' - ' + model['accuse2_CODE'],
-              maxLine: 10,
-              spaceBetween: 30,
-            ),
-          if (model['accuse3_CODE'] != null)
-            _textRow(
-              title: '',
-              value: ' - ' + model['accuse3_CODE'],
-              maxLine: 10,
-              spaceBetween: 30,
-            ),
-          if (model['accuse4_CODE'] != null)
-            _textRow(
-              title: '',
-              value: ' - ' + model['accuse4_CODE'],
-              maxLine: 10,
-              spaceBetween: 30,
-            ),
-          if (model['accuse5_CODE'] != null)
-            _textRow(
-              title: '',
-              value: ' - ' + model['accuse5_CODE'],
-              maxLine: 10,
-              spaceBetween: 30,
-            ),
-          Container(height: 5, color: Colors.white),
-          _textRow(title: 'หน่วยงานที่ออกใบสั่ง', value: model['org_ABBR']),
-          _textRow(title: 'ชื่อผู้ขับขี่', value: model['fullname']),
-          _textRow(title: 'เลขที่ใบอนุญาตขับขี่', value: model['card_ID']),
-          const SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  List<ImageProvider> photos = [];
-                  if (model['pic1'] != null && model['pic1'] != '')
-                    photos.add(NetworkImage(model['pic1']));
-                  if (model['pic2'] != null && model['pic2'] != '')
-                    photos.add(NetworkImage(model['pic2']));
-                  if (model['pic3'] != null && model['pic3'] != '')
-                    photos.add(NetworkImage(model['pic3']));
-                  if (photos.length > 0) {
-                    showCupertinoDialog(
-                      context: context,
-                      builder: (context) {
-                        return ImageViewer(
-                          initialIndex: 0,
-                          imageProviders: photos,
-                        );
-                      },
-                    );
-                  } else {
-                    toastFail(context, text: 'ไม่พบรูปภาพ');
-                  }
-                },
-                child: Container(
-                  width: 168,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 0,
-                        blurRadius: 2,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: const Text(
-                    'ดูรูปการกระทำความผิด',
-                    style: TextStyle(
-                      fontFamily: 'Sarabun',
-                      fontSize: 13,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 20),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              QRPayment(code: model['code'], back: false),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 168,
-                  height: 40,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFEBC22B),
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 0,
-                        blurRadius: 2,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: const Text(
-                    'ชำระค่าปรับ',
-                    style: TextStyle(
-                      fontFamily: 'Sarabun',
-                      fontSize: 13,
-                      color: Color(0xFF4E2B68),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          // SizedBox(height: 80),
-          // InkWell(
-          //   onTap: () {
-          //     showDialog(
-          //       context: context,
-          //       builder: (BuildContext context) {
-          //         return dialogVerification(model);
-          //       },
-          //     );
-          //   },
-          //   child: const Text(
-          //     'ยื่นอุทธรณ์',
-          //     style: TextStyle(
-          //       fontFamily: 'Sarabun',
-          //       fontSize: 13,
-          //       color: Color(0xFF9C0000),
-          //       decoration: TextDecoration.underline,
-          //     ),
-          //   ),
-          // ),
-          SizedBox(height: 40),
+          _buildInfoCard(model),
+          const SizedBox(height: 16),
+          _buildOffenseCard(model),
+          const SizedBox(height: 16),          
+          _buildFineCard(model),          
+          // const SizedBox(height: 16),
+          // _buildAppealButton(model),
         ],
       ),
     );
   }
 
-  _textRow({
-    String title = '',
-    String value = '',
-    Color titleColor = const Color(0xFF9E9E9E),
-    Color valueColor = const Color(0xFF000000),
-    double valueSize = 13,
-    int maxLine = 1,
-    double spaceBetween = 15,
-  }) {
-    return Container(
-      constraints: BoxConstraints(minHeight: 35),
-      width: double.infinity,
-      color: Colors.white,
-      padding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontFamily: 'Sarabun',
-              fontSize: 13,
-              color: titleColor,
+  Widget _buildInfoCard(dynamic model) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'ข้อมูลใบสั่ง',
+                  style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),
+                if (model['ticket_STATUS'] != null)
+                  statusBox(model['ticket_STATUS']),
+              ],
             ),
-            textAlign: TextAlign.left,
-          ),
-          SizedBox(width: spaceBetween),
-          Expanded(
-            child: Text(
-              value,
+            const Divider(height: 24),
+            _textRow(
+                title: 'เลขที่ใบสั่ง',
+                value: model['ticket_ID'] ?? '-',
+                icon: Icons.receipt_long_outlined),
+            _textRow(
+                title: 'วันที่กระทำผิด',
+                value: dateStringToDate(model['occur_DT']),
+                icon: Icons.calendar_today_outlined),
+            _textRow(
+                title: 'สถานที่',
+                value: model['place'] ?? '-',
+                icon: Icons.location_on_outlined),
+            _textRow(
+                title: 'หน่วยงาน',
+                value: model['org_ABBR'] ?? '-',
+                icon: Icons.account_balance_outlined),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOffenseCard(dynamic model) {
+    final offenses = [];
+    for (int i = 1; i <= 5; i++) {
+      if (model['accuse${i}_CODE'] != null && model['fine$i'] != null) {
+        offenses.add({
+          'title': model['accuse${i}_CODE'],
+          'fine': model['fine$i'],
+        });
+      }
+    }
+
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'รายการข้อหา',
               style: TextStyle(
+                  fontFamily: 'Sarabun',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+            const Divider(height: 24),
+            if (offenses.isEmpty)
+              const Center(child: Text('ไม่พบรายการข้อหา'))
+            else
+              ...offenses.map((offense) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '• ${offense['title']}',
+                          style: const TextStyle(
+                              fontFamily: 'Sarabun', fontSize: 14),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Text(
+                        '${offense['fine']} บาท',
+                        style: const TextStyle(
+                            fontFamily: 'Sarabun',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFineCard(dynamic model) {
+    return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'ค่าปรับทั้งหมด',
+              style: TextStyle(
+                  fontFamily: 'Sarabun',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              '${model['fine_AMT'] ?? '0'} บาท',
+              style: const TextStyle(
                 fontFamily: 'Sarabun',
-                fontSize: valueSize,
-                color: valueColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFFFF7B06),
               ),
-              maxLines: maxLine,
-              textAlign: TextAlign.right,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _textRow(
+      {required String title, required String value, required IconData icon}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 20, color: Theme.of(context).primaryColor),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                      fontFamily: 'Sarabun', fontSize: 12, color: Colors.grey),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  value,
+                  style: const TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 14,
+                      color: Colors.black87),
+                ),
+              ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBottomButtons(dynamic model) {
+    bool isPaid = model['ticket_STATUS'] == '3';
+
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black12, blurRadius: 10, offset: Offset(0, -2))
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: OutlinedButton.icon(
+                icon: const Icon(Icons.image_outlined),
+                label: const Text('ดูรูปภาพ'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Theme.of(context).primaryColor,
+                  side: BorderSide(color: Theme.of(context).primaryColor),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                ),
+                onPressed: () {
+                  List<ImageProvider> photos = [];
+                  if (model['pic1'] != null && model['pic1'] != '') {
+                    photos.add(NetworkImage(model['pic1']));
+                  }
+                  if (model['pic2'] != null && model['pic2'] != '') {
+                    photos.add(NetworkImage(model['pic2']));
+                  }
+                  if (model['pic3'] != null && model['pic3'] != '') {
+                    photos.add(NetworkImage(model['pic3']));
+                  }
+
+                  if (photos.isNotEmpty) {
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (context) => ImageViewer(
+                          imageProviders: photos, initialIndex: 0),
+                    );
+                  } else {
+                    toastFail(context, text: 'ไม่พบรูปภาพ');
+                  }
+                },
+              ),
+            ),
+            if (!isPaid) ...[
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.qr_code_scanner),
+                  label: const Text('ชำระค่าปรับ'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: const Color(0xFFEBC22B),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    elevation: 2,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            QRPayment(code: model['code'], back: false),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ]
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAppealButton(dynamic model) {
+    return Center(
+      child: TextButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => dialogVerification(model),
+          );
+        },
+        child: const Text(
+          'ยื่นอุทธรณ์',
+          style: TextStyle(
+            fontFamily: 'Sarabun',
+            fontSize: 14,
+            color: Color(0xFF9C0000),
+            decoration: TextDecoration.underline,
+          ),
+        ),
       ),
     );
   }
@@ -304,7 +345,9 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
           color: const Color(0xFFFFFF),
         ),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10,),
+          padding: EdgeInsets.symmetric(
+            horizontal: 10,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.white,
@@ -433,64 +476,39 @@ class _TrafficTicketDetailPageState extends State<TrafficTicketDetail> {
     );
   }
 
-  // function
-  read() async {
-    // futureModel = postDio(getTicketDetailApi, {
-    //   "createBy": "createBy",
-    //   "updateBy": "updateBy",
-    //   "card_id": widget.cardID,
-    //   "ticket_id": widget.ticketID,
-    // });
-    futureModel = Future.value([
-      {
-        'ticket_DATE': '20250301',
-        'org_CODE': 'TICKET001',
-        'plate': 'กข1234',
-        'accuse1_CODE': 'Speeding',
-        'accuse2_CODE': 'Red light violation',
-        'accuse3_CODE': null,
-        'accuse4_CODE': null,
-        'accuse5_CODE': null,
-        'org_ABBR': 'Traffic Police',
-        'fullname': 'John Doe',
-        'card_ID': 'AB1234567890',
-        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
-        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
-        'code': 'QR001',
-      },
-      {
-        'ticket_DATE': '20250303',
-        'org_CODE': 'TICKET002',
-        'plate': 'ขค5678',
-        'accuse1_CODE': 'Illegal parking',
-        'accuse2_CODE': null,
-        'accuse3_CODE': null,
-        'accuse4_CODE': null,
-        'accuse5_CODE': null,
-        'org_ABBR': 'City Police',
-        'fullname': 'Jane Smith',
-        'card_ID': 'CD9876543210',
-        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
-        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
-        'code': 'QR002',
-      },
-      {
-        'ticket_DATE': '20250305',
-        'org_CODE': 'TICKET003',
-        'plate': 'คข2345',
-        'accuse1_CODE': 'Parking in a no-parking zone',
-        'accuse2_CODE': 'Not wearing a seatbelt',
-        'accuse3_CODE': null,
-        'accuse4_CODE': null,
-        'accuse5_CODE': null,
-        'org_ABBR': 'National Police',
-        'fullname': 'Robert Johnson',
-        'card_ID': 'EF1122334455',
-        'pic1': 'https://scontent.fbkk7-3.fna.fbcdn.net/v/t39.30808-6/497515571_10213427606081207_3266310505784917595_n.jpg?stp=dst-jpg_s1080x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeFjZ32F13s2aVkBR4ihQTJA05mih8pGRGLTmaKHykZEYryFE9AGfuGMyW7aRdLYXGlAb_CEpP2N-LlxoJhfWkkB&_nc_ohc=8mHnMN6VTEgQ7kNvwFQdY33&_nc_oc=Adk0aXMECFN1JQ8jCUvkk9JL86eQrK3opITIngB7wuxphVXmnY7W_i0dTSLo_Z31jVM&_nc_zt=23&_nc_ht=scontent.fbkk7-3.fna&_nc_gid=TrChZUOkrHSlIZa720W2Vw&oh=00_AfgEm4jDqBb_Y5gLHoTlWpznoKjyNnWig1Zq1n-0vxEMRA&oe=69333DBF',
-        'pic2': 'https://f.ptcdn.info/489/058/000/pbh3dw6p5VNKy6ucM9e-o.jpg',
-        'pic3': null,
-        'code': 'QR003',
-      },
-    ]);
+  statusBox(String value) {
+    var status = '';
+    List<Color> colors = [const Color(0xFF07C9A8), const Color(0xFF03996F)];
+    if (value == '1') {
+      status = 'ค้างชำระ';
+      colors = [const Color(0xFFFF2525), const Color(0xFFBC0611)];
+    } else if (value == '2') {
+      status = 'เกินกำหนดแล้วยังไม่ชำระ';
+      colors = [const Color(0xFFFFC200), const Color(0xFFFF7B06)];
+    } else if (value == '3') {
+      status = 'ชำระแล้ว';
+    }
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(horizontal: 7),
+      height: 30,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: colors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Text(
+        status,
+        style: const TextStyle(
+          fontFamily: 'Sarabun',
+          fontSize: 11,
+          color: Colors.white,
+        ),
+        // textAlign: TextAlign.center,
+      ),
+    );
   }
 }

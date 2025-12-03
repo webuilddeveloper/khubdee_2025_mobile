@@ -110,16 +110,16 @@ class _DisputeListPageState extends State<DisputeList> {
   _item(dynamic model) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder:
-                (context) => TrafficTicketDetail(
-                  cardID: model['citizenID'],
-                  ticketID: model['ticketNo'],
-                ),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder:
+        //         (context) => TrafficTicketDetail(
+        //           cardID: model['citizenID'],
+        //           ticketID: model['ticketNo'],
+        //         ),
+        //   ),
+        // );
       },
       child: Container(
         width: 350,
