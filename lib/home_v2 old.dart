@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import 'package:KhubDeeDLT/fund/fund-list.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
+import 'package:KhubDeeDLT/fund/fund-recommend.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
@@ -42,6 +41,7 @@ import 'package:KhubDeeDLT/component/carousel_form.dart';
 import 'pages/event_calendar/event_calendar_main.dart';
 import 'pages/knowledge/knowledge_list.dart';
 import 'pages/main_popup/dialog_main_popup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePageV2Old extends StatefulWidget {
   const HomePageV2Old({super.key});
@@ -71,6 +71,7 @@ class _HomePageV2OldState extends State<HomePageV2Old> {
   bool chkisCard = false;
   bool notShowOnDay = false;
   bool hiddenMainPopUp = false;
+  static bool isFirstFund = true;
 
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
@@ -1509,16 +1510,23 @@ class _HomePageV2OldState extends State<HomePageV2Old> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => FundMain(
-                    title: 'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนน (กปถ.)',
-                  ),
-            ),
-          );
+        onTap: () async {
+          if (isFirstFund) {
+            // ครั้งแรกหลังเปิดแอพ
+            isFirstFund = false;
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FundRecommend()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FundMain(title: 'กองทุน'),
+              ),
+            );
+          }
         },
         child: Container(
           height: 100,

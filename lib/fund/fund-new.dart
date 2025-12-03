@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/key_search.dart';
 import 'package:KhubDeeDLT/component/header.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -303,38 +302,5 @@ class _FundListState extends State<FundList> {
         ),
       ),
     );
-  }
-
-  Color _getCategoryColor(String? category) {
-    switch (category) {
-      case 'ช่วยเหลือผู้พิการ':
-        return Colors.green;
-      case 'ประมูลทะเบียน':
-        return Colors.blue;
-      case 'รางวัล':
-        return Colors.orange;
-      case 'รายงาน':
-        return Colors.blueGrey;
-      case 'โครงการ':
-        return Colors.purple;
-      case 'ความสำเร็จ':
-        return Colors.red;
-      case 'แผนงาน':
-        return Colors.blueGrey;
-      case 'ประกาศ':
-        return Colors.brown;
-      case 'กิจกรรม':
-        return Colors.cyan;
-      case 'เป้าหมาย':
-        return Colors.lightGreen;
-      case 'งานวิจัย':
-        return Colors.indigo;
-      case 'กฎหมาย':
-        return Colors.teal;
-      case 'โครงสร้าง':
-        return Colors.deepPurple;
-      default:
-        return Colors.grey;
-    }
   }
 }

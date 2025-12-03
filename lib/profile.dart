@@ -418,7 +418,7 @@ class _Profile extends State<Profile> {
                 ),
               ),
               Text(
-                '80',
+                '40',
                 style: TextStyle(
                   fontSize: 40.0,
                   color: Colors.white,
