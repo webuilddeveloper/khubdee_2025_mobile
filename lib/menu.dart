@@ -40,7 +40,7 @@ class _MenuMainState extends State<MenuMain> {
       HomePageV2(),
       EventCalendarMain(title: 'ปฏิทินกิจกรรม'),
       NotificationList(title: 'แจ้งเตือน'),
-      UserInformationPage()
+      UserInformationPage(),
       // Profile(model: modelProfile),
       // Profile(model: modelProfile)
     ];
@@ -79,51 +79,49 @@ class _MenuMainState extends State<MenuMain> {
           child: IndexedStack(index: _currentPage, children: pages),
         ),
       ),
-      
+
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(45), topRight: Radius.circular(45)),
-                boxShadow: [
-              BoxShadow(
-                color: Color(0xFF00000026),
-                blurRadius: 15,
-                offset: Offset(-10, -10),
-              ),
-            ],
-              ),
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(45),
+            topRight: Radius.circular(45),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xFF00000026),
+              blurRadius: 15,
+              offset: Offset(-10, -10),
+            ),
+          ],
+        ),
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 20), // ระยะลอยจากขอบ
-        child: 
+        child:
         // ClipRRect(
         //   // borderRadius: BorderRadius.circular(45),
         //   child: BackdropFilter(
         //     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-        //     child: 
-            Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(45),
-                // border: Border.all(
-                //   color: Theme.of(context).primaryColor.withOpacity(0.2),
-                //   width: 1.2,
-                // ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _bottomItem(Icons.home, 0, title: 'หน้าแรก'),
-                  _bottomItem(Icons.card_giftcard, 1, title: 'ปฏิทินกิจกรรม'),
-                  _bottomItem(Icons.notifications, 2, title: 'แจ้งเตือน'),
-                  _bottomItem(
-                    Icons.person,
-                    3,
-                    isImageUrl: true,
-                    title: 'โปรไฟล์',
-                  ),
-                ],
-              ),
-            ),
+        //     child:
+        Container(
+          height: 70,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(45),
+            // border: Border.all(
+            //   color: Theme.of(context).primaryColor.withOpacity(0.2),
+            //   width: 1.2,
+            // ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _bottomItem(Icons.home, 0, title: 'หน้าแรก'),
+              _bottomItem(Icons.calendar_month, 1, title: 'ปฏิทินกิจกรรม'),
+              _bottomItem(Icons.notifications, 2, title: 'แจ้งเตือน'),
+              _bottomItem(Icons.person, 3, isImageUrl: true, title: 'โปรไฟล์'),
+            ],
+          ),
+        ),
         //   ),
         // ),
       ),
@@ -211,7 +209,13 @@ class _MenuMainState extends State<MenuMain> {
                   size: 30,
                   color: isSelected ? Color(0xFF4A0768) : Color(0xFF877573),
                 ),
-            Text(title, style: TextStyle(fontSize: 12, color: isSelected ? Color(0xFF4A0768) : Color(0xFF877573))),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 12,
+                color: isSelected ? Color(0xFF4A0768) : Color(0xFF877573),
+              ),
+            ),
           ],
         ),
       ),

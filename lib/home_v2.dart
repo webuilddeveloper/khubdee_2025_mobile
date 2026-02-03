@@ -271,16 +271,22 @@ class _HomePageV2State extends State<HomePageV2> {
         const SizedBox(height: 15),
         _buildMenuGroup(),
         const SizedBox(height: 15),
-        cardMenu2(
-          imageMenuUrl: 'assets/icons/menu_bottom_3.png',
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TrainingMain()),
-            );
-          },
+
+        SizedBox(
+          height: 120,
+          child: cardMenu2(
+            title: 'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+            imageMenuUrl: 'assets/icons/menu_bottom_3.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TrainingMain()),
+              );
+            },
+          ),
         ),
-        // const SizedBox(height: 15),
+
+        const SizedBox(height: 15),
         cardMenu(
           imageMenuUrl: 'assets/icons/menu_bottom_2.png',
           onTap: () {
@@ -294,8 +300,29 @@ class _HomePageV2State extends State<HomePageV2> {
           },
         ),
         const SizedBox(height: 15),
+        SizedBox(
+          height: 120,
+          child: cardMenu2(
+            title: 'จุดบริการ',
+            imageMenuUrl: 'assets/background/backgroundUserInfo.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => PoiMain(title: 'จุดบริการ', latLng: latLng),
+                ),
+              );
+            },
+          ),
+        ),
+
+        const SizedBox(height: 15),
+
+        const SizedBox(height: 15),
         _buildcardFund(),
         const SizedBox(height: 15),
+
         _buildRotation(),
         const SizedBox(height: 15),
         _buildFooter(),
@@ -362,27 +389,27 @@ class _HomePageV2State extends State<HomePageV2> {
             ],
           ),
         ),
-        Container(
-          // color: Color(0xFF000070),
-          // padding: EdgeInsets.symmetric(horizontal: 5),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(left: 10),
-          child: const Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'ดูทั้งหมด',
-                style: TextStyle(
-                  fontFamily: 'Kanit',
-                  color: Color(0xFF808080),
-                  // fontSize: 10,
-                  // color: Colors.white,
-                ),
-              ),
-              Icon(Icons.arrow_forward_ios, size: 13, color: Color(0xFF808080)),
-            ],
-          ),
-        ),
+        // Container(
+        //   // color: Color(0xFF000070),
+        //   // padding: EdgeInsets.symmetric(horizontal: 5),
+        //   alignment: Alignment.center,
+        //   padding: const EdgeInsets.only(left: 10),
+        //   child: const Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     children: [
+        //       Text(
+        //         'ดูทั้งหมด ',
+        //         style: TextStyle(
+        //           fontFamily: 'Kanit',
+        //           color: Color(0xFF808080),
+        //           // fontSize: 10,
+        //           // color: Colors.white,
+        //         ),
+        //       ),
+        //       Icon(Icons.arrow_forward_ios, size: 13, color: Color(0xFF808080)),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
@@ -391,33 +418,50 @@ class _HomePageV2State extends State<HomePageV2> {
     return GestureDetector(onTap: onTap, child: Image.asset(imageMenuUrl));
   }
 
-  cardMenu2({required VoidCallback onTap, required String imageMenuUrl}) {
+  cardMenu2({
+    required VoidCallback onTap,
+    required String imageMenuUrl,
+    required String title,
+  }) {
     return GestureDetector(
       onTap: onTap,
-      child: Stack(
-        children: [
-          
-
-          Image.asset(imageMenuUrl),
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Color(0xFF4A0768),
-                borderRadius: BorderRadius.only(topRight: Radius.circular(16), bottomLeft: Radius.circular(16))
-              ),
-              child: Text(
-                'เรียนรู้และอบรม \n(Training & Upskill Academy)',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          16,
+        ), // ⭐ ป้องกันรูปหลุดออกนอกมุมโค้ง
+        child: Stack(
+          children: [
+            Image.asset(
+              imageMenuUrl,
+              fit: BoxFit.cover, // ⭐ ทำให้ภาพครอบพื้นที่
+              width: double.infinity,
+              height: double.infinity,
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Color(0xFF4A0768),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ))),
-        ],
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -747,7 +791,7 @@ class _HomePageV2State extends State<HomePageV2> {
           height: 351,
           // width: MediaQuery.of(context).size.width / 1.3,
           // height: MediaQuery.of(context).size.height / 2.5,
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: const Color(0xFFFFFF),
           ),

@@ -139,7 +139,7 @@ class _FunndMyMainState extends State<FundRecommend> {
                     ],
                   ),
                   child: const Text(
-                    'สนใจสมัครกองทุน',
+                    'เข้าสู่บริการกองทุน',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
