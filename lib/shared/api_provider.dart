@@ -399,8 +399,8 @@ createStorageApp({dynamic model, required String category}) {
 }
 
 logout(BuildContext context) async {
-  final storage = new FlutterSecureStorage();
-  storage.delete(key: 'profileCode2');
+  final storage = FlutterSecureStorage();
+  storage.delete(key: 'token');
   var profileCategory = await storage.read(key: 'profileCategory');
   if (profileCategory != '' && profileCategory != null) {
     switch (profileCategory) {
