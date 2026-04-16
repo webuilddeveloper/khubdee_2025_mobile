@@ -125,9 +125,9 @@ PODS:
     - GTMSessionFetcher/Core
   - image_picker_ios (0.0.1):
     - Flutter
-  - LineSDKSwift (5.13.0):
-    - LineSDKSwift/Core (= 5.13.0)
-  - LineSDKSwift/Core (5.13.0)
+  - LineSDKSwift (5.16.0):
+    - LineSDKSwift/Core (= 5.16.0)
+  - LineSDKSwift/Core (5.16.0)
   - OrderedSet (6.0.3)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -260,7 +260,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
-  LineSDKSwift: 6dbcd24677d19dce2cee10e433f9d040b9c11cb9
+  LineSDKSwift: ebb8d713640ff33e7353d3c82e129cddfc8f527c
   OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
