@@ -1,13 +1,15 @@
-import 'package:KhubDeeDLT/fund/fund-list.dart';
 import 'package:KhubDeeDLT/fund/fund-my.dart';
+import 'package:KhubDeeDLT/fund/fund-new.dart';
+import 'package:KhubDeeDLT/fund/fund-recommend-List.dart';
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/header.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 
 class FundMain extends StatelessWidget {
-  FundMain({super.key, required this.title});
-  String title;
+  final String title;
+
+  const FundMain({super.key, required this.title});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,16 +22,6 @@ class FundMain extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildFundButton(
-              title: 'กองทุนของฉัน',
-              icon: Icons.school,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyFundPage()),
-                );
-              },
-            ),
             const SizedBox(height: 10),
             _buildFundButton(
               title: 'ข่าวสารกองทุน',
@@ -52,6 +44,30 @@ class FundMain extends StatelessWidget {
                 if (url.isNotEmpty) {
                   launchUrl(Uri.parse(url));
                 }
+              },
+            ),
+            const SizedBox(height: 10),
+            _buildFundButton(
+              title: 'กองทุนแนะนำ',
+              icon: Icons.recommend_outlined,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FundRecommendList(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 10),
+            _buildFundButton(
+              title: 'กองทุนของฉัน',
+              icon: Icons.account_balance_wallet_outlined,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FundMyPage()),
+                );
               },
             ),
           ],

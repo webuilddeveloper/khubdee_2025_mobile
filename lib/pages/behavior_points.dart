@@ -1,5 +1,6 @@
 import 'package:KhubDeeDLT/pages/score_criteria.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:KhubDeeDLT/component/header.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -12,8 +13,7 @@ class BehaviorPoints extends StatefulWidget {
 class _BehaviorPointsPageState extends State<BehaviorPoints> {
   late Future<dynamic> futureModel;
   dynamic tempData;
-
-  final int _limit = 2;
+  int _limit = 3;
 
   final RefreshController _refreshController = RefreshController(
     initialRefresh: false,
@@ -23,7 +23,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
   void initState() {
     super.initState();
 
-    _onLoading();
+    _read();
   }
 
   @override
@@ -62,66 +62,19 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
     );
   }
 
-  _futureBuilder() {
-    return FutureBuilder<dynamic>(
-      future: futureModel, // function where you call your api
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasData) {
-          return _screen(snapshot.data);
-        } else if (snapshot.hasError) {
-          return Container();
-        } else {
-          return Container();
-        }
-      },
-    );
-  }
-
   _screen(dynamic model) {
-    var totalPoint = '80';
+    int totalDeductedPoints = 0;
+    if (model != null) {
+      // Calculate the sum of deducted points
+      for (var item in model) {
+        totalDeductedPoints += (item['points'] as int).abs();
+      }
+    }
+    // Assume starting points are 100
+    int remainingPoints = 100 - totalDeductedPoints;
     return Column(
       children: [
-        Container(
-          color: Colors.white,
-          height: 60,
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          margin: const EdgeInsets.only(bottom: 1),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Row(
-                children: [
-                  Text(
-                    'แต้มคงเหลือ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
-                      fontSize: 14.0,
-                      color: Color(0xFF545454),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 15),
-              Expanded(
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    totalPoint,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Sarabun',
-                      fontSize: 30.0,
-                      color: Color(0xFFEBC22B),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
+        _buildScoreHeader(remainingPoints),
         Expanded(
           child: SmartRefresher(
             enablePullDown: false,
@@ -139,7 +92,7 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
               physics: const ScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: model.length,
+              itemCount: model?.length ?? 0,
               itemBuilder: (context, index) {
                 return _item(model[index]);
               },
@@ -150,113 +103,164 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
     );
   }
 
-  _item(dynamic model) {
-    var toDate = model['date'];
+  Widget _buildScoreHeader(int remainingPoints) {
+    double percentage = remainingPoints / 100.0;
+    Color progressColor;
+
+    if (percentage > 0.5) {
+      progressColor = Colors.green;
+    } else if (percentage > 0.2) {
+      progressColor = Colors.orange;
+    } else {
+      progressColor = Colors.red;
+    }
+
     return Container(
-      // height: 310,
-      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 0,
-            blurRadius: 4,
-            offset: const Offset(1, 3), // changes position of shadow
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(16),
+      color: Colors.white,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'วันที่กระทำความผิด',
-            style: TextStyle(
-              fontFamily: 'Sarabun',
-              fontSize: 13,
-              color: Color(0xFF9E9E9E),
-            ),
-          ),
-          Text(
-            '$toDate',
-            style: const TextStyle(fontFamily: 'Sarabun', fontSize: 13),
-          ),
-          _line(),
-          _textRow(
-            title: 'สถานที่เกิดเหตุ',
-            value: 'อำเภอเมือง จังหวัดเชียงใหม่',
-          ),
-          const SizedBox(height: 8),
-          _textRow(title: 'เลขที่ใบสั่ง', value: '240674'),
-          const SizedBox(height: 8),
-          _textRow(title: 'หน่วยงานที่ออกใบสั่ง', value: 'สถานีตำรวจ ภาค 5'),
-          const SizedBox(height: 8),
-          _line(),
-          const Text(
-            'ข้อหา',
-            style: TextStyle(
-              fontFamily: 'Sarabun',
-              fontSize: 13,
-              color: Color(0xFF9E9E9E),
-            ),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'ขับรถไม่สุภาพ ขับปาดหน้า ขับรถเร็ว ไม่ปฏิบัติตามกฏจราจร',
-            style: TextStyle(fontFamily: 'Sarabun', fontSize: 13),
-          ),
-          _line(),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'คะแนนที่ถูกหัก',
+              const Text(
+                'แต้มคงเหลือ',
                 style: TextStyle(
-                  fontFamily: 'Sarabun',
-                  fontSize: 13,
-                  color: Color(0xFF9E9E9E),
-                ),
+                    fontFamily: 'Sarabun',
+                    fontSize: 16,
+                    color: Colors.black54),
               ),
-              Text(
-                '-10 คะแนน',
-                style: TextStyle(
-                  fontFamily: 'Sarabun',
-                  fontSize: 20,
-                  color: Color(0xFFFF7B06),
+              Text.rich(
+                TextSpan(
+                  text: remainingPoints.toString(),
+                  style: TextStyle(
+                    fontFamily: 'Sarabun',
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: progressColor,
+                  ),
+                  children: const [
+                    TextSpan(
+                      text: ' / 100',
+                      style: TextStyle(
+                        fontFamily: 'Sarabun',
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
+          const SizedBox(height: 8),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: LinearProgressIndicator(
+              value: percentage,
+              minHeight: 12,
+              backgroundColor: Colors.grey[200],
+              valueColor: AlwaysStoppedAnimation<Color>(progressColor),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  _line() {
-    return Container(
-      height: 2,
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      color: const Color(0xFFEDF0F3),
+  _item(dynamic model) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.calendar_today,
+                        size: 16, color: Colors.grey),
+                    const SizedBox(width: 8),
+                    Text(
+                      'วันที่: ${model['date']}',
+                      style: const TextStyle(
+                          fontFamily: 'Sarabun',
+                          fontSize: 14,
+                          color: Colors.black54),
+                    ),
+                  ],
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    '${model['points']} คะแนน',
+                    style: const TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Divider(height: 24),
+            Text(
+              model['offense'],
+              style: const TextStyle(
+                  fontFamily: 'Sarabun',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            _textRow(
+                icon: Icons.location_on_outlined,
+                title: 'สถานที่:',
+                value: model['place']),
+            const SizedBox(height: 8),
+            _textRow(
+                icon: Icons.receipt_long_outlined,
+                title: 'เลขที่ใบสั่ง:',
+                value: model['ticketId']),
+            const SizedBox(height: 8),
+            _textRow(
+                icon: Icons.account_balance_outlined,
+                title: 'หน่วยงาน:',
+                value: model['department']),
+          ],
+        ),
+      ),
     );
   }
 
-  _textRow({String title = '', String value = ''}) {
+  Widget _textRow({required IconData icon, String title = '', String value = ''}) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontFamily: 'Sarabun',
-            fontSize: 13,
-            color: Color(0xFF9E9E9E),
+        Icon(icon, size: 16, color: Colors.grey),
+        const SizedBox(width: 8),
+        Text(title,
+            style: const TextStyle(
+                fontFamily: 'Sarabun', fontSize: 14, color: Colors.grey)),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            value,
+            textAlign: TextAlign.end,
+            style: const TextStyle(
+                fontFamily: 'Sarabun', fontSize: 14, color: Colors.black87),
           ),
-        ),
-        Text(
-          value,
-          style: const TextStyle(fontFamily: 'Sarabun', fontSize: 13),
         ),
       ],
     );
@@ -266,25 +270,56 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
   _read() async {
     // mock data
     var now = DateTime.now();
-    setState(() {
-      tempData = [];
-      for (var i = 0; i < _limit; i++) {
-        var date = now.subtract(Duration(days: i * 15));
-        setState(() {
-          tempData.add({
-            'title': i.toString(),
-            'date':
-                "${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year + 543}",
-          });
-        });
-      }
-    });
+    final mockData = [
+      {
+        'date': DateFormat('dd-MM-yyyy').format(now.subtract(const Duration(days: 15))),
+        'place': 'อำเภอเมือง จังหวัดเชียงใหม่',
+        'ticketId': '240674',
+        'department': 'สถานีตำรวจ ภาค 5',
+        'offense': 'ขับรถเร็วเกินกำหนด แต่ไม่เกิน 100 กม.ต่อชม.',
+        'points': -10,
+      },
+      {
+        'date': DateFormat('dd-MM-yyyy').format(now.subtract(const Duration(days: 40))),
+        'place': 'เขตจตุจักร กรุงเทพมหานคร',
+        'ticketId': '350112',
+        'department': 'สน.พหลโยธิน',
+        'offense': 'ไม่ส่งผู้โดยสารตามที่ตกลง',
+        'points': -20,
+      },
+      {
+        'date': DateFormat('dd-MM-yyyy').format(now.subtract(const Duration(days: 75))),
+        'place': 'อำเภอบางละมุง จังหวัดชลบุรี',
+        'ticketId': '880234',
+        'department': 'สภ.เมืองพัทยา',
+        'offense': 'ขับรถประมาท หวาดเสียวเป็นอันตราย',
+        'points': -30,
+      },
+      // {
+      //   'date': DateFormat('dd-MM-yyyy').format(now.subtract(const Duration(days: 100))),
+      //   'place': 'อำเภอหาดใหญ่ จังหวัดสงขลา',
+      //   'ticketId': '542189',
+      //   'department': 'สภ.หาดใหญ่',
+      //   'offense': 'ไม่แสดงบัตรประจำตัวผู้ขับรถ',
+      //   'points': -10,
+      // },
+    ].where((e) => true).toList(); // Ensure it's a growable list
+
+    if (mounted) {
+      setState(() {
+        if (_limit > mockData.length) {
+          tempData = mockData;
+        } else {
+          tempData = mockData.sublist(0, _limit);
+        }
+      });
+    }
   }
 
   _onLoading() async {
-    // setState(() {
-    //   _limit = _limit + 2;
-    // });
+    setState(() {
+      _limit += 2;
+    });
     _read();
 
     await Future.delayed(const Duration(milliseconds: 2000));
@@ -293,8 +328,9 @@ class _BehaviorPointsPageState extends State<BehaviorPoints> {
   }
 
   void _onRefresh() async {
-    // getCurrentUserData();
-    // _getLocation();
+    setState(() {
+      _limit = 4;
+    });
     _read();
 
     // if failed,use refreshFailed()

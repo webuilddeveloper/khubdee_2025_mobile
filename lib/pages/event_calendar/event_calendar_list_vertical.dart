@@ -46,7 +46,7 @@ class _EventCalendarListVertical extends State<EventCalendarListVertical> {
                 'ไม่พบข้อมูล',
                 style: TextStyle(
                   fontSize: 18,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color.fromRGBO(0, 0, 0, 0.6),
                 ),
               ),
@@ -191,7 +191,7 @@ class _EventCalendarListVertical extends State<EventCalendarListVertical> {
                       // fontWeight: FontWeight.bold,
                       fontSize: 10,
                       // color: Colors.white,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
@@ -201,7 +201,7 @@ class _EventCalendarListVertical extends State<EventCalendarListVertical> {
                   //   style: TextStyle(
                   //     fontWeight: FontWeight.normal,
                   //     fontSize: 8,
-                  //     fontFamily: 'Sarabun',
+                  //     fontFamily: 'Kanit',
                   //     color: Colors.white,
                   //   ),
                   //   overflow: TextOverflow.ellipsis,

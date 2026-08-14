@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:KhubDeeDLT/component/header.dart';
-import 'package:KhubDeeDLT/pages/knowledge/knowledge_list_vertical.dart' as grid;
+import 'package:KhubDeeDLT/pages/knowledge/knowledge_list_vertical.dart'
+    as grid;
 import 'package:KhubDeeDLT/component/key_search.dart';
 import 'package:KhubDeeDLT/component/tab_category.dart';
 import 'package:KhubDeeDLT/shared/api_provider.dart' as service;
@@ -22,8 +23,9 @@ class _KnowledgeList extends State<KnowledgeList> {
   late String category;
   int _limit = 10;
 
-  RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  final RefreshController _refreshController = RefreshController(
+    initialRefresh: false,
+  );
 
   @override
   void initState() {
@@ -31,8 +33,10 @@ class _KnowledgeList extends State<KnowledgeList> {
 
     gridView = new grid.KnowledgeListVertical(
       site: 'DDPM',
-      model: service
-          .post('${service.knowledgeApi}read', {'skip': 0, 'limit': _limit}),
+      model: service.post('${service.knowledgeApi}read', {
+        'skip': 0,
+        'limit': _limit,
+      }),
     );
   }
 
@@ -51,7 +55,7 @@ class _KnowledgeList extends State<KnowledgeList> {
           'skip': 0,
           'limit': _limit,
           'category': category,
-          "keySearch": keySearch
+          "keySearch": keySearch,
         }),
       );
     });
@@ -75,7 +79,7 @@ class _KnowledgeList extends State<KnowledgeList> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: header(context, goBack, title: 'ความรู้คู่การขับขี่'),
-      body: new GestureDetector(
+      body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
@@ -86,10 +90,7 @@ class _KnowledgeList extends State<KnowledgeList> {
             loadingText: ' ',
             canLoadingText: ' ',
             idleText: ' ',
-            idleIcon: Icon(
-              Icons.arrow_upward,
-              color: Colors.transparent,
-            ),
+            idleIcon: Icon(Icons.arrow_upward, color: Colors.transparent),
           ),
           controller: _refreshController,
           onLoading: _onLoading,
@@ -104,48 +105,40 @@ class _KnowledgeList extends State<KnowledgeList> {
                   {'skip': 0, 'limit': 100},
                 ),
                 onChange: (String val) {
-                  setState(
-                    () {
-                      print('---$keySearch------$val');
-                      category = val;
-                      gridView = new grid.KnowledgeListVertical(
-                        site: 'DDPM',
-                        model: service.post('${service.knowledgeApi}read', {
-                          'skip': 0,
-                          'limit': _limit,
-                          'category': category,
-                          'keySearch': keySearch
-                        }),
-                      );
-                    },
-                  );
+                  setState(() {
+                    // print('---$keySearch------$val');
+                    category = val;
+                    gridView = grid.KnowledgeListVertical(
+                      site: 'DDPM',
+                      model: service.post('${service.knowledgeApi}read', {
+                        'skip': 0,
+                        'limit': _limit,
+                        'category': category,
+                        'keySearch': keySearch,
+                      }),
+                    );
+                  });
                 },
               ),
-              SizedBox(
-                height: 5.0,
-              ),
+              SizedBox(height: 5.0),
               KeySearch(
                 show: hideSearch,
                 onKeySearchChange: (String val) {
-                  setState(
-                    () {
-                      keySearch = val;
-                      gridView = new grid.KnowledgeListVertical(
-                        site: 'DDPM',
-                        model: service.post('${service.knowledgeApi}read', {
-                          'skip': 0,
-                          'limit': _limit,
-                          'keySearch': keySearch,
-                          'category': category
-                        }),
-                      );
-                    },
-                  );
+                  setState(() {
+                    keySearch = val;
+                    gridView = grid.KnowledgeListVertical(
+                      site: 'DDPM',
+                      model: service.post('${service.knowledgeApi}read', {
+                        'skip': 0,
+                        'limit': _limit,
+                        'keySearch': keySearch,
+                        'category': category,
+                      }),
+                    );
+                  });
                 },
               ),
-              SizedBox(
-                height: 10.0,
-              ),
+              SizedBox(height: 10.0),
               gridView,
               // Expanded(
               //   flex: 1,

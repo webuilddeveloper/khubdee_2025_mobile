@@ -44,6 +44,7 @@ class _PrivilegeListVertical extends State<PrivilegeListVertical> {
             return Container(
               padding: EdgeInsets.all(10.0),
               child: GridView.builder(
+                padding: EdgeInsets.zero,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
@@ -144,7 +145,7 @@ class _PrivilegeListVertical extends State<PrivilegeListVertical> {
                   ),
                   color: Colors.white.withAlpha(220),
                   image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     image: NetworkImage(model['imageUrl']),
                   ),
                 ),
@@ -160,7 +161,7 @@ class _PrivilegeListVertical extends State<PrivilegeListVertical> {
                   bottomLeft: const Radius.circular(5.0),
                   bottomRight: const Radius.circular(5.0),
                 ),
-                color: Color(0xFFFF7900),
+                color: Theme.of(context).primaryColor,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

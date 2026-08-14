@@ -138,12 +138,12 @@ class _CalendarPageState extends State<CalendarPage>
             outsideDaysVisible: true,
             weekendTextStyle: TextStyle().copyWith(
               color: Color(0xFFdec6c6),
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.normal,
             ),
             holidayTextStyle: TextStyle().copyWith(
               color: Color(0xFFC5DAFC),
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.normal,
             ),
           ),
@@ -170,7 +170,7 @@ class _CalendarPageState extends State<CalendarPage>
                     '${date.day}',
                     style: TextStyle().copyWith(
                       fontSize: 16.0,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -240,7 +240,7 @@ class _CalendarPageState extends State<CalendarPage>
                                   '${value[index]['title']}',
                                   style: TextStyle(
                                     fontSize: 16,
-                                    fontFamily: 'Sarabun',
+                                    fontFamily: 'Kanit',
                                   ),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -255,7 +255,7 @@ class _CalendarPageState extends State<CalendarPage>
                                               value[index]['dateEnd'])
                                       : '',
                                   style: TextStyle(
-                                      fontFamily: 'Sarabun', fontSize: 10),
+                                      fontFamily: 'Kanit', fontSize: 10),
                                 )
                               ],
                             ),
@@ -294,7 +294,7 @@ class _CalendarPageState extends State<CalendarPage>
             style: TextStyle().copyWith(
               color: Colors.white,
               fontSize: 12.0,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.normal,
             ),
           ),

@@ -37,6 +37,7 @@ class _EventCalendarMain extends State<EventCalendarMain> {
       appBar: headerCalendar(
         context,
         goBack,
+        isBackShow: false,
         showCalendar,
         title: widget.title,
         rightButton: () => changeTab(),

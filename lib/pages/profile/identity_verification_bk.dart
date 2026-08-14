@@ -285,7 +285,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
               'ข้อมูลผู้ใช้งาน',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -306,7 +306,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
               'ข้อมูลส่วนตัว',
               style: TextStyle(
                 fontSize: 18.00,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontWeight: FontWeight.w500,
                 // color: Color(0xFFBC0611),
               ),
@@ -338,7 +338,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             //     decoration: InputDecoration(
             //       errorStyle: TextStyle(
             //         fontWeight: FontWeight.normal,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //         fontSize: 10.0,
             //       ),
             //       enabledBorder: UnderlineInputBorder(
@@ -353,7 +353,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             //       'กรุณาเลือกคำนำหน้า',
             //       style: TextStyle(
             //         fontSize: 15.00,
-            //         fontFamily: 'Sarabun',
+            //         fontFamily: 'Kanit',
             //       ),
             //     ),
             //     value: _selectedPrefixName != '' ? _selectedPrefixName : '',
@@ -369,7 +369,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             //           prefixName,
             //           style: TextStyle(
             //             fontSize: 15.00,
-            //             fontFamily: 'Sarabun',
+            //             fontFamily: 'Kanit',
             //             color: Color(
             //               0xFF000070,
             //             ),
@@ -463,7 +463,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -478,7 +478,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'เพศ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedSex,
@@ -493,7 +493,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -507,7 +507,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -522,7 +522,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'เพศ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       // value: _selectedSex,
@@ -537,7 +537,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -594,7 +594,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -610,7 +610,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedProvince,
@@ -632,7 +632,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -646,7 +646,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -662,7 +662,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'จังหวัด',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onChanged: (newValue) {
@@ -683,7 +683,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -712,7 +712,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -728,7 +728,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedDistrict,
@@ -748,7 +748,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -762,7 +762,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -778,7 +778,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'อำเภอ',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onChanged: (newValue) {
@@ -797,7 +797,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -826,7 +826,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -842,7 +842,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedSubDistrict,
@@ -860,7 +860,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -874,7 +874,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -890,7 +890,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'ตำบล',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onChanged: (newValue) {
@@ -907,7 +907,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['title'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -936,7 +936,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -952,7 +952,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       value: _selectedPostalCode,
@@ -967,7 +967,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['postCode'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -981,7 +981,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       decoration: InputDecoration(
                         errorStyle: TextStyle(
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           fontSize: 10.0,
                         ),
                         enabledBorder: UnderlineInputBorder(
@@ -997,7 +997,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         'รหัสไปรษณีย์',
                         style: TextStyle(
                           fontSize: 15.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                       onChanged: (newValue) {
@@ -1011,7 +1011,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             item['postCode'],
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               color: Color(
                                 0xFF000070,
                               ),
@@ -1049,7 +1049,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         fontSize: 18.0,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                       ),
                     ),
                   ),
@@ -1081,7 +1081,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         dataCountUnit[i]['titleLv0'].toString(),
                         style: TextStyle(
                           fontSize: 13.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Color(
                             0xFF000070,
                           ),
@@ -1092,7 +1092,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         dataCountUnit[i]['titleLv1'].toString(),
                         style: TextStyle(
                           fontSize: 13.00,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Color(
                             0xFF000070,
                           ),
@@ -1105,7 +1105,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               dataCountUnit[i]['titleLv2'].toString(),
                               style: TextStyle(
                                 fontSize: 13.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1119,7 +1119,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               dataCountUnit[i]['titleLv3'].toString(),
                               style: TextStyle(
                                 fontSize: 13.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1133,7 +1133,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               dataCountUnit[i]['titleLv4'].toString(),
                               style: TextStyle(
                                 fontSize: 13.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1147,7 +1147,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               dataCountUnit[i]['titleLv5'].toString(),
                               style: TextStyle(
                                 fontSize: 13.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1213,7 +1213,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                 '* เพิ่มหน่วยงาน',
                 style: TextStyle(
                   fontSize: 15.0,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   fontWeight: FontWeight.w500,
                   color: Color(0xFFBC0611),
                 ),
@@ -1225,7 +1225,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             '(เพิ่มหน่วยงานอย่างน้อย 1 หน่วยงานในการยืนยันตัวตน)',
             style: TextStyle(
               fontSize: 11.0,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               color: Color(0xFFBC0611),
             ),
@@ -1274,7 +1274,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         decoration: InputDecoration(
                           errorStyle: TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                             fontSize: 10.0,
                           ),
                           enabledBorder: UnderlineInputBorder(
@@ -1289,7 +1289,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           'โปรดระบุ',
                           style: TextStyle(
                             fontSize: 15.00,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         value: _selectedLv0,
@@ -1328,7 +1328,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               item['title'],
                               style: TextStyle(
                                 fontSize: 15.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1342,7 +1342,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         decoration: InputDecoration(
                           errorStyle: TextStyle(
                             fontWeight: FontWeight.normal,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                             fontSize: 10.0,
                           ),
                           enabledBorder: UnderlineInputBorder(
@@ -1357,7 +1357,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           'โปรดระบุ',
                           style: TextStyle(
                             fontSize: 15.00,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         onChanged: (newValue) {
@@ -1388,7 +1388,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                               item['title'],
                               style: TextStyle(
                                 fontSize: 15.00,
-                                fontFamily: 'Sarabun',
+                                fontFamily: 'Kanit',
                                 color: Color(
                                   0xFF000070,
                                 ),
@@ -1421,7 +1421,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1436,7 +1436,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           value: _selectedLv1,
@@ -1466,7 +1466,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1480,7 +1480,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1495,7 +1495,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           onChanged: (newValue) {
@@ -1524,7 +1524,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1557,7 +1557,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1572,7 +1572,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           value: _selectedLv2,
@@ -1600,7 +1600,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1614,7 +1614,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1629,7 +1629,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           onChanged: (newValue) {
@@ -1656,7 +1656,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1689,7 +1689,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1704,7 +1704,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           value: _selectedLv3,
@@ -1730,7 +1730,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1744,7 +1744,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1759,7 +1759,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           onChanged: (newValue) {
@@ -1784,7 +1784,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1817,7 +1817,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1832,7 +1832,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           value: _selectedLv4,
@@ -1856,7 +1856,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1870,7 +1870,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1885,7 +1885,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           onChanged: (newValue) {
@@ -1908,7 +1908,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1941,7 +1941,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -1956,7 +1956,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           value: _selectedLv5,
@@ -1976,7 +1976,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -1990,7 +1990,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           decoration: InputDecoration(
                             errorStyle: TextStyle(
                               fontWeight: FontWeight.normal,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                               fontSize: 10.0,
                             ),
                             enabledBorder: UnderlineInputBorder(
@@ -2005,7 +2005,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                             'โปรดระบุ',
                             style: TextStyle(
                               fontSize: 15.00,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           onChanged: (newValue) {
@@ -2024,7 +2024,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                                 item['title'],
                                 style: TextStyle(
                                   fontSize: 15.00,
-                                  fontFamily: 'Sarabun',
+                                  fontFamily: 'Kanit',
                                   color: Color(
                                     0xFF000070,
                                   ),
@@ -2059,7 +2059,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           fontSize: 18.0,
                           color: Colors.white,
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ),
@@ -2100,7 +2100,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                           fontSize: 18.0,
                           color: Colors.white,
                           fontWeight: FontWeight.normal,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ),
@@ -2325,7 +2325,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
               'ข้อมูลซ้ำ กรุณาเลือกใหม่',
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -2338,7 +2338,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                   "ตกลง",
                   style: TextStyle(
                     fontSize: 13,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Color(0xFF000070),
                     fontWeight: FontWeight.normal,
                   ),
@@ -2397,7 +2397,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             'กรุณาเพิ่มหน่วยงานอย่างน้อย 1 หน่วยงาน',
             style: TextStyle(
               fontSize: 16,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
@@ -2410,7 +2410,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                 "ตกลง",
                 style: TextStyle(
                   fontSize: 13,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Color(0xFF000070),
                   fontWeight: FontWeight.normal,
                 ),
@@ -2552,7 +2552,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                     'ยืนยันตัวตนเรียบร้อยแล้ว',
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
@@ -2565,7 +2565,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                         "ตกลง",
                         style: TextStyle(
                           fontSize: 13,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Color(0xFF000070),
                           fontWeight: FontWeight.normal,
                         ),
@@ -2589,7 +2589,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
               'ยืนยันตัวตนไม่สำเร็จ',
               style: TextStyle(
                 fontSize: 16,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -2598,7 +2598,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
               result['message'],
               style: TextStyle(
                 fontSize: 13,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
               ),
@@ -2610,7 +2610,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                   "ตกลง",
                   style: TextStyle(
                     fontSize: 13,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     color: Color(0xFF000070),
                     fontWeight: FontWeight.normal,
                   ),
@@ -2681,7 +2681,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
       decoration: InputDecoration(
         errorStyle: TextStyle(
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
           fontSize: 10.0,
         ),
         enabledBorder: UnderlineInputBorder(
@@ -2695,7 +2695,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
         title,
         style: TextStyle(
           fontSize: 15.00,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       value: _selected,
@@ -2710,7 +2710,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             item['title'],
             style: TextStyle(
               fontSize: 15.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Color(
                 0xFF000070,
               ),
@@ -2731,7 +2731,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
       decoration: InputDecoration(
         errorStyle: TextStyle(
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
           fontSize: 10.0,
         ),
         enabledBorder: UnderlineInputBorder(
@@ -2746,7 +2746,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
         title,
         style: TextStyle(
           fontSize: 15.00,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       // value: _selected,
@@ -2761,7 +2761,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
             item['title'],
             style: TextStyle(
               fontSize: 15.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               color: Color(
                 0xFF000070,
               ),
@@ -2803,7 +2803,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                 fontSize: 12.0,
                 color: Color(0xFF000070),
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),
@@ -2869,7 +2869,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                       'อัลบั้มรูปภาพ',
                       style: TextStyle(
                         fontSize: 13,
-                        fontFamily: 'Sarabun',
+                        fontFamily: 'Kanit',
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -2883,7 +2883,7 @@ class _IdentityVerificationPageState extends State<IdentityVerificationPage> {
                     'กล้องถ่ายรูป',
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       fontWeight: FontWeight.normal,
                     ),
                   ),

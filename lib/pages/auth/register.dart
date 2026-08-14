@@ -183,39 +183,40 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     } else {
       return showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) {
-            return CupertinoAlertDialog(
-              title: new Text(
-                'กรุณาติ้ก ยอมรับข้อตกลงเงื่อนไข',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontFamily: 'Sarabun',
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                ),
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: new Text(
+              'กรุณาติ้ก ยอมรับข้อตกลงเงื่อนไข',
+              style: const TextStyle(
+                fontSize: 16,
+                fontFamily: 'Kanit',
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
               ),
-              content: const Text(" "),
-              actions: [
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: new Text(
-                    "ตกลง",
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Sarabun',
-                      color: Color(0xFFFF7514),
-                      fontWeight: FontWeight.normal,
-                    ),
+            ),
+            content: const Text(" "),
+            actions: [
+              CupertinoDialogAction(
+                isDefaultAction: true,
+                child: new Text(
+                  "ตกลง",
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontFamily: 'Kanit',
+                    color: Color(0xFFFF7514),
+                    fontWeight: FontWeight.normal,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
                 ),
-              ],
-            );
-          });
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
@@ -234,16 +235,12 @@ class _RegisterPageState extends State<RegisterPage> {
       'firstName': txtFirstName.text,
       'lastName': txtLastName.text,
       'phone': txtPhone.text,
-      'birthDay': DateFormat("yyyyMMdd").format(
-        DateTime(
-          _selectedYear,
-          _selectedMonth,
-          _selectedDay,
-        ),
-      ),
+      'birthDay': DateFormat(
+        "yyyyMMdd",
+      ).format(DateTime(_selectedYear, _selectedMonth, _selectedDay)),
       'status': "N",
       'platform': Platform.operatingSystem.toString(),
-      'countUnit': "[]"
+      'countUnit': "[]",
     });
 
     if (result.status == 'S') {
@@ -255,86 +252,88 @@ class _RegisterPageState extends State<RegisterPage> {
       // );
 
       return showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) {
-            return WillPopScope(
-              onWillPop: () {
-                return Future.value(false);
-              },
-              child: CupertinoAlertDialog(
-                title: new Text(
-                  'ลงทะเบียนเรียบร้อยแล้ว',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Sarabun',
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                  ),
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () {
+              return Future.value(false);
+            },
+            child: CupertinoAlertDialog(
+              title: new Text(
+                'ลงทะเบียนเรียบร้อยแล้ว',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Kanit',
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
                 ),
-                content: const Text(" "),
-                actions: [
-                  CupertinoDialogAction(
-                    isDefaultAction: true,
-                    child: new Text(
-                      "ตกลง",
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Sarabun',
-                        color: Color(0xFFFF7514),
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    onPressed: () {
-                      goBack();
-                      // Navigator.of(context).pop();
-                    },
-                  ),
-                ],
               ),
-            );
-          });
+              content: const Text(" "),
+              actions: [
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: new Text(
+                    "ตกลง",
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Kanit',
+                      color: Color(0xFFFF7514),
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  onPressed: () {
+                    goBack();
+                    // Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
     } else {
       return showDialog(
-          barrierDismissible: false,
-          // ignore: use_build_context_synchronously
-          context: context,
-          builder: (BuildContext context) {
-            return WillPopScope(
-              onWillPop: () {
-                return Future.value(false);
-              },
-              child: CupertinoAlertDialog(
-                title: Text(
-                  result.message ?? '',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Sarabun',
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                  ),
+        barrierDismissible: false,
+        // ignore: use_build_context_synchronously
+        context: context,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () {
+              return Future.value(false);
+            },
+            child: CupertinoAlertDialog(
+              title: Text(
+                result.message ?? '',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Kanit',
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
                 ),
-                content: const Text(" "),
-                actions: [
-                  CupertinoDialogAction(
-                    isDefaultAction: true,
-                    child: new Text(
-                      "ตกลง",
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontFamily: 'Sarabun',
-                        color: Color(0xFFFF7514),
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
               ),
-            );
-          });
+              content: const Text(" "),
+              actions: [
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: new Text(
+                    "ตกลง",
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontFamily: 'Kanit',
+                      color: Color(0xFFFF7514),
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
     }
   }
 
@@ -348,19 +347,19 @@ class _RegisterPageState extends State<RegisterPage> {
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
         doneStyle: TextStyle(
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
         cancelStyle: TextStyle(
           fontSize: 16.0,
           color: Color(0xFFFF7514),
           fontWeight: FontWeight.normal,
-          fontFamily: 'Sarabun',
+          fontFamily: 'Kanit',
         ),
       ),
       showTitleActions: true,
@@ -376,11 +375,7 @@ class _RegisterPageState extends State<RegisterPage> {
           );
         });
       },
-      currentTime: DateTime(
-        _selectedYear,
-        _selectedMonth,
-        _selectedDay,
-      ),
+      currentTime: DateTime(_selectedYear, _selectedMonth, _selectedDay),
       locale: dtpicker.LocaleType.th, // อย่าลืมเติม dtpicker. ที่นี่ด้วย
     );
   }
@@ -415,13 +410,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 20.0,
                             color: _isShowStep1 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         decoration: new BoxDecoration(
-                          color: _isShowStep1
-                              ? const Color(0xFFFFC324)
-                              : const Color(0xFFFFFFFF),
+                          color:
+                              _isShowStep1
+                                  ? const Color(0xFFFFC324)
+                                  : const Color(0xFFFFFFFF),
                           borderRadius: new BorderRadius.all(
                             new Radius.circular(25.0),
                           ),
@@ -437,7 +433,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 10.0,
                           color: Colors.white,
                           fontWeight: FontWeight.w100,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ],
@@ -465,13 +461,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 20.0,
                             color: _isShowStep2 ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Sarabun',
+                            fontFamily: 'Kanit',
                           ),
                         ),
                         decoration: new BoxDecoration(
-                          color: _isShowStep2
-                              ? const Color(0xFFFFC324)
-                              : const Color(0xFFFFFFFF),
+                          color:
+                              _isShowStep2
+                                  ? const Color(0xFFFFC324)
+                                  : const Color(0xFFFFFFFF),
                           borderRadius: new BorderRadius.all(
                             new Radius.circular(25.0),
                           ),
@@ -487,7 +484,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 10.0,
                           color: Colors.white,
                           fontWeight: FontWeight.w100,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                         ),
                       ),
                     ],
@@ -538,7 +535,7 @@ class _RegisterPageState extends State<RegisterPage> {
               style: TextStyle(
                 fontSize: 10.0,
                 fontWeight: FontWeight.normal,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
             value: _checkedValue,
@@ -552,34 +549,32 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         ),
         Container(
-            alignment: Alignment.topRight,
-            padding: const EdgeInsets.symmetric(
-              vertical: 10.0,
-              horizontal: 0.0,
+          alignment: Alignment.topRight,
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: const Color(0xFFFFC324), // Text color
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                side: const BorderSide(
+                  color: Color(0xFFFFC324), // Border color
+                ),
+              ),
             ),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: const Color(0xFFFFC324), // Text color
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: const BorderSide(
-                    color: Color(0xFFFFC324), // Border color
-                  ),
-                ),
+            onPressed: () {
+              checkValueStep1();
+            },
+            child: const Text(
+              "ถัดไป >",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.normal,
+                fontFamily: 'Kanit',
               ),
-              onPressed: () {
-                checkValueStep1();
-              },
-              child: const Text(
-                "ถัดไป >",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.normal,
-                  fontFamily: 'Sarabun',
-                ),
-              ),
-            )),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -595,7 +590,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'ข้อมูลผู้ใช้งาน',
             style: TextStyle(
               fontSize: 18.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               // color: Color(0xFFBC0611),
             ),
@@ -647,7 +642,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'ข้อมูลส่วนตัว',
             style: TextStyle(
               fontSize: 18.00,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
               fontWeight: FontWeight.w500,
               // color: Color(0xFFBC0611),
             ),
@@ -680,7 +675,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //     decoration: InputDecoration(
           //       errorStyle: TextStyle(
           //         fontWeight: FontWeight.normal,
-          //         fontFamily: 'Sarabun',
+          //         fontFamily: 'Kanit',
           //         fontSize: 10.0,
           //       ),
           //       enabledBorder: UnderlineInputBorder(
@@ -695,7 +690,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //       'กรุณาเลือกคำนำหน้า',
           //       style: TextStyle(
           //         fontSize: 15.00,
-          //         fontFamily: 'Sarabun',
+          //         fontFamily: 'Kanit',
           //       ),
           //     ),
           //     value: _selectedPrefixName,
@@ -710,7 +705,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //           prefixName,
           //           style: TextStyle(
           //             fontSize: 15.00,
-          //             fontFamily: 'Sarabun',
+          //             fontFamily: 'Kanit',
           //             color: Color(
           //               0xFFFF7514,
           //             ),
@@ -723,15 +718,7 @@ class _RegisterPageState extends State<RegisterPage> {
           //   // ),
           // ),
           labelTextFormField('* ชื่อ'),
-          textFormField(
-            txtFirstName,
-            '',
-            'ชื่อ',
-            'ชื่อ',
-            true,
-            false,
-            false,
-          ),
+          textFormField(txtFirstName, '', 'ชื่อ', 'ชื่อ', true, false, false),
           labelTextFormField('* นามสกุล'),
           textFormField(
             txtLastName,
@@ -744,17 +731,15 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           labelTextFormField('วันเดือนปีเกิด'),
           GestureDetector(
-            onTap: () => {
-              FocusScope.of(context).unfocus,
-              dialogOpenPickerDate(),
-            },
+            onTap:
+                () => {FocusScope.of(context).unfocus, dialogOpenPickerDate()},
             child: AbsorbPointer(
               child: TextFormField(
                 controller: txtDate,
                 style: const TextStyle(
                   color: Color(0xFFFF7514),
                   fontWeight: FontWeight.normal,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   fontSize: 15.0,
                 ),
                 decoration: InputDecoration(
@@ -768,7 +753,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   errorStyle: const TextStyle(
                     fontWeight: FontWeight.normal,
-                    fontFamily: 'Sarabun',
+                    fontFamily: 'Kanit',
                     fontSize: 10.0,
                   ),
                 ),
@@ -789,15 +774,7 @@ class _RegisterPageState extends State<RegisterPage> {
             true,
           ),
           labelTextFormField('* อีเมล'),
-          textFormField(
-            txtEmail,
-            '',
-            'อีเมล',
-            'อีเมล',
-            true,
-            false,
-            true,
-          ),
+          textFormField(txtEmail, '', 'อีเมล', 'อีเมล', true, false, true),
           Center(
             child: Container(
               width: MediaQuery.of(context).size.width * 0.7,
@@ -822,7 +799,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 18.0,
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                   ),
                 ),
@@ -837,11 +814,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void goBack() async {
     // Navigator.pop(context);
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (context) => LoginPage(
-          title: '',
-        ),
-      ),
+      MaterialPageRoute(builder: (context) => LoginPage(title: '')),
       (Route<dynamic> route) => false,
     );
   }
@@ -892,7 +865,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         // myWizard(),
                         // card(),
-                        formContentStep2()
+                        formContentStep2(),
                       ],
                     ),
                   ),

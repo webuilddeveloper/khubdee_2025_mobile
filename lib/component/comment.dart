@@ -69,7 +69,7 @@ class _Comment extends State<Comment> {
                 'ขอบคุณสำหรับความคิดเห็น',
                 style: TextStyle(
                   fontSize: 16,
-                  fontFamily: 'Sarabun',
+                  fontFamily: 'Kanit',
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
@@ -82,7 +82,7 @@ class _Comment extends State<Comment> {
                     "ยกเลิก",
                     style: TextStyle(
                       fontSize: 13,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Theme.of(context).primaryColorDark,
                       fontWeight: FontWeight.normal,
                     ),
@@ -121,7 +121,7 @@ class _Comment extends State<Comment> {
             'แสดงความคิดเห็น',
             style: TextStyle(
               fontSize: 15,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
             ),
           ),
         ),
@@ -134,7 +134,7 @@ class _Comment extends State<Comment> {
             maxLength: 100,
             style: TextStyle(
               fontSize: 13,
-              fontFamily: 'Sarabun',
+              fontFamily: 'Kanit',
             ),
             // decoration: new InputDecoration(hintText: "Enter Something", contentPadding: const EdgeInsets.all(20.0)),
             decoration: InputDecoration(
@@ -175,7 +175,7 @@ class _Comment extends State<Comment> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
               ),
             ),
           ),
@@ -244,14 +244,14 @@ class _Comment extends State<Comment> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                           Text(
                             '${model[index]['description']}',
                             style: TextStyle(
                               fontSize: 13,
-                              fontFamily: 'Sarabun',
+                              fontFamily: 'Kanit',
                             ),
                           ),
                         ],
@@ -267,7 +267,7 @@ class _Comment extends State<Comment> {
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       color: Colors.black.withAlpha(80),
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                   ),
                 ),
@@ -311,7 +311,7 @@ class _Comment extends State<Comment> {
                     'ไม่สามารถแสดงความคิดเห็นได้',
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
@@ -324,7 +324,7 @@ class _Comment extends State<Comment> {
                         "ตกลง",
                         style: TextStyle(
                           fontSize: 13,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.normal,
                         ),
@@ -353,7 +353,7 @@ class _Comment extends State<Comment> {
                     'การเชื่อมต่อมีปัญหากรุณาลองใหม่อีกครั้ง',
                     style: TextStyle(
                       fontSize: 16,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       color: Colors.black,
                       fontWeight: FontWeight.normal,
                     ),
@@ -366,7 +366,7 @@ class _Comment extends State<Comment> {
                         "ตกลง",
                         style: TextStyle(
                           fontSize: 13,
-                          fontFamily: 'Sarabun',
+                          fontFamily: 'Kanit',
                           color: Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.normal,
                         ),

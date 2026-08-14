@@ -1,7 +1,14 @@
 import 'dart:convert';
 
-import 'package:KhubDeeDLT/fund/fund-list.dart';
+import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
+import 'package:KhubDeeDLT/fund/fund-recommend.dart';
+import 'package:KhubDeeDLT/pages/behavior_points.dart';
+import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';
+import 'package:KhubDeeDLT/pages/profile/drivers_info.dart';
+import 'package:KhubDeeDLT/pages/profile/register_with_diver_license.dart';
+import 'package:KhubDeeDLT/pages/profile/register_with_license_plate.dart';
+import 'package:KhubDeeDLT/pages/traffic_ticket.dart';
 import 'package:KhubDeeDLT/pages/training/training_main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:KhubDeeDLT/component/carousel_rotation.dart';
@@ -14,10 +21,6 @@ import 'package:KhubDeeDLT/login.dart';
 import 'package:KhubDeeDLT/pages/blank_page/blank_loading.dart';
 import 'package:KhubDeeDLT/pages/blank_page/toast_fail.dart';
 import 'package:KhubDeeDLT/pages/dispute_an_allegation.dart';
-import 'package:KhubDeeDLT/pages/training/e_learning_courses.dart';
-import 'package:KhubDeeDLT/pages/training/upskill_courses.dart';
-import 'package:KhubDeeDLT/pages/training/e_certificate_list.dart';
-import 'package:KhubDeeDLT/pages/privilegeSpecial/privilege_special_list.dart';
 import 'package:KhubDeeDLT/pages/reporter/reporte r_main.dart';
 import 'package:KhubDeeDLT/pages/warning/warning_list.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +30,7 @@ import 'package:KhubDeeDLT/pages/about_us/about_us_form.dart';
 import 'package:KhubDeeDLT/pages/menu_grid_item.dart';
 import 'package:KhubDeeDLT/pages/notification/notification_list.dart';
 import 'package:KhubDeeDLT/pages/poi/poi_list.dart';
+import 'package:KhubDeeDLT/pages/poi/poi_main.dart';
 import 'package:KhubDeeDLT/pages/poll/poll_list.dart';
 import 'package:KhubDeeDLT/pages/welfare/welfare_list.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -61,6 +65,7 @@ class _HomePageV2State extends State<HomePageV2> {
   late Future<dynamic> _futureAboutUs = Future.value(null);
   late Future<dynamic> _futureMainPopUp = Future.value(null);
   late Future<dynamic> _futureVerifyTicket = Future.value(null);
+  static bool isFirstFund = true;
 
   String profileCode = '';
   String currentLocation = '-';
@@ -87,9 +92,49 @@ class _HomePageV2State extends State<HomePageV2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _buildHeader(),
-      body: WillPopScope(child: _buildBackground(), onWillPop: confirmExit),
+      extendBodyBehindAppBar: true,
+      // backgroundColor: Colors.white,
+      // appBar: _buildHeader(),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ShaderMask(
+              shaderCallback: (rect) {
+                return const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.white, // เห็นภาพชัด
+                    Colors.transparent, // ค่อย ๆ หายไป
+                  ],
+                ).createShader(rect);
+              },
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                'assets/background/bg_purple.png',
+                width: double.infinity,
+                fit: BoxFit.cover,
+                // height: 200, // ปรับความยาวของ fade ได้
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: WillPopScope(
+              onWillPop: confirmExit,
+              child: Column(
+                children: [
+                  _buildProfile(),
+                  Expanded(child: _buildBackground()),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -122,6 +167,14 @@ class _HomePageV2State extends State<HomePageV2> {
       //     end: Alignment.bottomCenter,
       //   ),
       // ),
+      padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       child: _buildNotificationListener(),
     );
   }
@@ -208,416 +261,74 @@ class _HomePageV2State extends State<HomePageV2> {
 
   _buildMenu() {
     return ListView(
+      // shrinkWrap: true,
       children: [
-        Column(
-          children: [
-            _buildBanner(),
-            _buildCurrentLocationBar(),
-            _buildProfile(),
-            _buildVerifyTicket(),
-            _buildRotation(),
-            const SizedBox(height: 5),
-            // _buildGridMenu1(),
-            // SizedBox(height: 1),
-            // _buildGridMenu2(),
-            // chkisCard == false ? _buildDispute(1) : Container(),
-            const SizedBox(height: 5),
-            // chkisCard == true ? _buildDispute(2) : Container(),
-            _buildTraining(),
-            _buildcardFund(),
-            _buildCardFirst(),
-            _buildCardSecond(),
-            _buildCardThird(),
-            // _buildRotation(),
-            _buildFooter(),
-          ],
+        // _buildProfile(),
+        SizedBox(height: 160, child: _buildBanner()),
+
+        const SizedBox(height: 15),
+        _buildService(),
+        const SizedBox(height: 15),
+        _buildMenuGroup(),
+        const SizedBox(height: 15),
+
+        SizedBox(
+          height: 120,
+          child: cardMenu2(
+            title: 'เรียนรู้และอบรม \n(Training & Upskill Academy)',
+            imageMenuUrl: 'assets/icons/menu_bottom_3.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TrainingMain()),
+              );
+            },
+          ),
         ),
+
+        const SizedBox(height: 15),
+        cardMenu(
+          imageMenuUrl: 'assets/icons/menu_bottom_2.png',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => KnowledgeList(title: 'ความรู้คู่การขับขี่'),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          height: 120,
+          child: cardMenu2(
+            title: 'จุดบริการ',
+            imageMenuUrl: 'assets/background/backgroundUserInfo.png',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => PoiMain(title: 'จุดบริการ', latLng: latLng),
+                ),
+              );
+            },
+          ),
+        ),
+
+        const SizedBox(height: 15),
+
+        const SizedBox(height: 15),
+        _buildcardFund(),
+        const SizedBox(height: 15),
+
+        _buildRotation(),
+        const SizedBox(height: 15),
+        _buildFooter(),
+        const SizedBox(height: 100),
       ],
     );
-  }
-
-  _buildHeader() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(40 + MediaQuery.of(context).padding.top),
-      child: AppBar(
-        flexibleSpace: Container(
-          width: double.infinity,
-          // height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/bg_header.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      alignment: Alignment.centerLeft,
-                      height: 60,
-                      child: Image.asset('assets/logo/bg_headlogo.png'),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => NotificationList(title: 'แจ้งเตือน'),
-                        ),
-                      );
-                    },
-                    child: SizedBox(
-                      height: 30,
-                      child: Image.asset('assets/icons/bell.png'),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  InkWell(
-                    onTap: () async {
-                      final msg = await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UserInformationPage(),
-                        ),
-                      );
-
-                      if (!msg) {
-                        _read();
-                      }
-                    },
-                    child: FutureBuilder<dynamic>(
-                      future: _futureProfile,
-                      builder: (
-                        BuildContext context,
-                        AsyncSnapshot<dynamic> snapshot,
-                      ) {
-                        if (snapshot.hasData) {
-                          if (profileCode == snapshot.data['code']) {
-                            return Container(
-                              height: 50,
-                              padding: const EdgeInsets.only(right: 10),
-                              child: checkAvatar(
-                                context,
-                                '${snapshot.data['imageUrl']}',
-                              ),
-                            );
-                          } else {
-                            return Container(
-                              height: 30,
-                              child: Image.asset(
-                                'assets/images/user_not_found.png',
-                                color: Colors.white,
-                              ),
-                            );
-                          }
-                        } else if (snapshot.hasError) {
-                          return const BlankLoading();
-                        } else {
-                          return SizedBox(
-                            height: 30,
-                            child: Image.asset(
-                              'assets/images/user_not_found.png',
-                              color: Colors.white,
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  _buildDispute(int param) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => DisputeAnAllegation()),
-        );
-      },
-      child: Container(
-        height: 120,
-        padding:
-            param == 1
-                ? const EdgeInsets.symmetric(horizontal: 25)
-                : const EdgeInsets.symmetric(horizontal: 15),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.grey,
-          image: DecorationImage(
-            // image: NetworkImage('${model['imageUrl']}'),
-            image: AssetImage('assets/background/background_dispute.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child:
-            param == 1
-                ? const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 5),
-                          Text(
-                            'ยื่นอุทธรณ์ (Dispute)',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25.0,
-                              fontFamily: 'Sarabun',
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.fade,
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13.0,
-                              fontFamily: 'Sarabun',
-                            ),
-                            maxLines: 2,
-                            // textAlign: TextAlign.center,
-                          ),
-                          // Text(
-                          //   'สามารถตรวจสอบใบสั่งย้อนหลังได้สูงสุด 1 ปี',
-                          //   style: TextStyle(
-                          //     color: Colors.white,
-                          //     fontSize: 13.0,
-                          //     fontFamily: 'Sarabun',
-                          //   ),
-                          //   maxLines: 2,
-                          //   textAlign: TextAlign.center,
-                          // )
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-                : const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 10),
-                          Text.rich(
-                            TextSpan(
-                              text: 'ยื่นอุทธรณ์',
-                              style: TextStyle(
-                                color: Color(0xFF4E2B68),
-                                fontSize: 20.0,
-                                fontFamily: 'Sarabun',
-                                fontWeight: FontWeight.bold,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: '(Dispute)',
-                                  style: TextStyle(
-                                    color: Color(0xFF4E2B68),
-                                    fontSize: 13.0,
-                                    fontFamily: 'Sarabun',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            'กรมการขนส่งทางบกอำนวยความสะดวกให้ท่าน',
-                            style: TextStyle(
-                              color: Color(0xFF4E2B68),
-                              fontSize: 13.0,
-                              fontFamily: 'Sarabun',
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-      ),
-    );
-  }
-
-  _buildCardFirst() {
-    return Container(
-      height: 125,
-      color: Colors.white,
-      child: Row(
-        children: [
-          imageItem(
-            '',
-            '',
-            'assets/background/news_background.png',
-            2,
-            titleStart: true,
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => const NewsList(title: 'ข่าวประชาสัมพันธ์'),
-                ),
-              );
-            },
-          ),
-          colorItem(
-            'สิทธิประโยชน์',
-            '(Benefits)',
-            'assets/icons/gift.png',
-            1,
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) =>
-                      // PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
-                      PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: true),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  _buildCardSecond() {
-    return Container(
-      height: 125,
-      color: Colors.white,
-      child: Row(
-        children: [
-          colorItem(
-            'ปฏิทินกิจกรรม',
-            '(Calendar)',
-            'assets/icons/icon_calendar.png',
-            1,
-            linearGradient: const LinearGradient(
-              colors: [Color(0xFF7847AB), Color(0xFF4E2B68)],
-              begin: Alignment.centerRight,
-              end: Alignment.centerLeft,
-            ),
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => EventCalendarMain(title: 'ปฏิทินกิจกรรม'),
-                ),
-              );
-            },
-          ),
-          imageItem(
-            'ความรู้คู่การขับขี่',
-            '(Driving Knowledge)',
-            'assets/background/info_background.png',
-            2,
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => KnowledgeList(title: 'ความรู้คู่การขับขี่'),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  _buildCardThird() {
-    return Container(
-      height: 125,
-      color: Colors.white,
-      child: Row(
-        children: [
-          imageItem(
-            'จุดบริการ',
-            '(Service Station)',
-            'assets/background/service_background.png',
-            1,
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => PoiList(title: 'จุดบริการ', latLng: latLng),
-                ),
-              );
-            },
-          ),
-          imageItem(
-            'เบอร์โทรฉุกเฉิน',
-            '(SOS)',
-            'assets/background/hotline.png',
-            1,
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) =>
-                          ContactListCategory(title: 'เบอร์โทรฉุกเฉิน'),
-                ),
-              );
-            },
-          ),
-          colorItem(
-            'ติดต่อเรา',
-            '(Contact us)',
-            'assets/images/icon_info.png',
-            1,
-            linearGradient: const LinearGradient(
-              colors: [Color(0xFF281F37), Color(0xFF281F37)],
-              begin: Alignment.centerRight,
-              end: Alignment.centerLeft,
-            ),
-            callback: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => AboutUsForm(
-                        model: _futureAboutUs,
-                        title: 'ติดต่อเรา',
-                      ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  _buildVerifyTicket() {
-    return VerifyTicket(model: _futureVerifyTicket);
   }
 
   _buildBanner() {
@@ -652,29 +363,10 @@ class _HomePageV2State extends State<HomePageV2> {
     );
   }
 
-  _buildCurrentLocationBar() {
+  _buildService() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          // color: Color(0xFF000070),
-          // padding: EdgeInsets.symmetric(horizontal: 5),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.only(left: 10),
-          child: const Row(
-            children: [
-              Icon(Icons.credit_card),
-              Text(
-                ' ใบอนุญาตขับขี่สาธารณะ',
-                style: TextStyle(
-                  fontFamily: 'Sarabun',
-                  // fontSize: 10,
-                  // color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
         Container(
           // color: Color(0xFF000070),
           // padding: EdgeInsets.symmetric(horizontal: 5),
@@ -683,250 +375,554 @@ class _HomePageV2State extends State<HomePageV2> {
           height: 40,
           child: Row(
             children: [
-              Icon(Icons.pin_drop, color: Colors.orange[400]),
+              // Icon(Icons.pin_drop, color: Colors.orange[400]),
               Text(
                 // ' ' + currentLocation,
-                'กรุงเทพมหานคร',
+                'บริการ',
                 style: TextStyle(
-                  fontFamily: 'Sarabun',
-                  color: Colors.orange[400],
-                  // fontSize: 10,
+                  fontFamily: 'Kanit',
+                  color: Colors.black,
+                  fontSize: 16,
                   // color: Colors.white,
                 ),
               ),
             ],
           ),
         ),
+        // Container(
+        //   // color: Color(0xFF000070),
+        //   // padding: EdgeInsets.symmetric(horizontal: 5),
+        //   alignment: Alignment.center,
+        //   padding: const EdgeInsets.only(left: 10),
+        //   child: const Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     children: [
+        //       Text(
+        //         'ดูทั้งหมด ',
+        //         style: TextStyle(
+        //           fontFamily: 'Kanit',
+        //           color: Color(0xFF808080),
+        //           // fontSize: 10,
+        //           // color: Colors.white,
+        //         ),
+        //       ),
+        //       Icon(Icons.arrow_forward_ios, size: 13, color: Color(0xFF808080)),
+        //     ],
+        //   ),
+        // ),
+      ],
+    );
+  }
+
+  cardMenu({required VoidCallback onTap, required String imageMenuUrl}) {
+    return GestureDetector(onTap: onTap, child: Image.asset(imageMenuUrl));
+  }
+
+  cardMenu2({
+    required VoidCallback onTap,
+    required String imageMenuUrl,
+    required String title,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          16,
+        ), // ⭐ ป้องกันรูปหลุดออกนอกมุมโค้ง
+        child: Stack(
+          children: [
+            Image.asset(
+              imageMenuUrl,
+              fit: BoxFit.cover, // ⭐ ทำให้ภาพครอบพื้นที่
+              width: double.infinity,
+              height: double.infinity,
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Color(0xFF4A0768),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuGroup() {
+    return GridView(
+      padding: EdgeInsets.zero,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        childAspectRatio: 1,
+        crossAxisSpacing: 7,
+        mainAxisSpacing: 7,
+      ),
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      children: [
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => const NewsList(title: 'ข่าวประชาสัมพันธ์'),
+              ),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu1.png',
+        ),
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DriversInfo()),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu2.png',
+        ),
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BehaviorPoints()),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu3.png',
+        ),
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TrafficTicket()),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu4.png',
+        ),
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ContactListCategory(title: 'เบอร์ติดต่อ'),
+              ),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu5.png',
+        ),
+        cardMenu(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) =>
+                    // PrivilegeSpecialList(title: 'สิทธิพิเศษ'),
+                    PrivilegeMain(title: 'สิทธิประโยชน์', fromPolicy: false),
+              ),
+            );
+          },
+          imageMenuUrl: 'assets/icons/menu6.png',
+        ),
       ],
     );
   }
 
   _buildProfile() {
-    return Profile(model: _futureProfile);
-  }
-
-  _buildGridMenu1() {
+    // return Profile(model: _futureProfile);
     return FutureBuilder<dynamic>(
-      future: _futureMenu, // function where you call your api
+      future: _futureProfile,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.hasData) {
-          return Row(
-            children: [
-              MenuGridItem(
-                title: snapshot.data[0]['title'],
-                imageUrl: snapshot.data[0]['imageUrl'],
-                isCenter: false,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => EventCalendarMain(
-                            title: snapshot.data[0]['title'],
-                          ),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => EventCalendarMain(
-                  //         title: snapshot.data[0]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
-                },
-              ),
-              MenuGridItem(
-                title:
-                    snapshot.data[1]['title'] != ''
-                        ? snapshot.data[1]['title']
-                        : '',
-                imageUrl: snapshot.data[1]['imageUrl'],
-                subTitle: '',
-                isCenter: true,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              KnowledgeList(title: snapshot.data[1]['title']),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => KnowledgeList(
-                  //         title: snapshot.data[1]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
-                },
-              ),
-              MenuGridItem(
-                title:
-                    snapshot.data[2]['title'] != ''
-                        ? snapshot.data[2]['title']
-                        : '',
-                imageUrl: snapshot.data[2]['imageUrl'],
-                subTitle: '',
-                isCenter: false,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              ReporterMain(title: snapshot.data[2]['title']),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => ReporterMain(
-                  //         title: snapshot.data[2]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
-                },
-              ),
-            ],
-          );
+          return _buildCardProfile(snapshot.data);
         } else if (snapshot.hasError) {
-          return Container();
+          return const BlankLoading();
         } else {
-          return Container();
+          return const BlankLoading();
         }
       },
     );
   }
 
-  _buildGridMenu2() {
-    return FutureBuilder<dynamic>(
-      future: _futureMenu, // function where you call your api
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.hasData) {
-          return Row(
-            children: [
-              MenuGridItem(
-                title:
-                    snapshot.data[3]['title'] != ''
-                        ? snapshot.data[3]['title']
-                        : '',
-                imageUrl: snapshot.data[3]['imageUrl'],
-                subTitle: '',
-                isCenter: false,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              WarningList(title: snapshot.data[3]['title']),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => WarningList(
-                  //         title: snapshot.data[3]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
+  _buildCardProfile(dynamic model) {
+    return Container(
+      height: 118,
+      // color: Colors.white,
+      child: GestureDetector(
+        onTap: () {
+          // ? Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => DriverLicenseConsentPage()),
+          //   )
+          model['isDF'] == false
+              ? showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return _buildDialogdriverLicence();
                 },
-              ),
-              MenuGridItem(
-                title:
-                    snapshot.data[4]['title'] != ''
-                        ? snapshot.data[4]['title']
-                        : '',
-                imageUrl: snapshot.data[4]['imageUrl'],
-                subTitle: '',
-                isCenter: true,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              WelfareList(title: snapshot.data[4]['title']),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => WelfareList(
-                  //         title: snapshot.data[4]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
-                },
-              ),
-              MenuGridItem(
-                title:
-                    snapshot.data[5]['title'] != ''
-                        ? snapshot.data[5]['title']
-                        : '',
-                imageUrl: snapshot.data[5]['imageUrl'],
-                subTitle: '',
-                isCenter: false,
-                isPrimaryColor: true,
-                nav: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              NewsList(title: snapshot.data[5]['title']),
-                    ),
-                  );
-                  // if (checkDirection) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => NewsList(
-                  //         title: snapshot.data[5]['title'],
-                  //       ),
-                  //     ),
-                  //   );
-                  // } else {
-                  //   _showDialogDirection();
-                  // }
-                },
-              ),
-            ],
+              )
+              : Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DriversInfo()),
+              );
+
+          // Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => DriversInfo(),
+          //         ),
+          //       );
+        },
+        onLongPress: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DriversInfo()),
           );
-        } else if (snapshot.hasError) {
-          return Container();
-        } else {
-          return Container();
-        }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Container(
+            // margin: const EdgeInsets.only(top: 5, right: 5, bottom: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Colors.transparent,
+
+              // gradient: LinearGradient(
+              //   colors: [Color(0xFFAF86B5), Color(0xFF7948AD)],
+              //   begin: Alignment.centerLeft,
+              //   // end: new Alignment(1, 0.0),
+              //   end: Alignment.centerRight,
+              // ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  // padding: EdgeInsets.all(
+                  //   '${model['imageUrl']}' != '' ? 0.0 : 5.0,
+                  // ),
+                  height: 120,
+                  width: 90,
+                  child: checkAvatar(context, '${model['imageUrl']}'),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 5,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        model['isDF'] == false
+                            ? Container(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                                bottom: 5.0,
+                                top: 5.0,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    '${model['firstName']} ${model['lastName']}',
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.white,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 5),
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 5,
+                                      top: 5,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(48),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.15),
+                                          spreadRadius: 1,
+                                          blurRadius: 4,
+                                          offset: Offset(
+                                            0,
+                                            2,
+                                          ), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Text(
+                                      'รอยืนยันตัวตน',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+
+                                  // const SizedBox(height: 10),
+                                  // Row(
+                                  //   children: [
+                                  //     const Text(
+                                  //       'ID Card : ',
+                                  //       style: TextStyle(
+                                  //         fontSize: 11.0,
+                                  //         color: Colors.white,
+                                  //         fontFamily: 'Kanit',
+                                  //       ),
+                                  //     ),
+                                  //     Expanded(
+                                  //       child: Text(
+                                  //         model['idcard'] ??
+                                  //             'กรุณาอัพเดทข้อมูล',
+                                  //         style: const TextStyle(
+                                  //           fontSize: 11.0,
+                                  //           color: Colors.white,
+                                  //           fontFamily: 'Kanit',
+                                  //         ),
+                                  //         maxLines: 2,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                ],
+                              ),
+                            )
+                            : Container(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                right: 10,
+                                bottom: 5.0,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'ID Card : ',
+                                        style: TextStyle(
+                                          fontSize: 13.0,
+                                          color: Colors.white,
+                                          fontFamily: 'Kanit',
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          model['idcard'] ??
+                                              'กรุณาอัพเดทข้อมูล',
+                                          style: const TextStyle(
+                                            fontSize: 13.0,
+                                            color: Colors.white,
+                                            fontFamily: 'Kanit',
+                                          ),
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    '${model['firstName']} ${model['lastName']}',
+                                    style: const TextStyle(
+                                      fontSize: 13.0,
+                                      color: Colors.white,
+                                      fontFamily: 'Kanit',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                        // if(model['isDF'] != false)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _buildDialogdriverLicence() {
+    return WillPopScope(
+      onWillPop: () {
+        return Future.value(false);
       },
+      child: CustomAlertDialog(
+        contentPadding: const EdgeInsets.all(0),
+        content: Container(
+          width: 325,
+          height: 351,
+          // width: MediaQuery.of(context).size.width / 1.3,
+          // height: MediaQuery.of(context).size.height / 2.5,
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: const Color(0xFFFFFF),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Image.asset('assets/check_register.png', height: 50),
+                // Icon(
+                //   Icons.check_circle_outline_outlined,
+                //   color: Color(0xFF5AAC68),
+                //   size: 60,
+                // ),
+                const SizedBox(height: 10),
+                const Text(
+                  'ยืนยันตัวตน',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 15,
+                    // color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Text(
+                  'กรุณายืนยันตัวผ่านตัวเลือกดังต่อไปนี้',
+                  style: TextStyle(
+                    fontFamily: 'Kanit',
+                    fontSize: 15,
+                    color: Color(0xFF4D4D4D),
+                  ),
+                ),
+                const SizedBox(height: 28),
+                Container(height: 0.5, color: const Color(0xFFcfcfcf)),
+                InkWell(
+                  onTap: () {
+                    // Navigator.pop(context,false);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DriverLicenseConsentPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'ยืนยันตัวตนผ่านแอพ ThaID',
+                      style: TextStyle(
+                        fontFamily: 'Kanit',
+                        fontSize: 15,
+                        color: Color(0xFF4D4D4D),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(height: 0.5, color: const Color(0xFFcfcfcf)),
+                InkWell(
+                  onTap: () {
+                    // Navigator.pop(context,false);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterWithDriverLicense(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'ยืนยันตัวตนผ่านใบขับขี่',
+                      style: TextStyle(
+                        fontFamily: 'Kanit',
+                        fontSize: 15,
+                        color: Color(0xFF4D4D4D),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(height: 0.5, color: const Color(0xFFcfcfcf)),
+                InkWell(
+                  onTap: () {
+                    // Navigator.pop(context,false);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterWithLicensePlate(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'ยืนยันตัวตนผ่านทะเบียนรถที่ครอบครอง',
+                      style: TextStyle(
+                        fontFamily: 'Kanit',
+                        fontSize: 15,
+                        color: Color(0xFF4D4D4D),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(height: 0.5, color: const Color(0xFFcfcfcf)),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: Container(
+                    height: 45,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'ยกเลิก',
+                      style: TextStyle(
+                        fontFamily: 'Kanit',
+                        fontSize: 15,
+                        color: Color(0xFF9C0000),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -953,214 +949,6 @@ class _HomePageV2State extends State<HomePageV2> {
           );
         }
       },
-    );
-  }
-
-  _buildPrivilegeMenu() {
-    return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
-      child: FutureBuilder<dynamic>(
-        future: _futureMenu, // function where you call your api
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ButtonMenuFull(
-              title:
-                  snapshot.data[7]['title'] != ''
-                      ? snapshot.data[7]['title']
-                      : '',
-              imageUrl: snapshot.data[7]['imageUrl'],
-              model: _futureMenu,
-              subTitle: 'สำหรับสมาชิก',
-              nav: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => PrivilegeMain(
-                          title: snapshot.data[7]['title'],
-                          fromPolicy: false,
-                        ),
-                  ),
-                );
-                // if (!checkDirection) {
-                //   _showDialogDirection();
-                // } else if (_dataPolicy.length > 0) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => PolicyPrivilege(
-                //         title: snapshot.data[4]['title'],
-                //         username: userData.username,
-                //         fromPolicy: true,
-                //       ),
-                //     ),
-                //   );
-                // } else {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => PrivilegeMain(
-                //         title: snapshot.data[7]['title'],
-                //         fromPolicy: false,
-                //       ),
-                //     ),
-                //   );
-                // }
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Container();
-          } else {
-            return Container();
-          }
-        },
-      ),
-    );
-  }
-
-  _buildContactMenu() {
-    return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
-      child: FutureBuilder<dynamic>(
-        future: _futureMenu, // function where you call your api
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ButtonMenuFull(
-              title:
-                  snapshot.data[6]['title'] != ''
-                      ? snapshot.data[6]['title']
-                      : '',
-              imageUrl: snapshot.data[6]['imageUrl'],
-              model: _futureMenu,
-              subTitle: 'สำหรับสมาชิก',
-              nav: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => ContactListCategory(
-                          title: snapshot.data[6]['title'],
-                        ),
-                  ),
-                );
-                // if (checkDirection) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => ContactListCategory(
-                //         title: snapshot.data[6]['title'],
-                //       ),
-                //     ),
-                //   );
-                // } else {
-                //   _showDialogDirection();
-                // }
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Container();
-          } else {
-            return Container();
-          }
-        },
-      ),
-    );
-  }
-
-  _buildPoiMenu() {
-    return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
-      child: FutureBuilder<dynamic>(
-        future: _futureMenu, // function where you call your api
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ButtonMenuFull(
-              title:
-                  snapshot.data[8]['title'] != ''
-                      ? snapshot.data[8]['title']
-                      : '',
-              imageUrl: snapshot.data[8]['imageUrl'],
-              model: _futureMenu,
-              subTitle: 'สำหรับสมาชิก',
-              nav: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => PoiList(
-                          title: snapshot.data[8]['title'],
-                          latLng: latLng,
-                        ),
-                  ),
-                );
-                // if (checkDirection) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => PoiList(
-                //         title: snapshot.data[8]['title'],
-                //       ),
-                //     ),
-                //   );
-                // } else {
-                //   _showDialogDirection();
-                // }
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Container();
-          } else {
-            return Container();
-          }
-        },
-      ),
-    );
-  }
-
-  _buildPollMenu() {
-    return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 3, bottom: 3),
-      child: FutureBuilder<dynamic>(
-        future: _futureMenu, // function where you call your api
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            return ButtonMenuFull(
-              title:
-                  snapshot.data[9]['title'] != ''
-                      ? snapshot.data[9]['title']
-                      : '',
-              imageUrl: snapshot.data[9]['imageUrl'],
-              model: _futureMenu,
-              subTitle: 'สำหรับสมาชิก',
-              nav: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:
-                        (context) => PollList(title: snapshot.data[9]['title']),
-                  ),
-                );
-                // if (checkDirection) {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => PollList(
-                //         title: snapshot.data[9]['title'],
-                //       ),
-                //     ),
-                //   );
-                // } else {
-                //   _showDialogDirection();
-                // }
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Container();
-          } else {
-            return Container();
-          }
-        },
-      ),
     );
   }
 
@@ -1352,7 +1140,7 @@ class _HomePageV2State extends State<HomePageV2> {
             Text(
               title,
               style: const TextStyle(
-                fontFamily: 'Sarabun',
+                fontFamily: 'Kanit',
                 fontSize: 15,
                 color: Color(0xFF545454),
               ),
@@ -1396,7 +1184,7 @@ class _HomePageV2State extends State<HomePageV2> {
   //                 : 'ยืนยันตัวตนแล้ว รอเจ้าหน้าที่ตรวจสอบข้อมูล',
   //             style: TextStyle(
   //               // color: Colors.white,
-  //               fontFamily: 'Sarabun',
+  //               fontFamily: 'Kanit',
   //               fontSize: 13,
   //             ),
   //           ),
@@ -1431,7 +1219,7 @@ class _HomePageV2State extends State<HomePageV2> {
   //                         'ยืนยันตัวตน',
   //                         style: TextStyle(
   //                           color: Colors.white,
-  //                           fontFamily: 'Sarabun',
+  //                           fontFamily: 'Kanit',
   //                           fontSize: 13,
   //                         ),
   //                       ),
@@ -1479,7 +1267,7 @@ class _HomePageV2State extends State<HomePageV2> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                       // fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
@@ -1491,7 +1279,7 @@ class _HomePageV2State extends State<HomePageV2> {
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 13.0,
-                      fontFamily: 'Sarabun',
+                      fontFamily: 'Kanit',
                     ),
                     maxLines: 2,
                     // textAlign: TextAlign.center,
@@ -1509,16 +1297,23 @@ class _HomePageV2State extends State<HomePageV2> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => FundMain(
-                    title: 'กองทุนเพื่อความปลอดภัยในการใช้รถใช้ถนน (กปถ.)',
-                  ),
-            ),
-          );
+        onTap: () async {
+          if (isFirstFund) {
+            // ครั้งแรกหลังเปิดแอพ
+            isFirstFund = false;
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => FundRecommend()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => FundMain(title: 'กองทุน'),
+              ),
+            );
+          }
         },
         child: Container(
           height: 100,

@@ -41,7 +41,7 @@ class _CarouselBanner extends State<CarouselBanner> {
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data.length > 0) {
-            return Column(
+            return Stack(
               children: [
                 InkWell(
                   onTap: () {
@@ -55,7 +55,7 @@ class _CarouselBanner extends State<CarouselBanner> {
                   },
                   child: CarouselSlider(
                     options: CarouselOptions(
-                      height: 161,
+                      height: 160,
                       viewportFraction: 1.0,
                       enlargeCenterPage: false,
                       autoPlay: true,
@@ -68,20 +68,33 @@ class _CarouselBanner extends State<CarouselBanner> {
                     items:
                         snapshot.data.map<Widget>((document) {
                           return new Container(
-                            child: Center(
-                              child: Image.network(
-                                document['imageUrl'],
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              // color: const Color(0xFFFF7900),
+                              image: DecorationImage(
+                                // image: NetworkImage('${model['imageUrl']}'),
+                                image: NetworkImage(document['imageUrl']),
                                 fit: BoxFit.cover,
-                                height: 161,
-                                width: double.infinity,
                               ),
+                            ),
+                            height: 160,
+                            child: Center(
+                              // child: Image.network(
+                              //   document['imageUrl'],
+                              //   fit: BoxFit.cover,
+                              //   height: 161,
+                              //   width: double.infinity,
+                              // ),
                             ),
                           );
                         }).toList(),
                   ),
                 ),
-                Container(
-                  color: Color(0xFFF5F8FB),
+                Positioned(
+                  bottom: 5,
+                  left: 0,
+                  right: 0,
+                  // color: Color(0xFFF5F8FB),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:
@@ -102,10 +115,10 @@ class _CarouselBanner extends State<CarouselBanner> {
                                     ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color:
-                                  _current == index
-                                      ? Color(0xFF323232)
-                                      : Color(0xFF323232).withOpacity(0.4),
+                              color: Colors.white,
+                              // _current == index
+                              //     ? Color(0xFF323232)
+                              //     : Color(0xFF323232).withOpacity(0.4),
                               // : Color.fromRGBO(0, 0, 0, 0.4),
                             ),
                           );
