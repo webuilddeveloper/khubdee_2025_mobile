@@ -635,12 +635,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
             children: [
               Container(
                 height: 30,
-                color:
-                    model['isExpire'] == '3'
-                        ? Color(0xFF838383)
-                        : model['isExpire'] == '2'
-                        ? Colors.yellow.shade800
-                        : Color(0xFF214492),
+                color: _statusAwareColor(model),
                 child: Row(
                   children: [
                     Expanded(
@@ -1120,12 +1115,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
 
               Container(
                 height: 30,
-                color:
-                    model['isExpire'] == '3'
-                        ? Color(0xFF838383)
-                        : model['isExpire'] == '2'
-                        ? Colors.yellow.shade800
-                        : Color(0xFF214492),
+                color: _statusAwareColor(model),
                 padding: EdgeInsets.only(bottom: 5, right: 5),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1191,7 +1181,7 @@ class _DriversInfoPageState extends State<DriversInfo> {
                 ),
               ),
 
-SizedBox(width: 10,),
+              SizedBox(width: 10),
               model['isExpire'] == '3'
                   ? Row(
                     children: [
@@ -1221,6 +1211,52 @@ SizedBox(width: 10,),
         ),
       ],
     );
+  }
+
+  Color _licenseBaseColor(dynamic model) {
+    final th = (model['pltDesc'] ?? '').toString();
+    final en = (model['pltDescEn'] ?? '').toString();
+    final text = (th + ' ' + en).toLowerCase();
+
+    // รถจักรยานยนต์สาธารณะ
+    if (text.contains('จักรยานยนต์') || text.contains('motorcycle')) {
+      return const Color(0xFFE67E22); // ส้ม
+    }
+
+    // รถบรรทุกสาธารณะ
+    if (text.contains('บรรทุก') || text.contains('truck')) {
+      return const Color(0xFF1E8449); // เขียว
+    }
+
+    // รถโดยสารสาธารณะ / รถตู้
+    if (text.contains('โดยสาร') ||
+        text.contains('bus') ||
+        text.contains('van')) {
+      return const Color(0xFF7D3C98); // ม่วง
+    }
+
+    // รถยนต์สาธารณะทั่วไป
+    if (text.contains('สาธารณะ') || text.contains('public')) {
+      return const Color(0xFF214492); // น้ำเงินกรม
+    }
+
+    // default: ส่วนบุคคล หรือไม่เข้าเงื่อนไข
+    return const Color(0xFF2874A6); // ฟ้า
+  }
+
+  Color _statusAwareColor(dynamic model) {
+    final isExpire = (model['isExpire'] ?? '').toString();
+
+    if (isExpire == '3') {
+      // หมดอายุ
+      return const Color(0xFF838383); // เทา
+    } else if (isExpire == '2') {
+      // ใกล้หมดอายุ
+      return Colors.yellow.shade800;
+    }
+
+    // ปกติ: ใช้สีตามประเภทใบขับขี่
+    return _licenseBaseColor(model);
   }
 
   _buildLine() {
