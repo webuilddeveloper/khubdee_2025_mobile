@@ -35,27 +35,21 @@ class _NotificationList extends State<NotificationList> {
 
   @override
   void initState() {
-    _readNoti();
     super.initState();
+    _futureModel = _readNoti();
   }
 
-  _readNoti() async {
-    await storage
-        .read(key: 'dataUserLoginDDPM')
-        .then(
-          (x) => {
-            setState(() {
-              final data = jsonDecode(x!);
-              print('>>>>>>>>>>>>> ${data['username']}');
-              username = data['username'];
-              _futureModel = postDio('${notificationApi}read', {
-                'skip': 0,
-                'limit': 999,
-                'username': data['username'],
-              });
-            }),
-          },
-        );
+  Future<dynamic> _readNoti() async {
+    final storedUser = await storage.read(key: 'dataUserLoginDDPM');
+    if (storedUser == null || storedUser.isEmpty) return <dynamic>[];
+    final data = jsonDecode(storedUser);
+    username = data['username']?.toString() ?? '';
+    if (username.isEmpty) return <dynamic>[];
+    return postDio('${notificationApi}read', {
+      'skip': 0,
+      'limit': 999,
+      'username': username,
+    });
   }
 
   checkNavigationPage(String page, dynamic model) {
