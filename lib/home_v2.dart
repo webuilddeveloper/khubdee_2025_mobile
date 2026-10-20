@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:KhubDeeDLT/shared/dlt_news_runtime.dart';
 
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
@@ -61,11 +62,8 @@ class _HomePageV2State extends State<HomePageV2> {
 
   late Future<dynamic> _futureBanner = Future.value(null);
   late Future<dynamic> _futureProfile = Future.value(null);
-  late Future<dynamic> _futureMenu = Future.value(null);
   late Future<dynamic> _futureRotation = Future.value(null);
-  late Future<dynamic> _futureAboutUs = Future.value(null);
   late Future<dynamic> _futureMainPopUp = Future.value(null);
-  late Future<dynamic> _futureVerifyTicket = Future.value(null);
   static bool isFirstFund = true;
 
   String profileCode = '';
@@ -88,6 +86,7 @@ class _HomePageV2State extends State<HomePageV2> {
   void initState() {
     _read();
     super.initState();
+    DltNewsRuntime.instance.warmHome();
   }
 
   @override
@@ -591,6 +590,7 @@ class _HomePageV2State extends State<HomePageV2> {
           //     MaterialPageRoute(
           //         builder: (context) => DriverLicenseConsentPage()),
           //   )
+          print('model[isDF] = ${model['isDF']}');
           model['isDF'] == false
               ? showDialog(
                 context: context,
@@ -987,28 +987,24 @@ class _HomePageV2State extends State<HomePageV2> {
     _getLocation();
 
     //read profile
-    profileCode = (await storage.read(key: 'profileCode2'))!;
+    profileCode = await storage.read(key: 'profileCode2') ?? '';
+    if (!mounted) return;
     if (profileCode != '') {
       setState(() {
         _futureProfile = postDio(profileReadApi, {"code": profileCode});
       });
-      _futureMenu = postDio('${menuApi}read', {'limit': 10});
       _futureBanner = postDio('${mainBannerApi}read', {'limit': 10});
       _futureRotation = postDio('${mainRotationApi}read', {'limit': 10});
       _futureMainPopUp = postDio('${mainPopupHomeApi}read', {'limit': 10});
-      _futureAboutUs = postDio('${aboutUsApi}read', {});
 
-      _futureVerifyTicket = postDio(getNotpaidTicketListApi, {
-        "createBy": "createBy",
-        "updateBy": "updateBy",
-        "card_id": "",
-        "plate1": "3กท",
-        "plate2": "9771",
-        "plate3": "00100",
-        "ticket_id": "",
-      });
-
-      var _profile = await _futureProfile;
+      dynamic _profile;
+      try {
+        _profile = await _futureProfile;
+      } catch (_) {
+        // The profile FutureBuilder already displays the failed loading state.
+        return;
+      }
+      if (!mounted) return;
       setState(() {
         chkisCard =
             _profile["idcard"] != '' && _profile['idcard'] != null
@@ -1016,6 +1012,7 @@ class _HomePageV2State extends State<HomePageV2> {
                 : false;
       });
       getMainPopUp();
+
       // _getLocation();
       // print('-------------end response------------');
     } else {
