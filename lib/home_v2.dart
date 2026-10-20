@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:KhubDeeDLT/component/material/custom_alert_dialog.dart';
 import 'package:KhubDeeDLT/fund/fund-main.dart';
 import 'package:KhubDeeDLT/fund/fund-recommend.dart';
+import 'package:KhubDeeDLT/pages/ai_chat_page.dart';
 import 'package:KhubDeeDLT/pages/behavior_points.dart';
 import 'package:KhubDeeDLT/pages/profile/driver_license_consent.dart';
 import 'package:KhubDeeDLT/pages/profile/drivers_info.dart';
@@ -134,6 +135,23 @@ class _HomePageV2State extends State<HomePageV2> {
             ),
           ),
         ],
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 80),
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const AiChatPage()),
+            );
+          },
+          backgroundColor: Color(0xFF4A0768),
+          foregroundColor: Colors.white,
+          elevation: 3,
+          tooltip: 'ผู้ช่วยขับดี',
+          child: const Icon(Icons.directions_car_rounded),
+        ),
       ),
     );
   }
