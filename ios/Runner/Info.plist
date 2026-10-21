@@ -85,6 +85,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>เพื่อแสดงรูปภาพโปรไฟล์ของคุณ</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ใช้ไมโครโฟนเพื่อรับคำถามด้วยเสียงในผู้ช่วยขับดี</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>ใช้การรู้จำเสียงเพื่อแปลงคำพูดเป็นข้อความสำหรับถามผู้ช่วยขับดี</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>แอปพลิเคชันของคุณต้องการเข้าถึงตำแหน่งที่ตั้งของคุณเพื่อ แสดงที่อยู่ปัจจุบัน</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
